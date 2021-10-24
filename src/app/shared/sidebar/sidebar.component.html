@@ -1,10 +1,32 @@
-<h3 class="text-info">{{ job }}</h3>
-<hr>
-<ul class="list-group">
-    <li *ngFor="let itemMenu of menu.items; let i = index"
+<div class="full-height-page d-flex flex-column justify-content-evenly ml-3">
+
+    <h3 class="text-info text-center  user-select-none">{{ job }}</h3>
+
+    <hr />
+
+    <nav>
+    <ul class="list-group">
+        <li
+        *ngFor="let itemMenu of menu.items; let i = index"
         class="list-group-item list-group-item-action pointer"
-        routerLink="{{ itemMenu.path }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <span>{{ itemMenu.name }}</span>
-    </li>
-</ul>
-<hr>
+        routerLink="{{ itemMenu.path }}"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >
+        <span class="text-break user-select-none">{{ itemMenu.name }}</span>
+        </li>
+    </ul>
+    </nav>
+
+    <hr />
+
+    <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-lg">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        </a>
+        <a href="#" class="btn btn-lg">
+            <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+    </div>
+
+</div>

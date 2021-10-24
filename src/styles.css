@@ -3,6 +3,16 @@ html, body {
     height: 100%;
 }
 
+.full-height-page {
+    height: 95%;
+    min-height: 95vh;
+    min-width: 180px;
+}
+
 .pointer {
     cursor: pointer;
+}
+
+.user-select-none {
+    user-select: none;
 }
