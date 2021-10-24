@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ThemesModule } from './themes/themes.module';
-import { SidebarModule } from './shared/sidebar.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -28,7 +28,7 @@ import { ContactComponent } from './pages/contact/contact.component';
     AppRoutingModule,
     ThemesModule,
 
-    SidebarModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

@@ -1,46 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { Menu } from '../interfaces/menu.interface';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuService {
 
-  menu: Menu = {
-    items: [
-      {
-          name: 'Home',
-          path: 'home'
-      },
-      {
-          name: 'About',
-          path: 'about'
-      },
-      {
-          name: 'Resume',
-          path: 'resume'
-      },
-      {
-          name: 'Projects',
-          path: 'projects'
-      },
-      {
-          name: 'Recomendations',
-          path: 'recomendations'
-      },
-      {
-          name: 'Contact',
-          path: 'contact'
-      }
-    ],
-    size: 6
-  };
+  menu: Menu;
 
-  constructor() { }
+  constructor( private httpClient: HttpClient ) {}
 
-  getMenu(): Menu {
-    return this.menu;
+  getMenuDefault(): Menu {
+    return {
+      items: [
+          {
+              id: 1,
+              name: 'Home',
+              path: 'home'
+          }
+      ],
+      size: 1
+    };
+  }
+
+  getMenu(): Observable<Menu> {
+    return this.httpClient.get<Menu>( `${environment.baseUrl}/configMenu` );
   }
 
 }

@@ -1,21 +1,19 @@
 <div class="full-height-page d-flex flex-column justify-content-evenly ml-3">
 
-    <h3 class="text-info text-center  user-select-none">{{ job }}</h3>
+    <h3 class="text-info text-center user-select-none">{{ job }}</h3>
 
     <hr />
 
     <nav>
-    <ul class="list-group">
-        <li
-        *ngFor="let itemMenu of menu.items; let i = index"
-        class="list-group-item list-group-item-action pointer"
-        routerLink="{{ itemMenu.path }}"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >
-        <span class="text-break user-select-none">{{ itemMenu.name }}</span>
-        </li>
-    </ul>
+        <ul class="list-group">
+            <li *ngFor="let itemMenu of menu.items; let i = index"
+                class="list-group-item list-group-item-action pointer"
+                routerLink="{{ itemMenu.path }}"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" >
+                <span class="text-break user-select-none">{{ itemMenu.name }}</span>
+            </li>
+        </ul>
     </nav>
 
     <hr />
