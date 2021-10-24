@@ -1,0 +1,29 @@
+{
+    "menu": [
+        {
+            "name": "Home",
+            "url": "home"
+        },
+        {
+            "name": "About",
+            "url": "about"
+        },
+        {
+            "name": "Resume",
+            "url": "resume"
+        },
+        {
+            "name": "Projects",
+            "url": "projects"
+        },
+        {
+            "name": "Recomendations",
+            "url": "recomendations"
+        },
+        {
+            "name": "Contact",
+            "url": "contact"
+        }
+    ],
+    "size": 6
+}
