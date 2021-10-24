@@ -1,0 +1,8 @@
+{
+    "menu": [
+        {
+            "name": "Home",
+            "url": "/home"
+        }
+    ]
+}
