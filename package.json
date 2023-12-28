@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
+    "build:href": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:sd_portfolio": "node dist/sd_portfolio/server/server.mjs"
+    "serve:ssr:sd-portfolio": "node dist/sd-portfolio/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +22,15 @@
     "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.8",
+    "@popperjs/core": "^2.11.8",
+    "animate.css": "^4.1.1",
+    "bootstrap": "^5.3.2",
     "express": "^4.18.2",
+    "jquery": "^3.7.1",
+    "normalize.css": "^8.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.1",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {

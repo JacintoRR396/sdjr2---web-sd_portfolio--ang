@@ -3,11 +3,18 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sd_portfolio": {
+    "sd-portfolio": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -17,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sd_portfolio",
+            "outputPath": "dist/sd-portfolio",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -30,9 +37,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/normalize.css/normalize.css",
+						  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+						  "node_modules/animate.css/animate.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -67,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sd_portfolio:build:production"
+              "buildTarget": "sd-portfolio:build:production"
             },
             "development": {
-              "buildTarget": "sd_portfolio:build:development"
+              "buildTarget": "sd-portfolio:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "sd_portfolio:build"
+            "buildTarget": "sd-portfolio:build"
           }
         },
         "test": {
