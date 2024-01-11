@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center bg-dark">
+  <img
+    class="card-img-top animate__animated animate__fadeIn"
+    [ngStyle]="{ display: hasLoaded ? '' : 'none' }"
+    [src]="lazyImage.urlImage"
+    [alt]="lazyImage.alt"
+    (load)="onLoad()"
+  />
+  <ng-container *ngIf="!hasLoaded">
+    <img
+      class="mt-2 mb-1"
+      height="35"
+      width="35"
+      [src]="lazyImage.config?.urlLoader! | lazyImageLoader"
+      alt="Loader not available"
+    />
+  </ng-container>
+</div>

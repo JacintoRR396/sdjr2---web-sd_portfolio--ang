@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "usuario": "Jacinto R2",
+      "email": "balbino.v12@gmail.com",
+      "password": "1234",
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "usuario": "Rocio BG",
+      "email": "rocio.b.g@gmail.com",
+      "password": "1234",
+      "is_active": true
+    }
+  ],
+  "heroes": [
+    {
+      "id": "dc-batman",
+      "superhero": "Batman",
+      "publisher": "DC Comics",
+      "alter_ego": "Bruce Wayne",
+      "first_appearance": "Detective Comics #27",
+      "characters": "Bruce Wayne"
+    }
+  ]
+}
