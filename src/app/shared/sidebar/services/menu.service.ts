@@ -16,14 +16,8 @@ export class MenuService {
 
   getMenuDefault(): Menu {
     return {
-      items: [
-          {
-              id: 1,
-              name: 'Home',
-              path: 'home'
-          }
-      ],
-      size: 1
+      items: [],
+      size: 0
     };
   }
 
