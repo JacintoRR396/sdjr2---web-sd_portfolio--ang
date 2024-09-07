@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:f": "ng serve -o",
-    "start:b": "json-server --watch data/db.json",
+    "start:frontend": "ng serve -o",
+    "start:backend": "json-server --watch data/db.json",
     "build": "ng build",
     "build:href": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",

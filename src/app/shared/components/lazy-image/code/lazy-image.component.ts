@@ -10,6 +10,9 @@ import { LoaderSvgType } from '../enums/loader-svg.enum';
 export class LazyImageComponent implements OnInit {
   @Input({ required: true }) public lazyImage!: LazyImage;
 
+  private loaderTypeDefault: LoaderSvgType = LoaderSvgType.Puff;
+  private loaderSizeDefault: number = 64;
+  private loaderDelay: number = 3000;
   public hasLoaded: boolean = false;
 
   ngOnInit(): void {
@@ -17,23 +20,29 @@ export class LazyImageComponent implements OnInit {
   }
 
   private checkInputs(): void {
-    if (!this.lazyImage.urlImage) {
-      throw new Error('Url property is requited.');
+    if (!this.lazyImage.path) {
+      throw new Error('Path property is required.');
     }
     if (!this.lazyImage.alt) {
-      this.lazyImage.alt = '';
+      this.lazyImage.alt = 'This is an image';
     }
-    if (!this.lazyImage.config) {
-      this.lazyImage.config = { urlLoader: LoaderSvgType.Puff };
+    if (!this.lazyImage.configLoader) {
+      this.lazyImage.configLoader = {
+        type: this.loaderTypeDefault,
+        size: this.loaderSizeDefault
+      };
     }
-    if (!this.lazyImage.config.urlLoader) {
-      this.lazyImage.config.urlLoader = LoaderSvgType.Puff;
+    if (!this.lazyImage.configLoader.type) {
+      this.lazyImage.configLoader.type = this.loaderTypeDefault;
+    }
+    if (!this.lazyImage.configLoader.size) {
+      this.lazyImage.configLoader.size = this.loaderSizeDefault;
     }
   }
 
   onLoad(): void {
     setTimeout(() => {
       this.hasLoaded = true;
-    }, 500);
+    }, this.loaderDelay);
   }
 }

@@ -1,11 +1,12 @@
 import { LoaderSvgType } from '../enums/loader-svg.enum';
 
 export interface LazyImage {
-  urlImage: string;
+  path: string;
   alt?: string;
-  config?: LazyImageConfig;
+  configLoader?: LazyImageConfigLoader;
 }
 
-export interface LazyImageConfig {
-  urlLoader?: LoaderSvgType;
+export interface LazyImageConfigLoader {
+  type?: LoaderSvgType;
+  size?: number;
 }
