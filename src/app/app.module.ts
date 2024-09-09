@@ -10,14 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './layouts/web/home/code/home-page.component';
+import { AboutPageComponent } from './layouts/web/about/code/about-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomePageComponent, AboutPageComponent],
   imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    CommonModule,
     SharedModule,
   ],
   providers: [provideClientHydration()],

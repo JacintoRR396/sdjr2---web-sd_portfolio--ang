@@ -1,6 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
+import { RouterModule } from '@angular/router';
+
+import { FooterComponent } from './components/footer/code/footer.component';
 import { HeaderComponent } from './components/header/code/header.component';
 import { HeaderLinkComponent } from './components/header/components/header-link/header-link.component';
 import { HeaderNavComponent } from './components/header/components/header-nav/header-nav.component';
@@ -10,6 +13,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 
 @NgModule({
   declarations: [
+    FooterComponent,
     HeaderComponent,
     HeaderLinkComponent,
     HeaderNavComponent,
@@ -17,7 +21,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     PathLoaderLazyImagePipe,
     SearchBoxComponent,
   ],
-  imports: [CommonModule],
-  exports: [HeaderComponent, LazyImageComponent, SearchBoxComponent],
+  imports: [CommonModule, RouterModule],
+  exports: [HeaderComponent, LazyImageComponent, SearchBoxComponent, FooterComponent],
 })
 export class SharedModule {}
