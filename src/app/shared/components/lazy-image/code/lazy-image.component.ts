@@ -12,7 +12,7 @@ export class LazyImageComponent implements OnInit {
 
   private loaderTypeDefault: LoaderSvgType = LoaderSvgType.Puff;
   private loaderSizeDefault: number = 64;
-  private loaderDelay: number = 3000;
+  private loaderDelayDefault: number = 3000;
   public hasLoaded: boolean = false;
 
   ngOnInit(): void {
@@ -31,18 +31,22 @@ export class LazyImageComponent implements OnInit {
         type: this.loaderTypeDefault,
         size: this.loaderSizeDefault
       };
-    }
-    if (!this.lazyImage.configLoader.type) {
-      this.lazyImage.configLoader.type = this.loaderTypeDefault;
-    }
-    if (!this.lazyImage.configLoader.size) {
-      this.lazyImage.configLoader.size = this.loaderSizeDefault;
+    } else {
+      if (!this.lazyImage.configLoader.type) {
+        this.lazyImage.configLoader.type = this.loaderTypeDefault;
+      }
+      if (!this.lazyImage.configLoader.size) {
+        this.lazyImage.configLoader.size = this.loaderSizeDefault;
+      }
+      if (!this.lazyImage.configLoader.delay) {
+        this.lazyImage.configLoader.delay = this.loaderDelayDefault;
+      }
     }
   }
 
   onLoad(): void {
     setTimeout(() => {
       this.hasLoaded = true;
-    }, this.loaderDelay);
+    }, this.loaderDelayDefault);
   }
 }
