@@ -7,20 +7,18 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
+import { AppSharedModule } from './shared/app-shared.module';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './layouts/web/home/code/home-page.component';
-import { AboutPageComponent } from './layouts/web/about/code/about-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, AboutPageComponent],
+  declarations: [AppComponent],
   imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
     CommonModule,
-    SharedModule,
+    AppSharedModule
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
