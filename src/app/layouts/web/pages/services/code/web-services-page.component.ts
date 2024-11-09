@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './web-services-page.component.html',
   styleUrl: './web-services-page.component.scss'
 })
-export class WebServicesPageComponent {
-
-}
+export class WebServicesPageComponent {}

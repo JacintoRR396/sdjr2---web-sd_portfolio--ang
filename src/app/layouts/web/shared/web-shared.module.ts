@@ -7,13 +7,17 @@ import { WebHeaderSharedComponent } from './components/web-header/code/web-heade
 import { WebHeaderNavSharedComponent } from './components/web-header/components/web-header-nav-shared/web-header-nav-shared.component';
 import { WebHeaderLinksSharedComponent } from './components/web-header/components/web-header-links-shared/web-header-links-shared.component';
 import { WebFooterSharedComponent } from './components/web-footer/code/web-footer-shared.component';
+import { WebFooterAuthorSharedComponent } from './components/web-footer/components/web-footer-author-shared/web-footer-author-shared.component';
+import { WebFooterLinksSharedComponent } from './components/web-footer/components/web-footer-links-shared/web-footer-links-shared.component';
 
 @NgModule({
   declarations: [
     WebHeaderSharedComponent,
     WebHeaderNavSharedComponent,
     WebHeaderLinksSharedComponent,
-    WebFooterSharedComponent
+    WebFooterSharedComponent,
+    WebFooterAuthorSharedComponent,
+    WebFooterLinksSharedComponent
   ],
   imports: [
     CommonModule, RouterModule

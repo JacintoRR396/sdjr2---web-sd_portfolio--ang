@@ -24,8 +24,8 @@ import { WebContactPageComponent } from './pages/contact/code/web-contact-page.c
     WebContactPageComponent
   ],
   imports: [
-    WebRoutingModule,
     CommonModule,
+    WebRoutingModule,
     WebSharedModule
   ],
 })

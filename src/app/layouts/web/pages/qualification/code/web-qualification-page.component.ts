@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './web-qualification-page.component.html',
   styleUrl: './web-qualification-page.component.scss'
 })
-export class WebQualificationPageComponent {
-
-}
+export class WebQualificationPageComponent {}

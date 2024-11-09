@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './web-contact-page.component.html',
   styleUrl: './web-contact-page.component.scss'
 })
-export class WebContactPageComponent {
-
-}
+export class WebContactPageComponent {}

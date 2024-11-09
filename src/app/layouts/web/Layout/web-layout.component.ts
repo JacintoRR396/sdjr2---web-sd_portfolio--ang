@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './web-layout.component.html',
   styleUrl: './web-layout.component.scss'
 })
-export class WebLayoutComponent {
-
-}
+export class WebLayoutComponent {}

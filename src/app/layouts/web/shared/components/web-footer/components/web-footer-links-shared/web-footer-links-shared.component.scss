@@ -1,0 +1,15 @@
+.footer{
+  &__navbar {
+    border-radius: 1rem;
+    border: 1px solid white;
+  }
+    &__navitem {
+      padding: 0rem 0.75rem;
+    }
+      &__navlink {
+        font-size: 1.25rem;
+      }
+      &__navlink:hover {
+        color: rgba($color: white, $alpha: 0.75)
+      }
+}

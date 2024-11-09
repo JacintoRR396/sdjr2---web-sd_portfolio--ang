@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './web-footer-shared.component.html',
   styleUrl: './web-footer-shared.component.scss'
 })
-export class WebFooterSharedComponent {
-
-}
+export class WebFooterSharedComponent {}
