@@ -46,11 +46,11 @@
   }
 
   &__description {
-    margin: calc(var.$padding-mob / 3) 0;
+    margin: calc(var.$padding-mob / 3) 0.25rem;
     font-size: var.$fs-small-mob;
 
     @include mix.desktop {
-      margin: calc(var.$padding-desk / 3) 0;
+      margin: calc(var.$padding-desk / 3) 0.25rem;
       font-size: var.$fs-small-desk;
     }
   }

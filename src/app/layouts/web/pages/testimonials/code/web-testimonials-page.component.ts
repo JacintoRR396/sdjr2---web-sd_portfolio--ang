@@ -82,6 +82,6 @@ export class WebTestimonialsPageComponent {
         description: "Es un crack, tanto en backend como frontend."
       }
     ]
-  }
+  };
 
 }

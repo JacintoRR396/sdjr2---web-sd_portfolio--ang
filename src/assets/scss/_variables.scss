@@ -41,12 +41,14 @@ $fw-medium: 700;
 $fw-bold: 900;
 
 /** Colors **/
+$black-pure: #000000;
 $black: #050507;
 $black-ng: #0E0E10;
 $white: #fff;
 $gray-light: #f8f8f8;
 $gray: #969696;
 $gray-dark: #3b3b3b;
+$gray-ng: #2B3035;
 $red: #e22331;
 $green: #00833e;
 $greenish: #068d9d;
@@ -80,8 +82,8 @@ $body-pri-color: $white;
 $body-sec-color: $secondary-lighter;
 $body-third-color: $black;
 
-$body-pri-bgcolor: $black;
-$body-sec-bgcolor: $black-ng;
+$body-pri-bgcolor: $black-ng;
+$body-sec-bgcolor: lighten($body-pri-bgcolor, 2.5%);
 $body-third-bgcolor: $tertiary-lighter;
 
 $title-color: $secondary-light;

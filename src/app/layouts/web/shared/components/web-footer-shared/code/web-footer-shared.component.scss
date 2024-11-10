@@ -1,10 +1,30 @@
+@use "../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../assets/scss/mixins" as mix;
+
 .footer{
+  background-color: var.$black-pure;
+  color: var.$body-pri-color;
+  border-top: 1px solid var.$gray-ng;
+
   &__container {
-      padding: 0.5rem 1rem;
-      width: 100%;
+    @include mix.flexColumns(center, 0.25rem);
+    padding: 0.75rem;
+    width: 100%;
+
+    @include mix.tablet {
+      @include mix.flexRows(space-around);
+    }
   }
     &__copyright {
-        color: white;
+      @include mix.flexColumns(center);
+      font-size: var.$fs-smaller-mob;
+      height: 2rem;
+      margin-bottom: 0.25rem;
+
+      @include mix.desktop {
+        font-size: var.$fs-smaller-desk;
         height: 2.5rem;
+        margin-bottom: 0;
+      }
     }
 }
