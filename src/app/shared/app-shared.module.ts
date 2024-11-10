@@ -6,17 +6,22 @@ import { PathLoaderLazyImagePipe } from './components/lazy-image/pipes/path-load
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { AppError404PageSharedComponent } from './pages/app-error-404-page-shared/app-error-404-page-shared.component';
 
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
+
 @NgModule({
   declarations: [
     LazyImageComponent,
     PathLoaderLazyImagePipe,
     SearchBoxComponent,
     AppError404PageSharedComponent,
+    EllipsisPipe,
   ],
   imports: [CommonModule],
   exports: [
     LazyImageComponent,
     SearchBoxComponent,
-    AppError404PageSharedComponent],
+    AppError404PageSharedComponent,
+    EllipsisPipe
+  ],
 })
 export class AppSharedModule {}

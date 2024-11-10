@@ -12,6 +12,7 @@
     }
       &__navlink {
         font-size: var.$icon-size-ssm;
+
         @include mix.desktop {
           font-size: var.$icon-size-sm;
         }

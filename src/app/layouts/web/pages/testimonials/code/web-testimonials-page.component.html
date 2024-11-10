@@ -2,6 +2,9 @@
 <span class="section__subtitle">My clients & coworkers saying</span>
 <div class="testimonials__container">
     <ng-container *ngFor="let item of data.items">
-      <sdjr2-web-testimonial [item]="item"></sdjr2-web-testimonial>
+      <sdjr2-web-testimonial
+        [numCharsEllipsis]="data.numCharsEllipsis"
+        [item]="item">
+      </sdjr2-web-testimonial>
     </ng-container>
 </div>

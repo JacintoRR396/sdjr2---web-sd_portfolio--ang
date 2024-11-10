@@ -11,6 +11,7 @@ export class WebTestimonialsPageComponent {
 
   data: Testimonials = {
     numMaxStars: 5,
+    numCharsEllipsis: 210,
     items: [
       {
         id: 1,

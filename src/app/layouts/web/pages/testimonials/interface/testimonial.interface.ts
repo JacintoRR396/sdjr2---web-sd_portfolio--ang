@@ -1,5 +1,6 @@
 export interface Testimonials {
   numMaxStars: number;
+  numCharsEllipsis: number;
   items: Testimonial[];
 }
 

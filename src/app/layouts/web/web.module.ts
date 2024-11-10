@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AppSharedModule } from '../../shared/app-shared.module';
 import { WebRoutingModule } from './web-routing.module';
 import { WebSharedModule } from './shared/web-shared.module';
 
@@ -27,6 +28,7 @@ import { WebContactPageComponent } from './pages/contact/code/web-contact-page.c
   ],
   imports: [
     CommonModule,
+    AppSharedModule,
     WebRoutingModule,
     WebSharedModule
   ],

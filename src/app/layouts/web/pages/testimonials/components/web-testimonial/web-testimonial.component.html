@@ -21,6 +21,18 @@
       </div>
   </div>
   <div class="testimonial__body">
-    <p class="testimonial__description">{{ item.description }}</p>
+    <div class="testimonial__desc">
+      <ng-container *ngIf="isEllipsis; else ellipsis">
+        <p class="testimonial__desc-text">{{ item.description | ellipsis:numCharsEllipsis }}</p>
+      </ng-container>
+      <ng-template #ellipsis>
+        <p class="testimonial__desc-text">{{ item.description }}</p>
+      </ng-template>
+    </div>
+    <ng-container *ngIf="isEllipsis">
+      <div class="testimonial__viewmore">
+        <a class="testimonial__viewmore-btn button" (click)="onToogleEllipsis()">View More</a>
+      </div>
+    </ng-container>
   </div>
 </div>

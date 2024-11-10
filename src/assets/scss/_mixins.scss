@@ -86,6 +86,12 @@
   }
 }
 
+@mixin desktop-xl {
+  @media (min-width: var.$desktop-xl) {
+    @content;
+  }
+}
+
 /** Blocks **/
 @mixin flexRows($align: flex-start, $gap: 0) {
   display: flex;
@@ -539,11 +545,11 @@
 }
 
 /** Buttons **/
-@mixin button($bgColor, $color, $isBlock: false) {
+@mixin button($bgfirstColor, $bgSecondColor, $color, $isBlock: false) {
   display: inline-flex;
   align-items: center;
   padding: 1rem;
-  background-color: $bgColor;
+  background: linear-gradient(to bottom, $bgfirstColor 40%, $bgSecondColor 100%);
   color: $color;
   font-weight: var.$fw-medium;
   text-align: center;
@@ -558,7 +564,7 @@
   }
 
   &:hover {
-    background-color: darken($bgColor, 10);
+    background: linear-gradient(to bottom, $bgfirstColor 40%, darken($bgSecondColor, 10) 100%);
   }
 
   &__icon {

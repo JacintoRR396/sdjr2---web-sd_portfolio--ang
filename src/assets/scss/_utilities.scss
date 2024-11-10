@@ -15,7 +15,7 @@
 
 /** Buttons **/
 .button {
-  @include mix.button(var.$primary, var.$white);
+  @include mix.button(var.$body-sec-bgcolor, var.$body-pri-bgcolor, var.$white);
 }
 
 /** Modal **/

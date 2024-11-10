@@ -45,13 +45,36 @@
     }
   }
 
-  &__description {
-    margin: calc(var.$padding-mob / 3) 0.25rem;
-    font-size: var.$fs-small-mob;
+  &__desc {
+    &-text{
+      margin: calc(var.$padding-mob / 3) 0.25rem 0.1rem;
+      font-size: var.$fs-small-mob;
+      min-height: 5rem;
 
-    @include mix.desktop {
-      margin: calc(var.$padding-desk / 3) 0.25rem;
-      font-size: var.$fs-small-desk;
+      @include mix.tablet {
+        min-height: 7rem;
+      }
+      @include mix.desktop {
+        margin: calc(var.$padding-desk / 3) 0.25rem 0.15rem;
+        font-size: var.$fs-small-desk;
+        min-height: 5.5rem;
+      }
+      @include mix.desktop-xl {
+        min-height: 4rem;
+      }
+    }
+  }
+
+  &__viewmore {
+    @include mix.flexRows(end);
+    &-btn {
+      margin-right: 0.5rem !important;
+      padding: 0.25rem 0.75rem !important;
+      font-size: var.$fs-small-mob;
+
+      @include mix.desktop {
+        font-size: var.$fs-small-desk;
+      }
     }
   }
 }
