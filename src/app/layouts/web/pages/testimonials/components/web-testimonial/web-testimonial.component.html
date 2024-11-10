@@ -1,0 +1,26 @@
+<div class="testimonial__content">
+  <div class="testimonial__header">
+      <div class="testimonial__data">
+          <div class="testimonial__img-container">
+              <img class="testimonial__img-icon" src="{{ item.urlIcon }}" alt="Testimonial {{ item.id }}">
+          </div>
+          <div>
+              <h3 class="testimonial__name content__title">{{ item.name }}</h3>
+              <span class="testimonial__type content__subtitle">{{ item.job }}</span>
+          </div>
+      </div>
+      <div class="testimonial__qualification">
+          <ng-container *ngFor="let qualification of item.qualification">
+            <ng-container *ngIf="qualification.isStarFill; else startEmpty">
+              <span class="testimonial__qualification-icon"><i class="bi bi-star-fill"></i></span>
+            </ng-container>
+            <ng-template #startEmpty>
+              <span class="testimonial__qualification-icon"><i class="bi bi-star"></i></span>
+            </ng-template>
+          </ng-container>
+      </div>
+  </div>
+  <div class="testimonial__body">
+    <p class="testimonial__description">{{ item.description }}</p>
+  </div>
+</div>

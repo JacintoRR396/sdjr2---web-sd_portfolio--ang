@@ -1,1 +1,7 @@
-<p>web-testimonials-page works!</p>
+<h2 class="section__title">Testimonials</h2>
+<span class="section__subtitle">My clients & coworkers saying</span>
+<div class="testimonials__container">
+    <ng-container *ngFor="let item of data.items">
+      <sdjr2-web-testimonial [item]="item"></sdjr2-web-testimonial>
+    </ng-container>
+</div>

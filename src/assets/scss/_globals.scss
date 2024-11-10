@@ -15,8 +15,7 @@ html {
   padding: 0;
 }
 
-body {
-  min-width: var.$mobile-xs;
+body, main, p {
   color: var.$body-pri-color;
   background-color: var.$body-pri-bgcolor;
   font-family: var.$font-primary;
@@ -26,14 +25,18 @@ body {
   }
 }
 
-p {
-  color: var.$body-pri-color;
-  font-size: var.$fs-normal-mob;
-  line-height: 1.4rem;
+body {
+  min-width: var.$mobile-xs;
+  min-height: 580px;
+}
 
-  @include mix.desktop {
-    font-size: var.$fs-normal-desk;
-  }
+main {
+  min-height: 580px;
+}
+
+p {
+  background-color: inherit;
+  line-height: 1.4rem;
 }
 
 h1,
@@ -74,14 +77,6 @@ strong {
   font-weight: var.$fw-medium;
 }
 
-span.material-icons {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 ul {
   list-style: none;
 }
@@ -114,6 +109,12 @@ img {
     max-width: var.$desktop-lg;
   }
 }
+*[class*="__content"] {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var.$body-sec-bgcolor;
+  min-height: 12rem;
+}
 
 .grid {
   display: grid;
@@ -121,17 +122,18 @@ img {
 }
 
 .section {
-  padding: calc(var.$padding-mob * 2.5) 0 calc(var.$padding-mob / 2);
+  padding: calc(var.$padding-mob) 0 calc(var.$padding-mob / 1.5);
   @include mix.desktop {
-    padding: calc(var.$padding-desk * 2.5) 0 calc(var.$padding-desk / 2);
+    padding: calc(var.$padding-desk) 0 calc(var.$padding-desk / 1.5);
   }
 }
 .section__title,
 .section__subtitle {
+  font-weight: var.$fw-medium;
   text-align: center;
 }
 .section__title {
-  @include mix.headingLinearGradient(right, var.$secondary-dark, var.$primary);
+  @include mix.headingLinearGradient(right, var.$secondary-light, var.$primary);
   font-size: var.$fs-h1-mob;
   margin-bottom: calc(var.$padding-mob / 3);
   @include mix.desktop {
@@ -141,9 +143,8 @@ img {
 }
 .section__subtitle {
   display: block;
-  color: var.$secondary;
+  color: var.$secondary-light;
   font-size: var.$fs-h3-mob;
-  font-weight: var.$fw-medium;
   margin-bottom: var.$padding-mob;
   @include mix.desktop {
     font-size: var.$fs-h3-desk;
@@ -151,7 +152,6 @@ img {
   }
 }
 
-// In skills and qualification tabs
 .content-center {
   @include mix.desktop {
     width: 80%;
@@ -162,6 +162,8 @@ img {
   }
 }
 .content__title {
+  color: var.$gray;
+  @include mix.headingUnderlineBicolor(var.$primary-dark, var.$secondary-dark);
   font-size: var.$fs-h3-mob;
   font-weight: var.$fw-medium;
   line-height: 1.35rem;
@@ -172,10 +174,10 @@ img {
   }
 }
 .content__subtitle {
-  color: var.$gray;
+  color: var.$secondary-light;
   font-size: var.$fs-small-mob;
   line-height: 1.25rem;
-  
+
   @include mix.desktop {
     font-size: var.$fs-small-desk;
   }

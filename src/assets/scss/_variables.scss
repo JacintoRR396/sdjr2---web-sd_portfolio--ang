@@ -8,27 +8,27 @@ $desktop: 992px;
 $desktop-lg: 1200px;
 $desktop-xl: 1400px;
 
-/** Sizes **/
-$header-height-mob: 3rem;
-$header-height-desk: 4rem;
-$padding-mob: 2rem;
-$padding-desk: 2.5rem;
+/** Sizes boxes **/
+$header-height-mob: 2rem;
+$header-height-desk: 3rem;
+$padding-mob: 1rem;
+$padding-desk: 1.5rem;
 
 /** Fonts and typographies **/
 $font-primary: "Roboto", sans-serif;
 $font-secondary: "Poppins", sans-serif;
 $font-italic: "Bona Nova", serif;
 
-$fs-bigger-mob: 2.5rem;
-$fs-bigger-desk: 3rem;
-$fs-big-mob: 2rem;
-$fs-big-desk: 2.5rem;
-$fs-h1-mob: 1.5rem;
-$fs-h1-desk: 2rem;
-$fs-h2-mob: 1.25rem;
-$fs-h2-desk: 1.5rem;
-$fs-h3-mob: 1.15rem;
-$fs-h3-desk: 1.25rem;
+$fs-bigger-mob: 2rem;
+$fs-bigger-desk: 2.5rem;
+$fs-big-mob: 1.5rem;
+$fs-big-desk: 2rem;
+$fs-h1-mob: 1.25rem;
+$fs-h1-desk: 1.5rem;
+$fs-h2-mob: 1.15rem;
+$fs-h2-desk: 1.25rem;
+$fs-h3-mob: 1rem;
+$fs-h3-desk: 1.15rem;
 $fs-normal-mob: 0.938rem;
 $fs-normal-desk: 1rem;
 $fs-small-mob: 0.813rem;
@@ -41,17 +41,19 @@ $fw-medium: 700;
 $fw-bold: 900;
 
 /** Colors **/
-$black: #1f1e1e;
+$black: #050507;
+$black-ng: #0E0E10;
 $white: #fff;
 $gray-light: #f8f8f8;
-$gray: #a5a9ab;
+$gray: #969696;
 $gray-dark: #3b3b3b;
 $red: #e22331;
 $green: #00833e;
 $greenish: #068d9d;
 $greenish-gray: #455a64;
 $blue: #197acb;
-$blue-nay: #3b4862;
+$blue-ng: #3A6396;
+$blue-nav: #3b4862;
 $yellow: #fccb00;
 $mustard: #c7c57d;
 $orange: #ff8015;
@@ -68,28 +70,34 @@ $secondary-lighter: lighten($secondary, 20%);
 $secondary-light: lighten($secondary, 10%);
 $secondary-dark: darken($secondary, 10%);
 $secondary-darker: darken($secondary, 20%);
+$tertiary: $greenish;
+$tertiary-lighter: lighten($tertiary, 20%);
+$tertiary-light: lighten($tertiary, 10%);
+$tertiary-dark: darken($tertiary, 10%);
+$tertiary-darker: darken($tertiary, 20%);
 
-$body-pri-color: $black;
-$body-sec-color: $secondary-light;
-$body-third-color: $white;
+$body-pri-color: $white;
+$body-sec-color: $secondary-lighter;
+$body-third-color: $black;
 
-$body-pri-bgcolor: $white;
-$body-sec-bgcolor: $gray-light;
-$body-third-bgcolor: $secondary-dark;
+$body-pri-bgcolor: $black;
+$body-sec-bgcolor: $black-ng;
+$body-third-bgcolor: $tertiary-lighter;
 
-$title-color: $secondary;
-$title-hover-color: $secondary-dark;
+$title-color: $secondary-light;
+$title-hover-color: $secondary;
 
-$link-color: $primary;
-$link-hover-color: $primary-dark;
+$link-color: $primary-light;
+$link-hover-color: $primary;
 
 $scroll-bar-color: $primary-lighter;
 $scroll-bar-thumb-color: $primary;
 $scroll-bar-thumb-hover-color: $primary-dark;
 
-$input-color: $primary-lighter;
+$input-color: $primary-light;
 
 /** Icons **/
+$icon-size-ssm: 14px;
 $icon-size-sm: 18px;
 $icon-size-md: 24px;
 $icon-size-lg: 32px;

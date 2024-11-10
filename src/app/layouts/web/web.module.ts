@@ -10,6 +10,7 @@ import { WebAboutPageComponent } from './pages/about/code/web-about-page.compone
 import { WebQualificationPageComponent } from './pages/qualification/code/web-qualification-page.component';
 import { WebServicesPageComponent } from './pages/services/code/web-services-page.component';
 import { WebTestimonialsPageComponent } from './pages/testimonials/code/web-testimonials-page.component';
+import { WebTestimonialComponent } from './pages/testimonials/components/web-testimonial/web-testimonial.component';
 import { WebContactPageComponent } from './pages/contact/code/web-contact-page.component';
 
 
@@ -21,6 +22,7 @@ import { WebContactPageComponent } from './pages/contact/code/web-contact-page.c
     WebQualificationPageComponent,
     WebServicesPageComponent,
     WebTestimonialsPageComponent,
+    WebTestimonialComponent,
     WebContactPageComponent
   ],
   imports: [

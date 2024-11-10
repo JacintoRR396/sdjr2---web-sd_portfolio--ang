@@ -3,53 +3,55 @@
 /*! ============================== MIXINS ============================== *\
 *                                                                        *
 *       ---  MEDIA QUERIES ---                                           *
-* 1. mobile-xs                                                           *
-* 2. mobile                                                              *
-* 3. tablet                                                              *
-* 4. desktop                                                             *
-* 5. desktop-lg                                                          *
+* 01. mobile-xs                                                          *
+* 02. mobile                                                             *
+* 03. tablet                                                             *
+* 04. desktop                                                            *
+* 05. desktop-lg                                                         *
 *                                                                        *
 *       --- BLOCKS ---                                                   *
-* 1. flexRow($justContent: flex-start, $gap: 0)                          *
-* 2. flexColumn($justContent: flex-start, $gap: 0)                       *
-* 3. gridColumns($numColumns: 2, $gap: 0)                                *
-* 4. gridRows($numRows: 2, $gap: 0)                                      *
-* 5. modal                                                               *
-* 6. modalContent                                                        *
-* 7. sectionBgOblique($colorFirst, $colorSecond, $size)                  *
-* 8. sectionBgCollapse($size)                                            *
-* 9. sectionGridTextImage($padding, $colorGrad, $url)                    *
+* 01. flexRows($align: flex-start, $gap: 0)                              *
+* 02. flexColumns($align: flex-start, $gap: 0)                           *
+* 03. gridColumns($numColumns: 2, $gap: 0)                               *
+* 04. gridRows($numRows: 2, $gap: 0)                                     *
+* 05. modal                                                              *
+* 06. modalContent                                                       *
+* 07. sectionBgOblique($colorFirst, $colorSecond, $size)                 *
+* 08. sectionBgCollapse($size)                                           *
+* 09. sectionGridTextImage($padding, $colorGrad, $url)                   *
 * 10. card($bgColor)                                                     *
 *                                                                        *
 *       --- HEADING / TEXT ---                                           *
-* 1. headingLinearGradient($dir, $fromColor, $toColor)                   *
-* 2. headingUnderline($colorLine)                                        *
-* 3. headingUnderlineBicolor(                                            *
-*      $colorFirst, $colorSecond, $width: 15rem, $isBreak: false)        *
-* 4. textWrapImage($url)                                                 *
-* 5. textAccessible                                                      *
-* 6. textEllipsis($lines, $fs)                                           *
+* 01. headingLinearGradient($dir, $fromColor, $toColor)                  *
+* 02. headingUnderline($colorLine, $height: 0.3rem)                      *
+* 03. headingUnderlineBicolor(                                           *
+        $colorLineFirst, $colorLineSecond, $height: 0.3rem)              *
+* 04. headingUnderlineBicolorAux(                                        *
+*       $colorFirst, $colorSecond, $width: 15rem, $isBreak: false)       *
+* 05. textWrapImage($url)                                                *
+* 06. textAccessible                                                     *
+* 07. textEllipsis($lines, $fs)                                          *
 *                                                                        *
 *       --- IMAGES ---                                                   *
-* 1. imagesGallery()                                                     *
-* 2. imageObjectFit($height, $width: 100%)                               *
-* 3. imageBgiHoverLg($url, $colorGradient)                               *
-* 4. imageBgiHoverLgTransp($url, $colorGradient)                         *
-* 5. imageParallax($url)                                                 *
-* 6. imageMask                                                           *
-* 7. imageFrame($width)                                                  *
-* 8. iconBgi($url, $size, $margin)                                       *
-* 9. iconBgiBefore($url, $size)                                          *
+* 01. imagesGallery()                                                    *
+* 02. imageObjectFit($height, $width: 100%)                              *
+* 03. imageBgiHoverLg($url, $colorGradient)                              *
+* 04. imageBgiHoverLgTransp($url, $colorGradient)                        *
+* 05. imageParallax($url)                                                *
+* 06. imageMask                                                          *
+* 07. imageFrame($width)                                                 *
+* 08. iconBgi($url, $size, $margin)                                      *
+* 09. iconBgiBefore($url, $size)                                         *
 * 10. iconTextBefore($text, $top, $fs)                                   *
 *                                                                        *
 *       --- BUTTONS ---                                                  *
-* 1. button($bgColor, $color)                                            *
-* 2. buttonIcon($color)                                                   *
+* 01. button($bgColor, $color)                                           *
+* 02. buttonIcon($color)                                                 *
 *                                                                        *
 *       --- OTHERS ---                                                   *
-* 1. scrollHorizontal                                                    *
-* 2. marginBottom($size)                                                 *
-* 3. shadow($opacity: 0.3)                                               *
+* 01. scrollHorizontal                                                   *
+* 02. marginBottom($size)                                                *
+* 03. shadow($opacity: 0.3)                                              *
 *                                                                        *
 \* ===================================================================== */
 
@@ -85,19 +87,19 @@
 }
 
 /** Blocks **/
-@mixin flexRow($justContent: flex-start, $gap: 0) {
+@mixin flexRows($align: flex-start, $gap: 0) {
   display: flex;
   flex-direction: row;
-  justify-content: $justContent;
+  justify-content: $align;
   align-items: center;
   gap: $gap;
 }
 
-@mixin flexColumn($justContent: flex-start, $gap: 0) {
+@mixin flexColumns($align: flex-start, $gap: 0) {
   display: flex;
   flex-direction: column;
-  justify-content: $justContent;
-  align-items: center;
+  align-items: $align;
+  justify-content: center;
   gap: $gap;
 }
 
@@ -305,19 +307,31 @@
   background-clip: text;
 }
 
-@mixin headingUnderline($colorLine) {
+@mixin headingUnderline($colorLine, $height: 0.3rem) {
   &::after {
     content: "";
     display: block;
     width: calc(100% + 0.5rem);
-    height: 1rem;
-    margin: -0.5rem 0 0 0.15rem;
+    height: $height;
+    margin: -0.35rem 0 0 0.15rem;
     background-color: $colorLine;
-    border-radius: 1px;
+    border-radius: 0.15rem;
   }
 }
 
-@mixin headingUnderlineBicolor(
+@mixin headingUnderlineBicolor($colorLineFirst, $colorLineSecond, $height: 0.3rem) {
+  &::after {
+    content: "";
+    display: block;
+    width: calc(100% + 0.5rem);
+    height: $height;
+    margin: -0.35rem 0 0 0.15rem;
+    background: linear-gradient(to right, $colorLineFirst 10%, $colorLineSecond 100%);
+    border-radius: 0.15rem;
+  }
+}
+
+@mixin headingUnderlineBicolorAux(
   $colorFirst,
   $colorSecond,
   $width: 15rem,
@@ -380,7 +394,7 @@
   display: block;
 }
 
-@mixin textEllipsis($lines, $fs) {
+@mixin textEllipsis($lines, $fs: var.$fs-normal-mob) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
