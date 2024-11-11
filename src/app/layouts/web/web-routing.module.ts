@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { WebLayoutComponent } from './Layout/web-layout.component';
+import { WebLayoutComponent } from './layout/web-layout.component';
 import { WebHomePageComponent } from './pages/home/code/web-home-page.component';
 import { WebAboutPageComponent } from './pages/about/code/web-about-page.component';
 import { WebQualificationPageComponent } from './pages/qualification/code/web-qualification-page.component';

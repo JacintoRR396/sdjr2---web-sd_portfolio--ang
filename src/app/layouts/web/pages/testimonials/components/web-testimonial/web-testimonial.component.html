@@ -2,7 +2,7 @@
   <div class="testimonial__header">
       <div class="testimonial__data">
           <div class="testimonial__img-container">
-              <img class="testimonial__img-icon" src="{{ item.urlIcon }}" alt="Testimonial {{ item.id }}">
+              <img class="testimonial__img-icon" src="{{ item | testimonialsPathImg }}" alt="Testimonial {{ item.id }}">
           </div>
           <div>
               <h3 class="testimonial__name content__title">{{ item.name }}</h3>

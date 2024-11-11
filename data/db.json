@@ -1,28 +1,104 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "usuario": "Jacinto R2",
-      "email": "balbino.v12@gmail.com",
-      "password": "1234",
-      "is_active": true
-    },
-    {
-      "id": 2,
-      "usuario": "Rocio BG",
-      "email": "rocio.b.g@gmail.com",
-      "password": "1234",
-      "is_active": true
-    }
-  ],
-  "heroes": [
-    {
-      "id": "dc-batman",
-      "superhero": "Batman",
-      "publisher": "DC Comics",
-      "alter_ego": "Bruce Wayne",
-      "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne"
-    }
-  ]
+  "testimonials": {
+    "numMaxStars": 5,
+    "numCharsEllipsis": 210,
+    "items": [
+      {
+        "id": 1,
+        "urlIcon": "web/common/female_avatar.svg",
+        "name": "Rocio Boceta",
+        "gender": "F",
+        "job": "Study Partner",
+        "qualification": [{
+            "isStarFill": true
+          },
+          {
+            "isStarFill": true
+          },
+          {
+            "isStarFill": false
+          },
+          {
+            "isStarFill": false
+          },
+          {
+            "isStarFill": false
+          }
+        ],
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatum, earum fugiat voluptatibus ullam dolorem modi, hic consequuntur quibusdam dolore placeat eveniet nam molestias corrupti praesentium labore enim neque odit?"
+      },
+      {
+        "id": 2,
+        "urlIcon": "web/common/male_avatar.svg",
+        "name": "Adrián Cantón",
+        "gender": "M",
+        "job": "Ex-Coworker",
+        "qualification": [{
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": false
+        }
+      ],
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "id": 3,
+        "urlIcon": "web/common/male_avatar.svg",
+        "name": "Javi Cáceres",
+        "gender": "M",
+        "job": "Ex-Coworker",
+        "qualification": [{
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        }
+      ],
+        "description": "Es un crack, tanto en backend como frontend."
+      },
+      {
+        "id": 4,
+        "urlIcon": "web/common/male_avatar.svg",
+        "name": "Alex Escudero",
+        "gender": "M",
+        "job": "Ex-Coworker",
+        "qualification": [{
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        },
+        {
+          "isStarFill": true
+        }
+      ],
+        "description": "Es un buen LEADER, me enseñó y ayudo bastante en mi etapa como frontend para ECI-PAY."
+      }
+    ]
+  }
 }

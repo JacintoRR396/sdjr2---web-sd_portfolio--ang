@@ -8,9 +8,10 @@ $desktop: 992px;
 $desktop-lg: 1200px;
 $desktop-xl: 1400px;
 
-/** Sizes boxes **/
-$header-height-mob: 2rem;
-$header-height-desk: 3rem;
+/** Boxes **/
+// TODO Review : Boxes sizes
+$height-header-mob: 2rem;
+$height-header-desk: 3rem;
 $padding-mob: 1rem;
 $padding-desk: 1.5rem;
 
@@ -88,6 +89,7 @@ $body-third-bgcolor: $tertiary-lighter;
 
 $title-color: $secondary-light;
 $title-hover-color: $secondary;
+// TODO Color : Subtitle
 
 $link-color: $primary-light;
 $link-hover-color: $primary;

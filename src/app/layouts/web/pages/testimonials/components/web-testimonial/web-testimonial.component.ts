@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Testimonial } from '../../interface/web-testimonial.interface';
+import { Testimonial } from '../../interface/web-testimonials.interface';
 
 @Component({
   selector: 'sdjr2--web-testimonial',

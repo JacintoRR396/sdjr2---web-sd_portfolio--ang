@@ -6,8 +6,9 @@ export interface Testimonials {
 
 export interface Testimonial {
   id: number;
-  urlIcon: string;
+  urlIcon?: string;
   name: string;
+  gender?: Gender;
   job: string;
   qualification: QualificationTestimonial[];
   description: string;
@@ -15,4 +16,11 @@ export interface Testimonial {
 
 export interface QualificationTestimonial {
   isStarFill: boolean;
+}
+
+export enum Gender {
+  MALE = "Male",
+  FEMALE = "FEMALE",
+  M = "M",
+  F = "F"
 }

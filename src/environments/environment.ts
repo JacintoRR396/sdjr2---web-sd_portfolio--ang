@@ -4,7 +4,8 @@
 
 export const environments = {
   production: false,
-  baseUrl: 'http://localhost:3000'
+  baseUrl: 'http://localhost:3000',
+  isMockEnabled: true
 };
 
 /*
