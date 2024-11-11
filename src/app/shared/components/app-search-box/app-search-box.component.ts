@@ -9,9 +9,9 @@ import {
 import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
-  selector: 'shared-search-box',
-  templateUrl: './search-box.component.html',
-  styleUrl: './search-box.component.scss',
+  selector: 'sdjr2--app-search-box',
+  templateUrl: './app-search-box.component.html',
+  styleUrl: './app-search-box.component.scss',
 })
 export class SearchBoxComponent {
   @Input({ required: true }) public placeholder: string = '';

@@ -9,10 +9,10 @@ export interface Testimonial {
   urlIcon: string;
   name: string;
   job: string;
-  qualification: TestimonialQualification[];
+  qualification: QualificationTestimonial[];
   description: string;
 }
 
-export interface TestimonialQualification {
+export interface QualificationTestimonial {
   isStarFill: boolean;
 }

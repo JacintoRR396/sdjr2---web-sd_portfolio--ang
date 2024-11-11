@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppError404PageSharedComponent } from './shared/pages/app-error-404-page-shared/app-error-404-page-shared.component';
+import { Error404PageComponent } from './shared/pages/app-error-404-page/app-error-404-page.component';
 
 const routes: Routes = [
   { path: 'web', loadChildren: () => import( './layouts/web/web.module' ).then( m => m.WebModule ) },
-  { path: 'error-404', component: AppError404PageSharedComponent },
+  { path: 'err-404', component: Error404PageComponent },
   { path: '', redirectTo: 'web', pathMatch: 'full' },
   { path: '**', redirectTo: 'error-404' },
 ];

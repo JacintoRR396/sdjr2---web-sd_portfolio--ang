@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { FooterLink } from '../../interfaces/footer-link.interace';
+import { WebFooterLink } from '../../interfaces/web-footer-link-shared.interace';
 
 @Component({
-  selector: 'sdjr2-web-footer-links-shared',
+  selector: 'sdjr2--web-footer-links-shared',
   templateUrl: './web-footer-links-shared.component.html',
   styleUrl: './web-footer-links-shared.component.scss'
 })
 export class WebFooterLinksSharedComponent {
 
-  items: FooterLink[] = [
+  items: WebFooterLink[] = [
     {
       icon: "bi-twitter-x",
       urlLink: "https://twitter.com/JacintoR2",

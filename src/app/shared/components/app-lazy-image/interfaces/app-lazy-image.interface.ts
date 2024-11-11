@@ -1,13 +1,13 @@
-import { LoaderSvgType } from '../enums/loader-svg.enum';
+import { LoaderSvgType } from '../enums/app-loader-svg.enum';
 
 export interface LazyImage {
   path: string;
   alt?: string;
   size?: number;
-  configLoader?: LazyImageConfigLoader;
+  configLoader?: ConfigLoaderLazyImage;
 }
 
-export interface LazyImageConfigLoader {
+export interface ConfigLoaderLazyImage {
   type?: LoaderSvgType;
   size?: number;
   delay?: number;

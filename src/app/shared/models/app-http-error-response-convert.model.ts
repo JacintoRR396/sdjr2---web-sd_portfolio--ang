@@ -1,6 +1,6 @@
-import { HttpErrorResponse } from '../interfaces/HttpErrorResponse.interface';
+import { HttpErrorResponse } from '../interfaces/app-http-error-response.interface';
 
-export class ConvertHttpErrorResponse implements HttpErrorResponse {
+export class HttpErrorResponseConvert implements HttpErrorResponse {
   constructor(public status: number, public message: string) {}
 
   public toHttpErrorResponse(json: string): HttpErrorResponse {

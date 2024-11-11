@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Testimonials } from '../interface/testimonial.interface';
+import { Testimonials } from '../interface/web-testimonial.interface';
 
 @Component({
-  selector: 'sdjr2-web-testimonials-page',
+  selector: 'sdjr2--web-testimonials-page',
   templateUrl: './web-testimonials-page.component.html',
   styleUrl: './web-testimonials-page.component.scss'
 })

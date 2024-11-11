@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { LazyImage } from '../interfaces/lazy-image.interface';
-import { LoaderSvgType } from '../enums/loader-svg.enum';
+import { LazyImage } from '../interfaces/app-lazy-image.interface';
+import { LoaderSvgType } from '../enums/app-loader-svg.enum';
 
 @Component({
-  selector: 'shared-lazy-image',
-  templateUrl: './lazy-image.component.html',
+  selector: 'sdjr2--app-lazy-image',
+  templateUrl: './app-lazy-image.component.html',
 })
 export class LazyImageComponent implements OnInit {
   @Input({ required: true }) public lazyImage!: LazyImage;
