@@ -10,7 +10,7 @@ import { WebTestimonialsPageComponent } from './pages/testimonials/code/web-test
 import { WebContactPageComponent } from './pages/contact/code/web-contact-page.component';
 
 const routes: Routes = [
-  { 	path: '', component: WebLayoutComponent, children: [
+  { path: '', component: WebLayoutComponent, children: [
       { path: 'home', component: WebHomePageComponent },
       { path: 'about-me', component: WebAboutPageComponent },
       { path: 'qualification', component: WebQualificationPageComponent },
