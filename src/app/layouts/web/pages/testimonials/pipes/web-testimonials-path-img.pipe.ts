@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Gender, Testimonial } from '../interface/web-testimonials.interface';
+import { environments } from '../../../../../../environments/environment';
 
 @Pipe({
   name: 'testimonialsPathImg'
 })
 export class WebTestimonialsPathImgPipe implements PipeTransform {
 
-  private readonly basePath = "../../../../../../../assets/images";
+  private readonly basePath = `../../../../../../../${environments.basePathImages}`;
 
   transform(value: Testimonial): string {
     if( !value.urlIcon && !value.gender ) { return `${this.basePath}/app/image-no-available.svg`; }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Testimonials } from '../interface/web-testimonials.interface';
-
-import { dataTestimonials } from '../services/web-testimonials.mock';
-import { WebTestimonialsService } from '../services/web-testimonials.service';
 import { environments } from '../../../../../../environments/environment';
+
+import { Testimonials } from '../interface/web-testimonials.interface';
+import { dataTestimonials } from '../services/web-testimonials.mock';
+
+import { WebTestimonialsService } from '../services/web-testimonials.service';
+import { LoaderService } from '../../../../../shared/services/app-loader.service';
 
 @Component({
   selector: 'sdjr2--web-testimonials-page',
@@ -15,7 +17,10 @@ export class WebTestimonialsPageComponent implements OnInit {
 
   public data!: Testimonials;
 
-  constructor(private readonly testimonialsService: WebTestimonialsService){}
+  constructor(
+    private readonly testimonialsService: WebTestimonialsService,
+    public loaderService: LoaderService
+  ){}
 
   ngOnInit(): void {
     if (environments.isMockEnabled){

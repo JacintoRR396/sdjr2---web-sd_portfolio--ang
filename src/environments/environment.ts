@@ -5,7 +5,9 @@
 export const environments = {
   production: false,
   baseUrl: 'http://localhost:3000',
-  isMockEnabled: true
+  basePathScss: 'assets/scss/',
+  basePathImages: 'assets/images/',
+  isMockEnabled: false
 };
 
 /*
