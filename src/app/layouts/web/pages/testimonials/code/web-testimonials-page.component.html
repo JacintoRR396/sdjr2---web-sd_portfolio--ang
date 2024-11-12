@@ -3,9 +3,9 @@
 
 <ng-container *ngIf="data && !(loaderService.isLoading$ | async)">
   <div class="testimonials__container">
-      <ng-container *ngFor="let item of data.items">
+      <ng-container *ngFor="let item of data">
         <sdjr2--web-testimonial
-          [numCharsEllipsis]="data.numCharsEllipsis"
+          [numCharsEllipsis]="numCharsEllipsis"
           [item]="item">
         </sdjr2--web-testimonial>
       </ng-container>

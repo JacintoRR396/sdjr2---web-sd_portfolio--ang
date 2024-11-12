@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { environments } from '../../../../../../environments/environment';
-import { Testimonials } from '../interface/web-testimonials.interface';
+import { Testimonial } from '../interface/web-testimonials.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,11 @@ export class WebTestimonialsService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  getTestimonials(): Observable<Testimonials> {
-    return this.httpClient.get<Testimonials>( `${this.baseUrl}/${this.objUrl}` )
-      .pipe( delay(1000) )
-      ;
+  getTestimonials(): Observable<Testimonial[]> {
+    return this.httpClient.get<Testimonial[]>( `${this.baseUrl}/${this.objUrl}` );
+  }
+
+  getTestimonialById(id: number): Observable<Testimonial> {
+    return this.httpClient.get<Testimonial>( `${this.baseUrl}/${this.objUrl}/${id}` );
   }
 }

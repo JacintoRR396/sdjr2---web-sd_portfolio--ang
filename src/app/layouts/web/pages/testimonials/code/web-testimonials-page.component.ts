@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { environments } from '../../../../../../environments/environment';
 
-import { Testimonials } from '../interface/web-testimonials.interface';
-import { dataTestimonials } from '../services/web-testimonials.mock';
+import { Testimonial } from '../interface/web-testimonials.interface';
+import { testimonials } from '../services/web-testimonials.mock';
 
 import { WebTestimonialsService } from '../services/web-testimonials.service';
 import { LoaderService } from '../../../../../shared/services/app-loader.service';
@@ -15,7 +15,9 @@ import { LoaderService } from '../../../../../shared/services/app-loader.service
 })
 export class WebTestimonialsPageComponent implements OnInit {
 
-  public data!: Testimonials;
+  public data!: Testimonial[];
+  public numCharsEllipsis: number = 210;
+  public numMaxStarts: number = 5;
 
   constructor(
     private readonly testimonialsService: WebTestimonialsService,
@@ -24,10 +26,10 @@ export class WebTestimonialsPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (environments.isMockEnabled){
-      this.data = dataTestimonials;
+      this.data = testimonials;
     } else {
       this.testimonialsService.getTestimonials()
-        .subscribe( testimonials => this.data = testimonials );
+        .subscribe( resp => this.data = resp );
     }
   }
 

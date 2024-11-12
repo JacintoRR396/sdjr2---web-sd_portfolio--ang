@@ -1,9 +1,3 @@
-export interface Testimonials {
-  numMaxStars: number;
-  numCharsEllipsis: number;
-  items: Testimonial[];
-}
-
 export interface Testimonial {
   id: number;
   urlIcon?: string;
