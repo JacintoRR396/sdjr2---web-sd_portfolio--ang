@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,13 @@ export class LoaderService {
 
   private apiCount = 0;
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
-  isLoading$ = this.isLoadingSubject.asObservable();
+  private _isLoading$ = this.isLoadingSubject.asObservable();
 
   constructor() { }
+
+  get isLoading(): Observable<boolean> {
+    return this._isLoading$;
+  }
 
   show() {
     if (this.apiCount === 0) {

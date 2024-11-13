@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { environments } from '../../../../../../environments/environment';
+import { Testimonial } from '../../../../../models/interfaces/web-testimonials.interface';
 
-import { Testimonial } from '../interface/web-testimonials.interface';
-import { testimonials } from '../services/web-testimonials.mock';
-
-import { WebTestimonialsService } from '../services/web-testimonials.service';
 import { LoaderService } from '../../../../../shared/services/app-loader.service';
+import { WebTestimonialsService } from '../../../../../services/web-testimonials.service';
 
 @Component({
   selector: 'sdjr2--web-testimonials-page',
@@ -21,16 +19,16 @@ export class WebTestimonialsPageComponent implements OnInit {
 
   constructor(
     private readonly testimonialsService: WebTestimonialsService,
-    public loaderService: LoaderService
+    private readonly loaderService: LoaderService
   ){}
 
+  get isLoading(): Observable<boolean> {
+    return this.loaderService.isLoading;
+  }
+
   ngOnInit(): void {
-    if (environments.isMockEnabled){
-      this.data = testimonials;
-    } else {
       this.testimonialsService.getTestimonials()
-        .subscribe( resp => this.data = resp );
-    }
+        .subscribe( (resp:Testimonial[]) => this.data = resp );
   }
 
 }

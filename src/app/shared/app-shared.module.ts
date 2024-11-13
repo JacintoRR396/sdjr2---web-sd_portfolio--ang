@@ -9,8 +9,9 @@ import { Error404PageComponent } from './pages/app-error-404-page/app-error-404-
 
 import { LoaderInterceptor } from './interceptors/app-loader.interceptor';
 
-import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
 import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-path-loader-lazy-image.pipe';
+import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
+import { WebTestimonialsPathImgPipe } from './pipes/web-testimonials-path-img.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-p
     SearchBoxComponent,
     Error404PageComponent,
     EllipsisPipe,
+    WebTestimonialsPathImgPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -28,6 +30,7 @@ import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-p
     SearchBoxComponent,
     Error404PageComponent,
     EllipsisPipe,
+    WebTestimonialsPathImgPipe
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

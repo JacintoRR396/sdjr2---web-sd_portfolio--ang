@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Gender, Testimonial } from '../interface/web-testimonials.interface';
-import { environments } from '../../../../../../environments/environment';
+
+import { environments } from '../../../environments/environment';
+import { Gender, Testimonial } from '../../models/interfaces/web-testimonials.interface';
 
 @Pipe({
   name: 'testimonialsPathImg'
