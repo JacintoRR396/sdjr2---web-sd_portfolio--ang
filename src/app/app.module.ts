@@ -20,8 +20,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
-    HttpClientModule,
     AppRoutingModule,
+    HttpClientModule,
     AppSharedModule
   ],
   providers: [provideClientHydration()],
