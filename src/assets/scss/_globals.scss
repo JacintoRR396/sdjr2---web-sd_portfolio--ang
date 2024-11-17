@@ -27,16 +27,16 @@ body, main, p {
 
 body {
   min-width: var.$mobile-xs;
-  min-height: 580px;
+  min-height: var.$height-body-min;
 }
 
 main {
-  min-height: 580px;
+  min-height: var.$height-body-min;
 }
 
 p {
   background-color: inherit;
-  line-height: 1.4rem;
+  line-height: var.$line-height-block;
 }
 
 h1,
@@ -102,8 +102,8 @@ img {
   max-width: var.$tablet;
   margin: 0 auto;
   @include mix.desktop {
-    max-width: var.$desktop;
     width: 90%;
+    max-width: var.$desktop;
   }
   @include mix.desktop-lg {
     max-width: var.$desktop-lg;

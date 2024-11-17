@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { WebFooterLink } from '../../interfaces/web-footer-link-shared.interace';
+
+import { WebFooterLink } from '../../models/interfaces/web-footer-links-shared.interace';
+import { linksFooter } from '../../models/mocks/web-footer-links-shared.mock';
 
 @Component({
   selector: 'sdjr2--web-footer-links-shared',
@@ -8,19 +10,6 @@ import { WebFooterLink } from '../../interfaces/web-footer-link-shared.interace'
 })
 export class WebFooterLinksSharedComponent {
 
-  items: WebFooterLink[] = [
-    {
-      icon: "bi-twitter-x",
-      urlLink: "https://twitter.com/JacintoR2",
-    },
-    {
-      icon: "bi-linkedin",
-      urlLink: "https://www.linkedin.com/in/jacinto-rold%C3%A1n-rodr%C3%ADguez-06026589/",
-    },
-    {
-      icon: "bi-github",
-      urlLink: "https://github.com/JacintoRR396",
-    }
-  ];
+  items: WebFooterLink[] = linksFooter.items;
 
 }

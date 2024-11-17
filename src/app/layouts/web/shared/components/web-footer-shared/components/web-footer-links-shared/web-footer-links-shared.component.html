@@ -1,11 +1,7 @@
 <ul class="footer__navbar navbar-nav">
   <ng-container *ngFor="let item of items">
     <li class="footer__navitem nav-item">
-      <a
-        class="footer__navlink nav-link"
-        href="{{ item.urlLink }}"
-        target="_blank"
-      >
+      <a class="footer__navlink nav-link" href="{{ item.urlLink }}" target="_blank">
         <i class="bi {{ item.icon }}"></i>
       </a>
     </li>

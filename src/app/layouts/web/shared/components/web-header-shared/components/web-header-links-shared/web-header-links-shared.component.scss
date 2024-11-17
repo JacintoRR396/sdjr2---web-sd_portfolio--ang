@@ -1,3 +1,25 @@
-.nav-link--icon {
-  font-size: 1.5rem;
+@use "../../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../../assets/scss/mixins" as mix;
+
+.header-links {
+  &__navbar {
+    @include mix.flexRows(center, 1.5rem);
+
+    @include mix.desktop {
+      gap: 0.25rem;
+    }
+  }
+  &__navitem {
+    padding: 0rem;
+  }
+    &__navlink {
+      font-size: var.$icon-size-sm;
+    }
+      &__icon {
+        color: var.$white;
+        transition: 0.4s;
+      }
+      &__icon:hover {
+        color: rgba($color: white, $alpha: 0.75)
+      }
 }

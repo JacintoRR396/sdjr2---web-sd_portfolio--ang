@@ -1,12 +1,9 @@
-<ul class="navbar-nav d-flex justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link nav-link--icon" href="#">
-      <i class="bi bi-person"></i>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link nav-link--icon" href="#">
-      <i class="bi bi-gear"></i>
-    </a>
-  </li>
+<ul class="header-links__navbar navbar-nav">
+  <ng-container *ngFor="let item of items; index as i">
+    <li class="header-links__navitem nav-item">
+      <a class="header-links__navlink nav-link" href="{{ item.urlLink }}">
+        <i class="header-links__icon {{ item.icon }}"></i>
+      </a>
+    </li>
+  </ng-container>
 </ul>

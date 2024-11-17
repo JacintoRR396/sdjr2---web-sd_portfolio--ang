@@ -1,0 +1,39 @@
+@use "../../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../../assets/scss/mixins" as mix;
+
+.navbar {
+  &__brand {
+    @include mix.flexRows(center, 0.25rem);
+    margin-left: 0.75rem;
+
+    @include mix.desktop {
+      margin-left: 1.5rem;
+      margin-right: 2rem;
+    }
+  }
+  &__btn-toggler {
+    margin-right: 0.75rem;
+  }
+}
+
+.navbar-collapse {
+  @include mix.desktop {
+    border-left: 1px solid var.$white;
+  }
+}
+
+.navbar-nav {
+  @include mix.flexColumns(center);
+
+  @include mix.desktop {
+    @include mix.flexRows(center);
+  }
+}
+
+.nav-link {
+  font-size: var.$fs-h3-mob;
+
+  @include mix.desktop {
+    font-size: var.$fs-h3-desk;
+  }
+}
