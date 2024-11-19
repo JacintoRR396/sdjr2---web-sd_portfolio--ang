@@ -8,9 +8,8 @@ const routes: Routes = [
   { path: 'auth', loadChildren: () => import( './layouts/auth/auth.module' ).then( m => m.AuthModule ) },
   //{ path: 'dashboard', loadChildren: () => import( './layouts/auth/auth.module' ).then( m => m.AuthModule ) },
   { path: 'web', loadChildren: () => import( './layouts/web/web.module' ).then( m => m.WebModule ) },
-  { path: 'err-404', component: Error404PageComponent },
-  { path: '', redirectTo: 'web', pathMatch: 'full' },
-  { path: '**', redirectTo: 'err-404' },
+  { path: '', redirectTo: '/web', pathMatch: 'full' },
+  { path: '**', component: Error404PageComponent },
 ];
 
 @NgModule({

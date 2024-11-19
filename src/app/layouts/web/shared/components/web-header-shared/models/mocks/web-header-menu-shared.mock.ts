@@ -1,6 +1,6 @@
 import { WebHeaderMenu } from "../interfaces/web-header-menu-shared.interace";
 
-export const menuHeader: WebHeaderMenu = {
+export const WEB_MENU_HEADER: WebHeaderMenu = {
   items: [
     {
       id: 1,

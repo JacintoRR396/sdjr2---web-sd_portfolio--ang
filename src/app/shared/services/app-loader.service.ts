@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoaderService {
 
   private apiCount = 0;
-  private isLoadingSubject = new BehaviorSubject<boolean>(false);
-  private _isLoading$ = this.isLoadingSubject.asObservable();
+  private isLoadingSubject = new BehaviorSubject<boolean>( false );
+  private _isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
 
   constructor() { }
 
@@ -18,16 +18,16 @@ export class LoaderService {
   }
 
   show() {
-    if (this.apiCount === 0) {
-      this.isLoadingSubject.next(true);
+    if ( this.apiCount === 0 ) {
+      this.isLoadingSubject.next( true );
     }
     this.apiCount++;
   }
 
   hide() {
     this.apiCount--;
-    if (this.apiCount === 0) {
-      this.isLoadingSubject.next(false);
+    if ( this.apiCount === 0 ) {
+      this.isLoadingSubject.next( false );
     }
   }
 }

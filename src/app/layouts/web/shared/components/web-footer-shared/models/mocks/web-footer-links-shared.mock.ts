@@ -1,6 +1,6 @@
 import { WebFooterLinks } from "../interfaces/web-footer-links-shared.interace";
 
-export const linksFooter: WebFooterLinks = {
+export const WEB_LINKS_FOOTER: WebFooterLinks = {
   items: [
     {
       id: 1,

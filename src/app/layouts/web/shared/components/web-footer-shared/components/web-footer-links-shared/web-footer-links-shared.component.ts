@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { WebFooterLink } from '../../models/interfaces/web-footer-links-shared.interace';
-import { linksFooter } from '../../models/mocks/web-footer-links-shared.mock';
+import { WEB_LINKS_FOOTER } from '../../models/mocks/web-footer-links-shared.mock';
 
 @Component({
   selector: 'sdjr2--web-footer-links-shared',
@@ -10,6 +10,6 @@ import { linksFooter } from '../../models/mocks/web-footer-links-shared.mock';
 })
 export class WebFooterLinksSharedComponent {
 
-  items: WebFooterLink[] = linksFooter.items;
+  items: WebFooterLink[] = WEB_LINKS_FOOTER.items;
 
 }

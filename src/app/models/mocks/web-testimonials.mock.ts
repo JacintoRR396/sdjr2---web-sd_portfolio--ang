@@ -1,7 +1,7 @@
 import { Gender, Testimonial } from "../interfaces/web-testimonials.interface";
 
 
-export const testimonials: Testimonial[] = [
+export const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     urlIcon: "web/common/female_avatar.svg",

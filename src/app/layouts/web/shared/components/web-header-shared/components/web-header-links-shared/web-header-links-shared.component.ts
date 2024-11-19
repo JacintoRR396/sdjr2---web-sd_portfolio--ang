@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interace';
-import { linksHeader } from '../../models/mocks/web-header-links-shared.mock';
+import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';
 
 @Component({
   selector: 'sdjr2--web-header-links-shared',
@@ -10,6 +10,6 @@ import { linksHeader } from '../../models/mocks/web-header-links-shared.mock';
 })
 export class WebHeaderLinksSharedComponent {
 
-  items: WebHeaderLink[] = linksHeader.items;
+  items: WebHeaderLink[] = WEB_LINKS_HEADER.items;
 
 }
