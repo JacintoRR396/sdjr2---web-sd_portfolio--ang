@@ -92,7 +92,7 @@ img {
   height: auto;
 }
 
-/** Classes **/
+/** Classes Boxes **/
 .main {
   overflow: hidden;
 }
@@ -196,4 +196,9 @@ img {
     margin: var.$padding-desk 0;
     text-align: left;
   }
+}
+
+/** Classes Utilities **/
+.shadow-container--white {
+  box-shadow: 1px 2px 5px var.$gray-light;
 }

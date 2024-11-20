@@ -7,6 +7,8 @@ import { LazyImageComponent } from './components/app-lazy-image/code/app-lazy-im
 import { SearchBoxComponent } from './components/app-search-box/app-search-box.component';
 import { Error404PageComponent } from './pages/app-error-404-page/app-error-404-page.component';
 
+import { HighlightedContainerDirective } from './directives/app-highlighted-container.directive';
+
 import { LoaderInterceptor } from './interceptors/app-loader.interceptor';
 
 import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-path-loader-lazy-image.pipe';
@@ -20,8 +22,9 @@ import { WebTestimonialsPathImgPipe } from './pipes/web-testimonials-path-img.pi
     PathLoaderLazyImagePipe,
     SearchBoxComponent,
     Error404PageComponent,
+    HighlightedContainerDirective,
     EllipsisPipe,
-    WebTestimonialsPathImgPipe
+    WebTestimonialsPathImgPipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -29,8 +32,9 @@ import { WebTestimonialsPathImgPipe } from './pipes/web-testimonials-path-img.pi
     LazyImageComponent,
     SearchBoxComponent,
     Error404PageComponent,
+    HighlightedContainerDirective,
     EllipsisPipe,
-    WebTestimonialsPathImgPipe
+    WebTestimonialsPathImgPipe,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
