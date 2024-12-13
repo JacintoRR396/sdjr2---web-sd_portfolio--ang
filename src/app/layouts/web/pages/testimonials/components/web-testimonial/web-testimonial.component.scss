@@ -1,0 +1,80 @@
+@use "../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../assets/scss/mixins" as mix;
+
+.testimonial {
+  &__header {
+    @include mix.flexRows(space-between);
+    margin: calc(var.$padding-mob / 4) calc(var.$padding-mob / 3) calc(var.$padding-mob / 2);
+
+    @include mix.desktop {
+      margin: calc(var.$padding-desk / 4) calc(var.$padding-desk / 3) calc(var.$padding-desk / 2);
+    }
+  }
+
+  &__data {
+    @include mix.flexRows(flex-start, 1rem);
+  }
+
+  &__img {
+    &-container {
+      background-color: var.$body-pri-bgcolor;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+    &-icon {
+      @include mix.imageObjectFit(3rem);
+
+      @include mix.desktop {
+        @include mix.imageObjectFit(4rem);
+      }
+    }
+  }
+
+  &__qualification {
+    margin-right: 0.5rem;
+    &-icon {
+      color: var.$yellow;
+      font-size: var.$icon-size-ssm;
+    }
+
+    @include mix.desktop {
+      margin-right: 1rem;
+      &-icon {
+        font-size: var.$icon-size-sm;
+      }
+    }
+  }
+
+  &__desc {
+    &-text{
+      margin: calc(var.$padding-mob / 3) 0.25rem 0.1rem;
+      font-size: var.$fs-small-mob;
+      min-height: 5rem;
+
+      @include mix.tablet {
+        min-height: 7rem;
+      }
+      @include mix.desktop {
+        margin: calc(var.$padding-desk / 3) 0.25rem 0.15rem;
+        font-size: var.$fs-small-desk;
+        min-height: 5.5rem;
+      }
+      @include mix.desktop-xl {
+        min-height: 4rem;
+      }
+    }
+  }
+
+  &__viewmore {
+    @include mix.flexRows(end);
+    &-btn {
+      margin-right: 0.5rem !important;
+      padding: 0.25rem 0.75rem !important;
+      font-size: var.$fs-small-mob;
+
+      @include mix.desktop {
+        font-size: var.$fs-small-desk;
+      }
+    }
+  }
+}

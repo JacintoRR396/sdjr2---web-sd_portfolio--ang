@@ -1,0 +1,8 @@
+@use "../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../assets/scss/mixins" as mix;
+
+.header {
+  background-color: var.$black;
+  color: var.$body-pri-color;
+  border-bottom: 1px solid var.$gray-ng;
+}

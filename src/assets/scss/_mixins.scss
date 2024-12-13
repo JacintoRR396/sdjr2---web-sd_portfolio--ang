@@ -1,0 +1,636 @@
+@use "variables" as var;
+
+/*! ============================== MIXINS ============================== *\
+*                                                                        *
+*       ---  MEDIA QUERIES ---                                           *
+* 01. mobile-xs                                                          *
+* 02. mobile                                                             *
+* 03. tablet                                                             *
+* 04. desktop                                                            *
+* 05. desktop-lg                                                         *
+*                                                                        *
+*       --- BLOCKS ---                                                   *
+* 01. flexRows($align: flex-start, $gap: 0)                              *
+* 02. flexColumns($align: flex-start, $gap: 0)                           *
+* 03. gridColumns($numColumns: 2, $gap: 0)                               *
+* 04. gridRows($numRows: 2, $gap: 0)                                     *
+* 05. modal                                                              *
+* 06. modalContent                                                       *
+* 07. sectionBgOblique($colorFirst, $colorSecond, $size)                 *
+* 08. sectionBgCollapse($size)                                           *
+* 09. sectionGridTextImage($padding, $colorGrad, $url)                   *
+* 10. card($bgColor)                                                     *
+*                                                                        *
+*       --- HEADING / TEXT ---                                           *
+* 01. headingLinearGradient($dir, $fromColor, $toColor)                  *
+* 02. headingUnderline($colorLine, $height: 0.3rem)                      *
+* 03. headingUnderlineBicolor(                                           *
+        $colorLineFirst, $colorLineSecond, $height: 0.3rem)              *
+* 04. headingUnderlineBicolorAux(                                        *
+*       $colorFirst, $colorSecond, $width: 15rem, $isBreak: false)       *
+* 05. textWrapImage($url)                                                *
+* 06. textAccessible                                                     *
+* 07. textEllipsis($lines, $fs)                                          *
+*                                                                        *
+*       --- IMAGES ---                                                   *
+* 01. imagesGallery()                                                    *
+* 02. imageObjectFit($height, $width: 100%)                              *
+* 03. imageBgiHoverLg($url, $colorGradient)                              *
+* 04. imageBgiHoverLgTransp($url, $colorGradient)                        *
+* 05. imageParallax($url)                                                *
+* 06. imageMask                                                          *
+* 07. imageFrame($width)                                                 *
+* 08. iconBgi($url, $size, $margin)                                      *
+* 09. iconBgiBefore($url, $size)                                         *
+* 10. iconTextBefore($text, $top, $fs)                                   *
+*                                                                        *
+*       --- BUTTONS ---                                                  *
+* 01. button($bgColor, $color)                                           *
+* 02. buttonIcon($color)                                                 *
+*                                                                        *
+*       --- OTHERS ---                                                   *
+* 01. scrollHorizontal                                                   *
+* 02. marginBottom($size)                                                *
+* 03. shadow($opacity: 0.3)                                              *
+*                                                                        *
+\* ===================================================================== */
+
+/** Media Queries **/
+@mixin mobile-xs {
+  @media (min-width: var.$mobile-xs) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (min-width: var.$mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: var.$tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: var.$desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-lg {
+  @media (min-width: var.$desktop-lg) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: var.$desktop-xl) {
+    @content;
+  }
+}
+
+/** Blocks **/
+@mixin flexRows($align: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $align;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin flexColumns($align: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: center;
+  gap: $gap;
+}
+
+@mixin gridColumns($numColumns: 2, $gap: 0) {
+  display: grid;
+  grid-template-columns: repeat($numColumns, 1fr);
+  gap: $gap;
+}
+
+@mixin gridRows($numRows: 2, $gap: 0) {
+  display: grid;
+  grid-template-rows: repeat($numRows, 1fr);
+  gap: $gap;
+}
+
+@mixin modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include flexRow(center, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 calc(var.$padding-mob / 2);
+  z-index: var.$z-modal;
+  transform: 0.3s;
+}
+
+@mixin modalContent {
+  visibility: hidden;
+  opacity: 0;
+
+  &-content {
+    @include card(var.$white);
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 0;
+  }
+
+  &-data {
+    @include flexRow(center, 1rem);
+    background-color: var.$gray-light;
+    padding: calc(var.$padding-mob / 2) 0;
+    border-bottom: 2px solid var.$primary;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    @include desktop {
+      padding: calc(var.$padding-desk / 2);
+    }
+
+    span {
+      margin: 0;
+    }
+  }
+  &-title {
+    font-size: var.$fs-h3-mob;
+
+    @include desktop {
+      font-size: var.$fs-h3-desk;
+    }
+  }
+  &-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var.$primary;
+    font-size: var.$fs-h2-mob;
+    font-weight: var.$fw-medium;
+    cursor: pointer;
+
+    @include desktop {
+      font-size: var.$fs-h2-desk;
+    }
+  }
+
+  &-desc {
+    margin: 1.5rem 1rem 2rem;
+    max-width: 40rem;
+    text-align: left;
+    text-indent: 3rem;
+
+    @include tablet {
+      margin: 1.5rem 1.5rem 2rem;
+    }
+
+    @include desktop {
+      margin: 1.5rem 2rem 2rem;
+      max-width: 45rem;
+    }
+  }
+
+  &-list {
+    row-gap: 1rem;
+    margin: 0 1rem 2rem;
+    max-width: 35rem;
+
+    @include tablet {
+      margin: 0 2.5rem 2.5rem;
+    }
+    @include desktop {
+      max-width: 40rem;
+    }
+  }
+  &-item {
+    @include flexRow(flex-start, 0);
+  }
+  &-icon {
+    color: var.$green;
+    margin-right: 0.5rem;
+  }
+}
+
+@mixin sectionBgOblique($colorFirst, $colorSecond, $size) {
+  background-color: $colorFirst;
+  padding: calc($size * 2) 0;
+  position: relative;
+  margin: $size 0;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    background-color: $colorSecond;
+    content: "";
+    height: calc($size * 2);
+    width: 120%;
+    position: absolute;
+  }
+  &::before {
+    top: -$size;
+    left: 0;
+    transform: rotate(3deg);
+  }
+  &::after {
+    top: -$size;
+    left: 0;
+    transform: rotate(-3deg);
+  }
+}
+
+@mixin sectionBgCollapse($size) {
+  margin-top: -$size;
+  padding-top: $size;
+}
+
+@mixin sectionGridTextImage($padding, $colorGrad, $url, $posImg) {
+  background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 50%,
+      $colorGrad 50%,
+      $colorGrad 100%
+    ),
+    $url;
+  background-repeat: no-repeat;
+  background-size: 100%, cover;
+  background-position: center, -$posImg -calc($posImg / 2);
+  @include tablet {
+    background-image: linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 50%,
+        $colorGrad 50%,
+        $colorGrad 100%
+      ),
+      $url;
+    background-position: center, -$posImg center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    @include tablet {
+      grid-template-rows: unset;
+      @include gridColumns(2, 2rem);
+    }
+  }
+  &__content {
+    padding: $padding;
+    grid-row: 2 / 3;
+    @include tablet {
+      padding: calc($padding * 2) $padding;
+      grid-column: 2 / 3;
+    }
+  }
+}
+
+@mixin card($bgColor) {
+  background-color: $bgColor;
+  padding: 1.5rem 0.5rem 1.25rem 1.5rem;
+  border-radius: 0.25rem;
+  border-bottom: 0.15rem solid var.$primary;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/** Heading / Text **/
+@mixin headingLinearGradient($dir, $fromColor, $toColor) {
+  color: transparent;
+  background: linear-gradient(to $dir, $fromColor 20%, $toColor 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@mixin headingUnderline($colorLine, $height: 0.3rem) {
+  &::after {
+    content: "";
+    display: block;
+    width: calc(100% + 0.5rem);
+    height: $height;
+    margin: -0.35rem 0 0 0.15rem;
+    background-color: $colorLine;
+    border-radius: 0.15rem;
+  }
+}
+
+@mixin headingUnderlineBicolor($colorLineFirst, $colorLineSecond, $height: 0.3rem) {
+  &::after {
+    content: "";
+    display: block;
+    width: calc(100% + 0.5rem);
+    height: $height;
+    margin: -0.35rem 0 0 0.15rem;
+    background: linear-gradient(to right, $colorLineFirst 10%, $colorLineSecond 100%);
+    border-radius: 0.15rem;
+  }
+}
+
+@mixin headingUnderlineBicolorAux(
+  $colorFirst,
+  $colorSecond,
+  $width: 15rem,
+  $isBreak: false
+) {
+  font-weight: var.$fw-normal;
+  span {
+    font-weight: var.$fw-medium;
+    @if ($isBreak) {
+      display: block;
+    }
+  }
+  &::after {
+    content: "";
+    display: block;
+    height: 1rem;
+    width: $width;
+    margin-top: 1rem;
+    background-image: linear-gradient(
+      to right,
+      $colorFirst 0%,
+      $colorFirst 50%,
+      $colorSecond 50%,
+      $colorSecond 100%
+    );
+  }
+}
+
+@mixin textWrapImage($url, $bgColorText) {
+  @include flexRow();
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  @include tablet {
+    @include gridColumns(3, 0);
+  }
+
+  &__content {
+    background-color: $bgColorText;
+    padding: 5rem;
+    @include tablet {
+      grid-column: 2 / 4;
+    }
+  }
+
+  &__title,
+  &__desc {
+    margin-bottom: 1rem;
+  }
+}
+
+@mixin textAccessible {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  display: block;
+}
+
+@mixin textEllipsis($lines, $fs: var.$fs-normal-mob) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  font-size: $fs;
+}
+
+/** Images **/
+@mixin imagesGallery() {
+  @include gridColumns(2, 2rem);
+  @include tablet {
+    @include gridColumns(3, 2rem);
+  }
+
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .img:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    @include tablet {
+      grid-column: 1 / 2;
+      grid-row: 2 / 4;
+    }
+  }
+
+  .img:nth-child(3) {
+    grid-row: 3 / 5;
+    grid-column: 2 / 3;
+    @include tablet {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+  }
+
+  .img:nth-child(6) {
+    grid-row: 2 / 4;
+    @include tablet {
+      grid-column: 3 / 4;
+      grid-row: 1 / 3;
+    }
+  }
+}
+
+@mixin imageObjectFit($height, $width: 100%) {
+  width: $width;
+  height: $height;
+  object-fit: cover;
+}
+
+@mixin imageBgiHoverLg($url, $colorGradient) {
+  background-image: linear-gradient($colorGradient 0%, $colorGradient 100%),
+    url($url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
+@mixin imageBgiHoverLgTransp($url, $colorGradient) {
+  background-image: linear-gradient(
+      to right,
+      transparentize($colorGradient, 0.1) 0%,
+      transparentize($colorGradient, 0.1) 100%
+    ),
+    url($url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin imageParallax($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@mixin imageMask {
+  //__img-container
+  &-container {
+    overflow: hidden;
+  }
+  //&__img-image
+  &-image {
+    width: 100%;
+    transform: scale(1.01);
+    transition-property: transform;
+    transition-duration: 300ms;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@mixin imageFrame($width) {
+  width: $width;
+  justify-self: center;
+  align-self: center;
+  border-left: 0.15rem solid var.$secondary-dark;
+  border-right: 0.2rem solid var.$secondary-dark;
+  border-radius: 0.5rem;
+  box-shadow: 2px 0px 5px;
+}
+
+@mixin iconBgi($url, $size, $margin) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: $size;
+  background-position: 50% $margin;
+}
+
+@mixin iconBgiBefore($url, $size) {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: $size;
+    height: $size;
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@mixin iconTextBefore($text, $top, $fs) {
+  position: relative;
+  &::before {
+    content: $text;
+    position: absolute;
+    left: 0;
+    top: $top;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: $fs;
+    opacity: 0.2;
+  }
+}
+
+/** Buttons **/
+@mixin button($bgfirstColor, $bgSecondColor, $color, $isBlock: false) {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(to bottom, $bgfirstColor 40%, $bgSecondColor 100%);
+  color: $color;
+  font-weight: var.$fw-medium;
+  text-align: center;
+  text-decoration: none;
+  border-bottom: 0.15rem solid var.$secondary-dark;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  @if ($isBlock) {
+    width: 100%;
+  }
+
+  &:hover {
+    background: linear-gradient(to bottom, $bgfirstColor 40%, darken($bgSecondColor, 10) 100%);
+  }
+
+  &__icon {
+    color: $color;
+    font-size: var.$icon-size-sm;
+    font-weight: var.$fw-normal;
+    margin-left: 0.5rem;
+  }
+
+  &--small {
+    padding: 0.75rem 1rem;
+  }
+
+  &--link {
+    padding: 0;
+    background-color: transparent;
+    color: var.$link-color;
+    border: none;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: transparent;
+      color: var.$link-hover-color;
+    }
+  }
+}
+
+@mixin buttonIcon($color) {
+  color: $color;
+  font-size: var.$fs-h2-mob;
+  font-weight: var.$fw-medium;
+  cursor: pointer;
+  transition: 0.3s;
+
+  @include desktop {
+    font-size: var.$fs-h2-desk;
+  }
+
+  &:hover {
+    color: darken($color, 10%);
+  }
+}
+
+/** Others **/
+@mixin scrollHorizontal {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  > * {
+    scroll-snap-align: center;
+  }
+}
+
+@mixin marginBottom($size) {
+  margin-bottom: $size;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  @include tablet {
+    margin-bottom: 0;
+  }
+}
+
+@mixin shadow($opacity: 0.3) {
+  box-shadow: 0 0 0.5rem rgba(69, 90, 100, $opacity);
+}

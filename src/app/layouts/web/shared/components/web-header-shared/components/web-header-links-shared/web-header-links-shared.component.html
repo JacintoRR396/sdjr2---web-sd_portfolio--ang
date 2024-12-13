@@ -1,0 +1,9 @@
+<ul class="header-links__navbar navbar-nav">
+  <ng-container *ngFor="let item of items; index as i">
+    <li class="header-links__navitem nav-item">
+      <a class="header-links__navlink nav-link" href="{{ item.urlLink }}">
+        <i class="header-links__icon {{ item.icon }}"></i>
+      </a>
+    </li>
+  </ng-container>
+</ul>

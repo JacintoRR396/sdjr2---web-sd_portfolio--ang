@@ -1,0 +1,13 @@
+<h2 class="section__title">Testimonials</h2>
+<span class="section__subtitle">My clients, coworkers & partners saying</span>
+
+<ng-container *ngIf="data && !(isLoading | async)">
+  <div class="testimonials__container">
+      <ng-container *ngFor="let item of data">
+        <sdjr2--web-testimonial
+          [numCharsEllipsis]="numCharsEllipsis"
+          [item]="item">
+        </sdjr2--web-testimonial>
+      </ng-container>
+  </div>
+</ng-container>
