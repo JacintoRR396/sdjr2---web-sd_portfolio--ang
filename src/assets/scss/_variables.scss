@@ -1,0 +1,115 @@
+/*! ============ VARIABLES ============ */
+
+/** Media Queries **/
+$mobile-xs: 380px;
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 992px;
+$desktop-lg: 1200px;
+$desktop-xl: 1400px;
+
+/** Boxes **/
+$height-body-min: 580px;
+$height-header-mob: 2rem;
+$height-header-desk: 3rem;
+$line-height-block: 1.4rem;
+
+$padding-mob: 1rem;
+$padding-desk: 1.35rem;
+
+/** Fonts and typographies **/
+$font-primary: "Roboto", sans-serif;
+$font-secondary: "Poppins", sans-serif;
+$font-italic: "Bona Nova", serif;
+
+$fs-bigger-mob: 2rem;
+$fs-bigger-desk: 2.5rem;
+$fs-big-mob: 1.5rem;
+$fs-big-desk: 2rem;
+$fs-h1-mob: 1.25rem;
+$fs-h1-desk: 1.5rem;
+$fs-h2-mob: 1.15rem;
+$fs-h2-desk: 1.25rem;
+$fs-h3-mob: 1rem;
+$fs-h3-desk: 1.15rem;
+$fs-normal-mob: 0.938rem;
+$fs-normal-desk: 1rem;
+$fs-small-mob: 0.813rem;
+$fs-small-desk: 0.875rem;
+$fs-smaller-mob: 0.75rem;
+$fs-smaller-desk: 0.813rem;
+
+$fw-normal: 400;
+$fw-medium: 700;
+$fw-bold: 900;
+
+/** Colors **/
+$black: #000000;
+$black-ng: #0E0E10;
+$white: #fff;
+$gray-light: #f8f8f8;
+$gray: #969696;
+$gray-dark: #3b3b3b;
+$gray-ng: #2B3035;
+$red: #e22331;
+$green: #00833e;
+$greenish: #068d9d;
+$greenish-gray: #455a64;
+$blue: #197acb;
+$blue-ng: #3A6396;
+$blue-nav: #3b4862;
+$yellow: #fccb00;
+$mustard: #c7c57d;
+$orange: #ff8015;
+$orange-metalic: #e99401;
+$salmon: #f46669;
+
+$primary: $red;
+$primary-lighter: lighten($primary, 20%);
+$primary-light: lighten($primary, 10%);
+$primary-dark: darken($primary, 10%);
+$primary-darker: darken($primary, 20%);
+$secondary: $greenish-gray;
+$secondary-lighter: lighten($secondary, 20%);
+$secondary-light: lighten($secondary, 10%);
+$secondary-dark: darken($secondary, 10%);
+$secondary-darker: darken($secondary, 20%);
+$tertiary: $greenish;
+$tertiary-lighter: lighten($tertiary, 20%);
+$tertiary-light: lighten($tertiary, 10%);
+$tertiary-dark: darken($tertiary, 10%);
+$tertiary-darker: darken($tertiary, 20%);
+
+$body-pri-color: $white;
+$body-sec-color: $secondary-lighter;
+$body-third-color: $black;
+
+$body-pri-bgcolor: $black-ng;
+$body-sec-bgcolor: lighten($body-pri-bgcolor, 2.5%);
+$body-third-bgcolor: $tertiary-lighter;
+
+$title-color: $secondary-light;
+$title-hover-color: $secondary;
+// TODO Color : Subtitle
+
+$link-color: $primary-light;
+$link-hover-color: $primary;
+
+$scroll-bar-color: $primary-lighter;
+$scroll-bar-thumb-color: $primary;
+$scroll-bar-thumb-hover-color: $primary-dark;
+
+$input-color: $primary-light;
+
+/** Icons **/
+$icon-size-ssm: 14px;
+$icon-size-sm: 18px;
+$icon-size-md: 24px;
+$icon-size-lg: 32px;
+$icon-size-xl: 42px;
+$icon-size-xxl: 48px;
+
+/** Z-Index **/
+$z-tootlip: 10;
+$z-fixed: 100;
+$z-modal: 1000;

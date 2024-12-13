@@ -1,0 +1,23 @@
+@use "../../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../../assets/scss/mixins" as mix;
+
+.footer{
+  &__navbar {
+    @include mix.flexRows(center);
+    border-radius: 1rem;
+    border: 1px solid white;
+  }
+    &__navitem {
+      padding: 0rem 0.75rem;
+    }
+      &__navlink {
+        font-size: var.$icon-size-ssm;
+
+        @include mix.desktop {
+          font-size: var.$icon-size-sm;
+        }
+      }
+      &__navlink:hover {
+        color: rgba($color: white, $alpha: 0.75)
+      }
+}

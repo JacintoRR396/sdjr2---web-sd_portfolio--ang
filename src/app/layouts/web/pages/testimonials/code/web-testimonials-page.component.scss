@@ -1,0 +1,12 @@
+@use "../../../../../../assets/scss/variables" as var;
+@use "../../../../../../assets/scss/mixins" as mix;
+
+.testimonials {
+  &__container {
+    @include mix.gridColumns(1, 0.5rem);
+
+    @include mix.tablet {
+      @include mix.gridColumns(2, 1rem);
+    }
+  }
+}

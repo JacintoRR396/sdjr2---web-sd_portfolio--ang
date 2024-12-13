@@ -1,0 +1,23 @@
+@use "../../../../../../../../assets/scss/variables" as var;
+@use "../../../../../../../../assets/scss/mixins" as mix;
+
+.footer{
+  &__data {
+    @include mix.flexColumns(center);
+  }
+  &__author {
+    font-size: var.$fs-h2-mob;
+    margin-bottom: 0;
+
+    @include mix.desktop {
+      font-size: var.$fs-h2-desk;
+    }
+  }
+  &__job {
+    font-size: var.$fs-small-mob;
+
+    @include mix.desktop {
+      font-size: var.$fs-small-desk;
+    }
+  }
+}

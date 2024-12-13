@@ -1,0 +1,204 @@
+@use "variables" as var;
+@use "mixins" as mix;
+
+/*! ============ GLOBALS ============ */
+/** Tags **/
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body, main, p {
+  color: var.$body-pri-color;
+  background-color: var.$body-pri-bgcolor;
+  font-family: var.$font-primary;
+  font-size: var.$fs-normal-mob;
+  @include mix.desktop {
+    font-size: var.$fs-normal-desk;
+  }
+}
+
+body {
+  min-width: var.$mobile-xs;
+  min-height: var.$height-body-min;
+}
+
+main {
+  min-height: var.$height-body-min;
+}
+
+p {
+  background-color: inherit;
+  line-height: var.$line-height-block;
+}
+
+h1,
+h2,
+h3 {
+  color: var.$secondary;
+  font-family: var.$font-secondary;
+  font-weight: var.$fw-medium;
+  margin: 0 0 calc(var.$padding-mob / 2) 0;
+  @include mix.desktop {
+    margin: 0 0 calc(var.$padding-desk / 2) 0;
+  }
+}
+h1 {
+  color: var.$secondary-dark;
+  font-size: var.$fs-h1-mob;
+  font-weight: var.$fw-bold;
+  @include mix.desktop {
+    font-size: var.$fs-h1-desk;
+  }
+}
+h2 {
+  font-size: var.$fs-h2-mob;
+  @include mix.desktop {
+    font-size: var.$fs-h2-desk;
+  }
+}
+h3 {
+  font-size: var.$fs-h3-mob;
+  @include mix.desktop {
+    font-size: var.$fs-h3-desk;
+  }
+}
+
+strong {
+  color: var.$secondary-darker;
+  font-family: var.$font-secondary;
+  font-weight: var.$fw-medium;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var.$black;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/** Classes Boxes **/
+.main {
+  overflow: hidden;
+}
+.container,
+*[class*="__container"] {
+  width: 95%;
+  max-width: var.$tablet;
+  margin: 0 auto;
+  @include mix.desktop {
+    width: 90%;
+    max-width: var.$desktop;
+  }
+  @include mix.desktop-lg {
+    max-width: var.$desktop-lg;
+  }
+}
+*[class*="__content"] {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var.$body-sec-bgcolor;
+  min-height: 12rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding: calc(var.$padding-mob) 0 calc(var.$padding-mob / 1.5);
+  @include mix.desktop {
+    padding: calc(var.$padding-desk) 0 calc(var.$padding-desk / 1.5);
+  }
+}
+.section__title,
+.section__subtitle {
+  font-weight: var.$fw-medium;
+  text-align: center;
+}
+.section__title {
+  @include mix.headingLinearGradient(right, var.$secondary-light, var.$primary);
+  font-size: var.$fs-h1-mob;
+  margin-bottom: calc(var.$padding-mob / 3);
+  @include mix.desktop {
+    font-size: var.$fs-h1-desk;
+    margin-bottom: calc(var.$padding-desk / 3);
+  }
+}
+.section__subtitle {
+  display: block;
+  color: var.$secondary-light;
+  font-size: var.$fs-h3-mob;
+  margin-bottom: var.$padding-mob;
+  @include mix.desktop {
+    font-size: var.$fs-h3-desk;
+    margin-bottom: var.$padding-desk;
+  }
+}
+
+.content-center {
+  @include mix.desktop {
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+  @include mix.desktop-lg {
+    width: 75%;
+  }
+}
+.content__title {
+  color: var.$gray;
+  @include mix.headingUnderlineBicolor(var.$primary-dark, var.$secondary-dark);
+  font-size: var.$fs-h3-mob;
+  font-weight: var.$fw-medium;
+  line-height: 1.35rem;
+  margin-bottom: calc(var.$padding-mob / 4);
+  @include mix.desktop {
+    font-size: var.$fs-h3-desk;
+    margin-bottom: calc(var.$padding-desk / 4);
+  }
+}
+.content__subtitle {
+  color: var.$secondary-light;
+  font-size: var.$fs-small-mob;
+  line-height: 1.25rem;
+
+  @include mix.desktop {
+    font-size: var.$fs-small-desk;
+  }
+}
+.content__description {
+  margin: var.$padding-mob auto;
+  max-width: 30rem;
+  text-align: center;
+
+  @include mix.mobile {
+    max-width: 40rem;
+  }
+
+  @include mix.desktop {
+    max-width: 35rem;
+    margin: var.$padding-desk 0;
+    text-align: left;
+  }
+}
+
+/** Classes Utilities **/
+.shadow-container--white {
+  box-shadow: 1px 2px 5px var.$gray-light;
+}
