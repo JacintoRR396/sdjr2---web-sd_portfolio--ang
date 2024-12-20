@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { environments } from '../../environments/environment';
+import { Gender, Testimonial } from '../models/interfaces/web-testimonials.interface';
 
-import { environments } from '../../../environments/environment';
-import { Gender, Testimonial } from '../../models/interfaces/web-testimonials.interface';
 
 @Pipe({
   name: 'testimonialsPathImg'
@@ -19,5 +19,4 @@ export class WebTestimonialsPathImgPipe implements PipeTransform {
     }
     return `${this.basePath}${value.urlIcon}`;
   }
-
 }
