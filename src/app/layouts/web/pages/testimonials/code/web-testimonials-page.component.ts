@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Testimonial } from '../../../../../models/interfaces/web-testimonials.interface';
+import { Testimonial } from '../../../../../models/interfaces/testimonials.interface';
 
 import { LoaderService } from '../../../../../shared/services/app-loader.service';
-import { WebTestimonialsService } from '../../../../../services/web-testimonials.service';
+import { WebTestimonialsService } from '../../../../../services/testimonials.service';
 
 @Component({
   selector: 'sdjr2--web-testimonials-page',

@@ -1,4 +1,4 @@
-import { Gender, Testimonial } from "../interfaces/web-testimonials.interface";
+import { Gender, Testimonial } from "../interfaces/testimonials.interface";
 
 
 export const TESTIMONIALS: Testimonial[] = [

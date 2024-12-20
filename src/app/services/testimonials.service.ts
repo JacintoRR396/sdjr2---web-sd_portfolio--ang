@@ -4,8 +4,9 @@ import { catchError, map, Observable, of } from 'rxjs';
 
 import { environments } from '../../environments/environment';
 
-import { Testimonial } from '../models/interfaces/web-testimonials.interface';
-import { TESTIMONIALS } from '../models/mocks/web-testimonials.mock';
+import { Testimonial } from '../models/interfaces/testimonials.interface';
+import { TESTIMONIALS } from '../models/mocks/testimonials.mock';
+
 
 @Injectable({
   providedIn: 'root'
