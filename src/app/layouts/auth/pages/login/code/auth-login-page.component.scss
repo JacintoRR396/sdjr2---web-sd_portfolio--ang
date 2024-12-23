@@ -1,13 +1,14 @@
-.container-row {
-  margin: 4rem;
-  padding: 1rem;
+:host {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
 }
 
 .sctn-login {
   &__title {
     text-align: center;
   }
-  &__login-btn {
+  &__btn-main {
     width: 9rem;
   }
   &__forgot-link {

@@ -4,5 +4,6 @@ export const NAVIGATION_ROUTES = {
     register: 'register',
     recovery: 'recovery'
   },
+  helperRoot: '',
   helperFather: '../'
 }

@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.sctn-register {
+  &__title {
+    text-align: center;
+  }
+  &__btns-main {
+    width: 10rem;
+  }
+  &__login {
+    font-size: 0.9rem;
+    &-txt {
+      vertical-align: text-top;
+    }
+    &-btn {
+      font-size: 0.9rem;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

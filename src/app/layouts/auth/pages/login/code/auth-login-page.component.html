@@ -1,44 +1,34 @@
-<div class="container">
-  <div class="container-row row d-flex justify-content-around">
+<div class="sctn-image col d-flex">
+  <img src="../.././../../../../assets/images/web/auth/bg-auth_login.svg" alt="Auth Login">
+</div>
 
-    <div class="sctn-image col">
-      <h1>IMAGE</h1>
+<div class="sctn-login col">
+  <h2 class="sctn-login__title text-dark">Sign in</h2>
+  <hr class="border-bottom border-2 border-dark">
+  <form class="sctn-login__form">
+    <div class="sctn-login__email mb-2">
+      <label for="email" class="sctn-login__email-lbl form-label">Email address</label>
+      <input type="email" class="sctn-login__email-val form-control" id="email" aria-describedby="emailHelp">
     </div>
-
-    <div class="sctn-login col">
-      <h2 class="sctn-login__title">Sign in</h2>
-      <hr class="border-bottom border-2 border-dark">
-      <form class="sctn-login__form">
-        <div class="sctn-login__email mb-3">
-          <label for="email" class="sctn-login__email-lbl form-label">Email address</label>
-          <input type="email" class="sctn-login__email-val form-control" id="email" aria-describedby="emailHelp">
-          <div id="emailHelp" class="sctn-login__email-info form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="sctn-login__pass mb-3">
-          <label for="password" class="sctn-login__pass-lbl form-label">Password</label>
-          <input type="password" class="sctn-login__pass-val form-control" id="password">
-        </div>
-        <div class="sctn-login__verify mb-3">
-          <label for="passwordVerify" class="sctn-login__verify-lbl form-label">Confirm password</label>
-          <input type="password" class="sctn-login__verify-val form-control" id="passwordVerify">
-        </div>
-        <div class="d-flex justify-content-between mb-3">
-          <div class="sctn-login__remember mb-3 form-check">
-            <input type="checkbox" class="sctn-login__remember-val form-check-input" id="checkRemember">
-            <label class="sctn-login__remember-lbl form-check-label" for="checkRemember">Remember me</label>
-          </div>
-          <a class="sctn-login__forgot-link" [routerLink]="[ linkRecovery ]">
-            <span class="sctn-login__forgot-txt">Forgot password?</span>
-          </a>
-        </div>
-        <button type="submit" class="sctn-login__login-btn btn btn-primary">Login</button>
-      </form>
-      <div class="sctn-login__register mt-2">
-        <span class="sctn-login__register-txt">Dont't have an account?</span>
-        <button class="sctn-login__register-btn btn btn-link text-danger ms-1" [routerLink]="[ linkRegister ]">
-          Register
-        </button>
+    <div class="sctn-login__pass mb-3">
+      <label for="password" class="sctn-login__pass-lbl form-label">Password</label>
+      <input type="password" class="sctn-login__pass-val form-control" id="password">
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+      <div class="sctn-login__remember form-check">
+        <input type="checkbox" class="sctn-login__remember-val form-check-input" id="checkRemember">
+        <label class="sctn-login__remember-lbl form-check-label" for="checkRemember">Remember me</label>
       </div>
+      <a class="sctn-login__forgot-link" [routerLink]="[ linkRecovery ]">
+        <span class="sctn-login__forgot-txt">Forgot password?</span>
+      </a>
     </div>
+    <button type="submit" class="sctn-login__btn-main btn btn-primary w-100">Login</button>
+  </form>
+  <div class="sctn-login__register mt-3">
+    <span class="sctn-login__register-txt">Dont't have an account?</span>
+    <button class="sctn-login__register-btn btn btn-link text-danger ms-1" [routerLink]="[ linkRegister ]">
+      Register
+    </button>
   </div>
 </div>

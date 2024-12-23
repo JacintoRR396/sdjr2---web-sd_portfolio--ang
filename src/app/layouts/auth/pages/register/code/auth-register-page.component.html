@@ -1,1 +1,46 @@
-<p>auth-register-page works!</p>
+<div class="sctn-register col">
+  <h2 class="sctn-register__title">Sign up</h2>
+  <hr class="border-bottom border-2 border-dark">
+  <form class="sctn-register__form">
+    <div class="sctn-register__username mb-2">
+      <label for="username" class="sctn-register__username-lbl form-label">Username</label>
+      <input type="username" class="sctn-register__username-val form-control" id="username" aria-describedby="emailHelp">
+    </div>
+    <div class="sctn-register__email mb-2">
+      <label for="email" class="sctn-register__email-lbl form-label">Email address</label>
+      <input type="email" class="sctn-register__email-val form-control" id="email" aria-describedby="emailHelp">
+      <div id="emailHelp" class="sctn-register__email-info form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="sctn-register__pass mb-2">
+      <label for="password" class="sctn-register__pass-lbl form-label">Password</label>
+      <input type="password" class="sctn-register__pass-val form-control" id="password">
+    </div>
+    <div class="sctn-register__verify mb-3">
+      <label for="passwordVerify" class="sctn-register__verify-lbl form-label">Repeat your password</label>
+      <input type="password" class="sctn-register__verify-val form-control" id="passwordVerify">
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+      <div class="sctn-register__terms form-check">
+        <input type="checkbox" class="sctn-register__terms-val form-check-input" id="checkTerms">
+        <label class="sctn-register__terms-lbl form-check-label" for="checkTerms">
+          I agree all statements in Terms of service
+        </label>
+      </div>
+    </div>
+    <div class="sctn-register__btns d-flex justify-content-evenly">
+      <button type="submit" class="sctn-register__btns-main btn btn-primary">Register</button>
+      <button class="sctn-register__btns-reset btn btn-secondary">Clear</button>
+    </div>
+
+  </form>
+  <div class="sctn-register__login mt-3">
+    <span class="sctn-register__login-txt">Have already an account?</span>
+    <button class="sctn-register__login-btn btn btn-link text-success ms-1" [routerLink]="[ linkLogin ]">
+      Login
+    </button>
+  </div>
+</div>
+
+<div class="sctn-image col d-flex">
+  <img src="../.././../../../../assets/images/web/auth/bg-auth_register.svg" alt="Auth Login">
+</div>
