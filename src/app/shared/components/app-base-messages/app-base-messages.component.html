@@ -1,0 +1,8 @@
+<ng-container *ngIf="(errors$ | async) as errors">
+  <div class="container-messages" *ngIf="showMessages">
+    <div class="container-messages__msg" *ngFor="let error of errors">
+      {{ error }}
+    </div>
+    <i class="container-messages__btn bi bi-x-circle-fill" (click)="onClose()"></i>
+  </div>
+</ng-container>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { BaseMessagesComponent } from './components/app-base-messages/app-base-messages.component';
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
 import { LazyImageComponent } from './components/app-lazy-image/code/app-lazy-image.component';
 import { SearchBoxComponent } from './components/app-search-box/app-search-box.component';
@@ -16,16 +17,18 @@ import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
 
 @NgModule({
   declarations: [
+    BaseMessagesComponent,
     BaseSpinnerComponent,
     LazyImageComponent,
     PathLoaderLazyImagePipe,
     SearchBoxComponent,
     Error404PageComponent,
     HighlightedContainerDirective,
-    EllipsisPipe
+    EllipsisPipe,
   ],
   imports: [CommonModule],
   exports: [
+    BaseMessagesComponent,
     BaseSpinnerComponent,
     LazyImageComponent,
     SearchBoxComponent,

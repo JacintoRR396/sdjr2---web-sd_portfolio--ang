@@ -1,0 +1,18 @@
+.container-messages {
+  display: flex;
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 1rem 2rem;
+  position: relative;
+
+  &__msg {
+    font-weight: 700;
+  }
+  &__btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    cursor: pointer;
+  }
+}
