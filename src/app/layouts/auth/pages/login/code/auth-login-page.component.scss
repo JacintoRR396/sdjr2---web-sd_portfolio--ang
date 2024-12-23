@@ -1,0 +1,32 @@
+.container-row {
+  margin: 4rem;
+  padding: 1rem;
+}
+
+.sctn-login {
+  &__title {
+    text-align: center;
+  }
+  &__login-btn {
+    width: 9rem;
+  }
+  &__forgot-link {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__register {
+    font-size: 0.9rem;
+    &-txt {
+      vertical-align: text-top;
+    }
+    &-btn {
+      font-size: 0.9rem;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
