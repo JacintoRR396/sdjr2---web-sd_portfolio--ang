@@ -23,12 +23,11 @@ export class WebTestimonialsPageComponent implements OnInit {
   ){}
 
   get isLoading(): Observable<boolean> {
-    return this.loaderService.isLoading;
+    return this.loaderService.loading$;
   }
 
   ngOnInit(): void {
       this.testimonialsService.getTestimonials()
         .subscribe( (resp:Testimonial[]) => this.data = resp );
   }
-
 }

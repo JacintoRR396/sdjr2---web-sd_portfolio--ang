@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, concatMap, finalize, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,26 +7,31 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoaderService {
 
   private apiCount = 0;
-  private isLoadingSubject = new BehaviorSubject<boolean>( false );
-  private _isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
+  private loadingSubject = new BehaviorSubject<boolean>( false );
+  loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
   constructor() { }
 
-  get isLoading(): Observable<boolean> {
-    return this._isLoading$;
+  showLoader<T>( obs$: Observable<T> ): Observable<T> {
+    return of( null )
+      .pipe(
+        tap( () => this.loadingOn() ),
+        concatMap( () => obs$ ),
+        finalize( () => this.loadingOff() )
+      );
   }
 
-  show() {
+  loadingOn() {
     if ( this.apiCount === 0 ) {
-      this.isLoadingSubject.next( true );
+      this.loadingSubject.next( true );
     }
     this.apiCount++;
   }
 
-  hide() {
+  loadingOff() {
     this.apiCount--;
     if ( this.apiCount === 0 ) {
-      this.isLoadingSubject.next( false );
+      this.loadingSubject.next( false );
     }
   }
 }

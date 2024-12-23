@@ -8,7 +8,7 @@ export class MessagesService {
 
   private errorsSubject = new BehaviorSubject<string[]>( [] );
   errors$: Observable<string[]> = this.errorsSubject.asObservable()
-  .pipe( filter( msgs => msgs && msgs.length > 0 ) );
+    .pipe( filter( msgs => msgs && msgs.length > 0 ) );
 
   constructor() { }
 

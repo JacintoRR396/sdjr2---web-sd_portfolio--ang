@@ -11,10 +11,9 @@ import { LoaderService } from '../../services/app-loader.service';
 })
 export class BaseSpinnerComponent {
 
-  constructor(private readonly loaderService: LoaderService){}
+  constructor( private readonly loaderService: LoaderService ){}
 
   get isLoading(): Observable<boolean> {
-    return this.loaderService.isLoading;
+    return this.loaderService.loading$;
   }
-
 }
