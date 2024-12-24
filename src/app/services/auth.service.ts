@@ -1,89 +1,62 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, shareReplay } from 'rxjs';
-
-import { environments } from '../../environments/environment';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 import { User } from '../models/interfaces/users.interface';
-import { USERS } from '../models/mocks/users.mock';
+
+import { UsersService } from './users.service';
+import { StorageService } from '../shared/services/app-storage.service';
+import { MessagesService } from '../shared/services/app-messages.service';
+
+const AUTH_DATA = "auth_data";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthStore {
 
-  private readonly baseUrl: string = environments.baseUrl;
-  private readonly endpointUrl: string = "users";
-  private _data: User[] = [ ...USERS ];
+  private userSubject = new BehaviorSubject<User | undefined>( undefined );
+	user$: Observable<User | undefined> = this.userSubject.asObservable();
+  isLoggedIn$ : Observable<boolean>;
+	isLoggedOut$ : Observable<boolean>;
 
-  constructor( private readonly httpClient: HttpClient ) { }
-
-  getAllUsers(): Observable<User[]> {
-    if ( environments.isMockEnabled ) {
-      return of( this._data );
-    } else {
-      return this.httpClient.get<User[]>( `${this.baseUrl}/${this.endpointUrl}` )
-        .pipe(
-          catchError( err => of( [] ) ),
-          shareReplay()
-        );
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly storageService: StorageService,
+    private readonly messagesService: MessagesService
+  ) {
+    const user = this.storageService.loadLocalStorageBase64( AUTH_DATA );
+    if ( user ) {
+      this.userSubject.next( user );
     }
+    this.isLoggedIn$ = this.user$.pipe( map( user => !!user ) );
+		this.isLoggedOut$ = this.isLoggedIn$.pipe( map( loggedIn => !loggedIn ) );
   }
 
-  getUserById( id: number ): Observable<User | undefined> {
-    if ( environments.isMockEnabled ) {
-      return of( this._data[ id - 1 ] );
-    } else {
-      return this.httpClient.get<User>( `${this.baseUrl}/${this.endpointUrl}/${id}` )
-        .pipe(
-          catchError( err => of( undefined ) ),
-          shareReplay()
-        );
-    }
-  }
-
-  addUser( item: User ): Observable<User> {
-    if( item.id !== 0 ) throw Error( 'User id not valid' );
-    if ( environments.isMockEnabled ) {
-      this._data = [ ...this._data, item ];
-      return of( item );
-    } else {
-      return this.httpClient.post<User>( `${this.baseUrl}/${this.endpointUrl}`, item )
-        .pipe(
-          shareReplay()
-        );
-    }
-  }
-
-  updateUser( item: User ): Observable<User> {
-    if( !item.id ) throw Error( 'User id is required' );
-    if ( environments.isMockEnabled ) {
-      this._data = this._data.map( it => {
-        if ( it.id === item.id ) {
-          return item;
-        }
-        return it;
-      });
-      return of( item );
-    } else {
-      return this.httpClient.put<User>( `${this.baseUrl}/${this.endpointUrl}/${item.id}`, item )
-        .pipe(
-          shareReplay()
-        );
-    }
-  }
-
-  deleteUserById( id: number ): Observable<boolean> {
-    if ( environments.isMockEnabled ) {
-      this._data = this._data.filter( it => it.id !== id );
-      return of( true );
-    } else {
-      return this.httpClient.delete<User>( `${this.baseUrl}/${this.endpointUrl}/${id}` )
+  login( email: string, password: string, isSaveInLS: boolean ): Observable<User | undefined> {
+    return this.usersService.getUserByEmailAndPassword( email, password )
       .pipe(
-        catchError( err => of( false ) ),
-        map( resp => true ),
-        shareReplay()
+        tap( user => {
+          this.checkUserInDB( AUTH_DATA, user, isSaveInLS );
+        }),
+        catchError( err => of( undefined ) ),
       );
+  }
+
+  private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
+    if( data ) {
+      if( isSaveInLS ) {
+        this.storageService.saveLocalStorageBase64( name, data );
+      } else {
+        this.storageService.removeLocalStorageBase64( name );
+      }
+    } else {
+      this.messagesService.showErrors( "Credentials not valid" );
     }
+    this.userSubject.next( data );
+  }
+
+  logout() {
+    this.userSubject.next( undefined );
+    this.storageService.removeLocalStorageBase64( AUTH_DATA );
   }
 }

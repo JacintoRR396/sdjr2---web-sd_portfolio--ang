@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interace';
+import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';
 import { WebHeaderMenuItem } from '../../models/interfaces/web-header-menu-shared.interace';
 import { WEB_MENU_HEADER } from '../../models/mocks/web-header-menu-shared.mock';
 
@@ -10,6 +12,10 @@ import { WEB_MENU_HEADER } from '../../models/mocks/web-header-menu-shared.mock'
 })
 export class WebHeaderNavSharedComponent {
 
-  items: WebHeaderMenuItem[] = WEB_MENU_HEADER.items;
+  linkItems: WebHeaderLink[] = WEB_LINKS_HEADER.items;
+  menuItems: WebHeaderMenuItem[] = WEB_MENU_HEADER.items;
 
+  get linkWeb(): string {
+    return this.linkItems[0].routerLink;
+  }
 }

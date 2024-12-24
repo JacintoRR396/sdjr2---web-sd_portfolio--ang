@@ -6,48 +6,48 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
   /* LocalStorage */
-  public loadLocalStoreBase64(name: string): any {
+  public loadLocalStorageBase64(name: string): any {
     if (!localStorage.getItem(name)) return;
 
     const json: string = localStorage.getItem(name)!;
     return this.decode(json);
   }
 
-  public saveLocalStoreBase64(name: string, data: any): void {
+  public saveLocalStorageBase64(name: string, data: any): void {
     const jsonStr: string = this.encode(data);
     localStorage.setItem(name, jsonStr);
   }
 
-  public deleteLocalStoreBase64(name: string): void {
+  public removeLocalStorageBase64(name: string): void {
     if (!localStorage.getItem(name)) return;
 
     localStorage.removeItem(name);
   }
 
-  public deleteAllLocalStoreBase64(name: string): void {
+  public removeAllLocalStorageBase64(name: string): void {
     localStorage.clear();
   }
 
   /* SessionStorage */
-  public loadSessionStoreBase64(name: string): any {
+  public loadSessionStorageBase64(name: string): any {
     if (!sessionStorage.getItem(name)) return;
 
     const json: string = sessionStorage.getItem(name)!;
     return this.decode(json);
   }
 
-  public saveSessionStoreBase64(name: string, data: any): void {
+  public saveSessionStorageBase64(name: string, data: any): void {
     const jsonStr: string = this.encode(data);
     sessionStorage.setItem(name, jsonStr);
   }
 
-  public deleteSessionStoreBase64(name: string): void {
+  public removeSessionStorageBase64(name: string): void {
     if (!sessionStorage.getItem(name)) return;
 
     sessionStorage.removeItem(name);
   }
 
-  public deleteAllSessionStoreBase64(name: string): void {
+  public removeAllSessionStorageBase64(name: string): void {
     sessionStorage.clear();
   }
 
@@ -77,7 +77,7 @@ export class StorageService {
     document.cookie = `${name}=${value}; ${expires}${pathChain}; SameSite=Lax`;
   }
 
-  public deleteCookie(name: string): void {
+  public removeCookie(name: string): void {
     this.saveCookie(name, '', -1);
   }
 

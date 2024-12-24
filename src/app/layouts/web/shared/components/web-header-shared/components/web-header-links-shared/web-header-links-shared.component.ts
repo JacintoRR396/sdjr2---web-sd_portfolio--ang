@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AuthStore } from '../../../../../../../services/auth.service';
 
 import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interace';
 import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';
@@ -10,6 +13,18 @@ import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.moc
 })
 export class WebHeaderLinksSharedComponent {
 
-  items: WebHeaderLink[] = WEB_LINKS_HEADER.items;
+  linkItems: WebHeaderLink[] = WEB_LINKS_HEADER.items;
 
+  constructor( private readonly authStore: AuthStore ){}
+
+  get isLoggedIn(): Observable<boolean>{
+    return this.authStore.isLoggedIn$;
+  }
+  get isLoggedOut(): Observable<boolean>{
+    return this.authStore.isLoggedOut$;
+  }
+
+  onLogout(): void {
+    this.authStore.logout();
+  }
 }

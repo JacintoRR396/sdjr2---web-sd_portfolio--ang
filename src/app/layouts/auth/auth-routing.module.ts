@@ -9,7 +9,6 @@ import { AuthRegisterPageComponent } from './pages/register/code/auth-register-p
 import { NAVIGATION_ROUTES } from '../../models/navigation-routes.model';
 
 const navRoutes = NAVIGATION_ROUTES;
-
 const routes: Routes = [
   { path: navRoutes.helperRoot, component: AuthLayoutComponent, children: [
       { path: navRoutes.auth.login, component: AuthLoginPageComponent },

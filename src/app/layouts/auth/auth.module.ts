@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppSharedModule } from '../../shared/app-shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -20,6 +21,7 @@ import { AuthRegisterPageComponent } from './pages/register/code/auth-register-p
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AppSharedModule,
     AuthRoutingModule,
     AuthSharedModule

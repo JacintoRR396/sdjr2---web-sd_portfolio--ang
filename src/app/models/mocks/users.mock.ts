@@ -5,7 +5,7 @@ export const USERS: User[] = [
     id: 1,
     urlIcon: 'web/common/male_avatar.svg',
     username: 'Balbino V12',
-    email: 'balbino.v12@gmail.com',
+    email: 'balbino_v12@hotmail.com',
     password: '1234',
     isTermsOfService: true,
     isRemeber: true,

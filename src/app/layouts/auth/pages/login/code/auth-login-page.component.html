@@ -5,25 +5,26 @@
 <div class="sctn-login col">
   <h2 class="sctn-login__title text-dark">Sign in</h2>
   <hr class="border-bottom border-2 border-dark">
-  <form class="sctn-login__form">
+  <form class="sctn-login__form" [formGroup]="formLogin">
     <div class="sctn-login__email mb-2">
       <label for="email" class="sctn-login__email-lbl form-label">Email address</label>
-      <input type="email" class="sctn-login__email-val form-control" id="email" aria-describedby="emailHelp">
+      <input id="email" type="email" class="sctn-login__email-val form-control" formControlName="email">
     </div>
     <div class="sctn-login__pass mb-3">
       <label for="password" class="sctn-login__pass-lbl form-label">Password</label>
-      <input type="password" class="sctn-login__pass-val form-control" id="password">
+      <input id="password" type="password" class="sctn-login__pass-val form-control" formControlName="password">
     </div>
     <div class="d-flex justify-content-between mb-3">
       <div class="sctn-login__remember form-check">
-        <input type="checkbox" class="sctn-login__remember-val form-check-input" id="checkRemember">
+        <input id="checkRemember" type="checkbox" class="sctn-login__remember-val form-check-input" formControlName="rememberMe">
         <label class="sctn-login__remember-lbl form-check-label" for="checkRemember">Remember me</label>
       </div>
       <a class="sctn-login__forgot-link" [routerLink]="[ linkRecovery ]">
         <span class="sctn-login__forgot-txt">Forgot password?</span>
       </a>
     </div>
-    <button type="submit" class="sctn-login__btn-main btn btn-primary w-100">Login</button>
+    <button class="sctn-login__btn-main btn btn-primary w-100"
+      (click)="onLogin()" [disabled]="!formLogin.valid">Login</button>
   </form>
   <div class="sctn-login__register mt-3">
     <span class="sctn-login__register-txt">Dont't have an account?</span>
