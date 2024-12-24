@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +7,19 @@ import { BehaviorSubject, filter, Observable } from 'rxjs';
 export class MessagesService {
 
   private errorsSubject = new BehaviorSubject<string[]>( [] );
-  errors$: Observable<string[]> = this.errorsSubject.asObservable()
-    .pipe( filter( msgs => msgs && msgs.length > 0 ) );
+  errors$: Observable<string[]> = this.errorsSubject.asObservable();
+  hasErrors$: Observable<boolean>;
 
-  constructor() { }
+  constructor() {
+    this.hasErrors$ = this.errors$
+      .pipe( map( errors => errors.length > 0 ) );
+  }
 
   showErrors( ...errors: string[] ): void {
     this.errorsSubject.next( errors );
   }
 
   resetErrors(): void {
-    this.errorsSubject.next( ['No hay mensajes de error :).'] );
+    this.errorsSubject.next( [] );
   }
 }

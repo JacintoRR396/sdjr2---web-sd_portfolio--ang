@@ -1,5 +1,29 @@
-import { User } from "../interfaces/users.interface";
+import { Role, RoleType, User } from "../interfaces/users.interface";
 
+export const ROLES: Role[] = [
+  {
+    id: 1,
+    name: 'ROLE VIEWER',
+    type: RoleType.ROLE_VIEWER,
+    description: 'The role viewer only ...'
+  }
+  ,
+  {
+    id: 2,
+    name: 'ROLE USER',
+    type: RoleType.ROLE_USER,
+    description: 'The role user can ...'
+  }
+  ,
+  {
+    id: 3,
+    name: 'ROLE ADMIN',
+    type: RoleType.ROLE_ADMIN,
+    description: 'The role admin is the one who manages the website'
+  }
+]
+
+const roles: Role[] = ROLES;
 export const USERS: User[] = [
   {
     id: 1,
@@ -7,10 +31,11 @@ export const USERS: User[] = [
     username: 'Balbino V12',
     email: 'balbino_v12@hotmail.com',
     password: '1234',
+    role: roles[1],
     isTermsOfService: true,
     isRemeber: true,
     isActive: true,
-    atCreate: new Date(),
-    atUpdate: new Date()
+    atCreate: new Date('2024-11-24T15:29:00'),
+    atUpdate: new Date('2024-11-28T16:21:00')
   }
 ];

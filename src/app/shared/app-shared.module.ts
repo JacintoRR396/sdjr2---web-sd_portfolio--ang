@@ -14,6 +14,8 @@ import { LoaderInterceptor } from './interceptors/app-loader.interceptor';
 
 import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-path-loader-lazy-image.pipe';
 import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
+import { SafeHtmlPipe } from './pipes/app-safe-html.pipe';
+import { SafeUrlPipe } from './pipes/app-safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
     Error404PageComponent,
     HighlightedContainerDirective,
     EllipsisPipe,
+    SafeHtmlPipe,
+    SafeUrlPipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -34,7 +38,9 @@ import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
     SearchBoxComponent,
     Error404PageComponent,
     HighlightedContainerDirective,
-    EllipsisPipe
+    EllipsisPipe,
+    SafeHtmlPipe,
+    SafeUrlPipe,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
