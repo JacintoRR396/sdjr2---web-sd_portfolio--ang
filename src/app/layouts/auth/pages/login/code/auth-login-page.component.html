@@ -5,18 +5,45 @@
 <div class="sctn-login col">
   <h2 class="sctn-login__title text-dark">Sign in</h2>
   <hr class="border-bottom border-2 border-dark">
-  <form class="sctn-login__form" [formGroup]="formLogin">
+  <form class="sctn-login__form" [formGroup]="fgLogin">
     <div class="sctn-login__email mb-2">
-      <label for="email" class="sctn-login__email-lbl form-label">Email address</label>
-      <input id="email" type="email" class="sctn-login__email-val form-control" formControlName="email">
+      <label for="email" class="sctn-login__email-lbl form-label">
+        <span class="text-danger">*</span>Email address
+      </label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-envelope-at"></i>
+        </span>
+        <input id="email" type="email" class="sctn-login__email-val form-control" placeholder="Enter your email"
+          aria-describedby="emailHelp" formControlName="email"
+          [ngClass]="{ 'is-invalid': showEmailErrors(), 'is-valid': isEmailValid()}" />
+        <div id="emailHelp" class="form-text invalid-feedback" *ngIf="showEmailErrors()">
+          {{ errors.email }}
+        </div>
+      </div>
     </div>
     <div class="sctn-login__pass mb-3">
-      <label for="password" class="sctn-login__pass-lbl form-label">Password</label>
-      <input id="password" type="password" class="sctn-login__pass-val form-control" formControlName="password">
+      <label for="password" class="sctn-login__pass-lbl form-label">
+        <span class="text-danger">*</span>Password
+      </label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-door-closed"></i>
+        </span>
+        <input id="password" type="password" class="sctn-login__pass-val form-control" placeholder="Enter your password"
+          aria-describedby="passwordlHelp" formControlName="password"
+          [ngClass]="{ 'is-invalid': showPasswordErrors(), 'is-valid': isPasswordValid()}" #inputPassword />
+        <span class="input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
+          <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </span>
+        <div id="passwordlHelp" class="form-text invalid-feedback" *ngIf="showPasswordErrors()">
+          {{ errors.password }}
+        </div>
+      </div>
     </div>
     <div class="d-flex justify-content-between mb-3">
       <div class="sctn-login__remember form-check">
-        <input id="checkRemember" type="checkbox" class="sctn-login__remember-val form-check-input" formControlName="rememberMe">
+        <input id="checkRemember" type="checkbox" class="sctn-login__remember-val form-check-input" formControlName="rememberMe" />
         <label class="sctn-login__remember-lbl form-check-label" for="checkRemember">Remember me</label>
       </div>
       <a class="sctn-login__forgot-link" [routerLink]="[ linkRecovery ]">
@@ -24,7 +51,7 @@
       </a>
     </div>
     <button class="sctn-login__btn-main btn btn-primary w-100"
-      (click)="onLogin()" [disabled]="!formLogin.valid">Login</button>
+      (click)="onLogin()" [disabled]="!fgLogin.valid">Login</button>
   </form>
   <div class="sctn-login__register mt-3">
     <span class="sctn-login__register-txt">Dont't have an account?</span>

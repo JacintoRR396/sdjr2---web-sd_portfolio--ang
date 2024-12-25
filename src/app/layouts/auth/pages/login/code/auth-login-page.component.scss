@@ -11,6 +11,12 @@
   &__btn-main {
     width: 9rem;
   }
+  &__remember {
+    cursor: pointer;
+    &-lbl, &-val {
+      cursor: pointer;
+    }
+  }
   &__forgot-link {
     text-decoration: none;
     &:hover {

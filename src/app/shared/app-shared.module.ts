@@ -16,6 +16,7 @@ import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-p
 import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
 import { SafeHtmlPipe } from './pipes/app-safe-html.pipe';
 import { SafeUrlPipe } from './pipes/app-safe-url.pipe';
+import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SafeUrlPipe } from './pipes/app-safe-url.pipe';
     EllipsisPipe,
     SafeHtmlPipe,
     SafeUrlPipe,
+    OnlyOneErrorValidatorPipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -41,6 +43,7 @@ import { SafeUrlPipe } from './pipes/app-safe-url.pipe';
     EllipsisPipe,
     SafeHtmlPipe,
     SafeUrlPipe,
+    OnlyOneErrorValidatorPipe,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
