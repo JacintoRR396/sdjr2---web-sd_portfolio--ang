@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
-import { User } from '../models/interfaces/users.interface';
-
 import { UsersService } from './users.service';
 import { StorageService } from '../shared/services/app-storage.service';
 import { MessagesService } from '../shared/services/app-messages.service';
+
+import { User } from '../models/interfaces/users.interface';
 
 const AUTH_DATA = "auth_data";
 

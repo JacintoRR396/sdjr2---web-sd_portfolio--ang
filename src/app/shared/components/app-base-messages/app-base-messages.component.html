@@ -1,8 +1,11 @@
 <ng-container *ngIf="(errors | async) as errors">
-  <div class="container-messages" *ngIf="hasErrors | async">
-    <div class="container-messages__msg" *ngFor="let error of errors">
-      {{ error }}
-    </div>
-    <i class="container-messages__btn bi bi-x-circle-fill" (click)="onClose()"></i>
+  <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert" *ngIf="hasErrors | async">
+    <ul class="mb-0">
+      <ng-container *ngFor="let error of errors; index as i">
+        <li>0{{ i + 1 }}. {{ error }}</li>
+      </ng-container>
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+      (click)="onClose()"></button>
   </div>
 </ng-container>
