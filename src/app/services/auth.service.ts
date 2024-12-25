@@ -6,6 +6,7 @@ import { StorageService } from '../shared/services/app-storage.service';
 import { MessagesService } from '../shared/services/app-messages.service';
 
 import { User } from '../models/interfaces/users.interface';
+import { logConsole, LogginLevel } from '../shared/models/app-debug-operator.model';
 
 const AUTH_DATA = "auth_data";
 
@@ -45,18 +46,21 @@ export class AuthStore {
   private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
     if( data ) {
       if( isSaveInLS ) {
+        logConsole( LogginLevel.DEBUG, 'AuthStore', 'Save user in LocalStorage' );
         this.storageService.saveLocalStorageBase64( name, data );
       } else {
+        logConsole( LogginLevel.DEBUG, 'AuthStore', 'Remove user in LocalStorage' );
         this.storageService.removeLocalStorageBase64( name );
       }
     } else {
-      this.messagesService.showErrors( "Credentials not valid" );
+      this.messagesService.showErrors( "The Credentials are not valid" );
     }
     this.userSubject.next( data );
   }
 
   logout() {
     this.userSubject.next( undefined );
+    logConsole( LogginLevel.DEBUG, 'AuthStore', 'Remove user in LocalStorage' );
     this.storageService.removeLocalStorageBase64( AUTH_DATA );
   }
 }

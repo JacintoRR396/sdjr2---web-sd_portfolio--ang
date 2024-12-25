@@ -30,7 +30,7 @@ export const USERS: User[] = [
     urlIcon: 'web/common/male_avatar.svg',
     username: 'Balbino V12',
     email: 'balbino_v12@hotmail.com',
-    password: '1234',
+    password: '12345Aa$',
     role: roles[1],
     isTermsOfService: true,
     isRemeber: true,
