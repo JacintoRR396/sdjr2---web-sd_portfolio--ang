@@ -7,12 +7,12 @@ export function setLogginLevel( level: LogginLevel ): void {
 	logginLevel = level;
 }
 
-export const debug = ( level: number, msg: string ) =>
+export const debug = ( level: number, clazz: string, msg: string ) =>
   ( source: Observable<any> ) => source
     .pipe(
       tap( val => {
         if( level >= logginLevel ) {
-          console.log( msg + ' : ', val );
+          console.log( `${clazz} : ${msg} -> ${val}` );
         }
       })
     );

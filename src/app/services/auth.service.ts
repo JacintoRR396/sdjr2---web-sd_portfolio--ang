@@ -7,7 +7,6 @@ import { MessagesService } from '../shared/services/app-messages.service';
 import { ErrorsService } from '../shared/services/app-errors.service';
 
 import { User } from '../models/interfaces/users.interface';
-import { logConsole, LogginLevel } from '../shared/models/app-debug-operator.model';
 
 const AUTH_DATA = "auth_data";
 
@@ -20,6 +19,7 @@ export class AuthStore {
 	user$: Observable<User | undefined> = this.userSubject.asObservable();
   isLoggedIn$ : Observable<boolean>;
 	isLoggedOut$ : Observable<boolean>;
+  dto: string = 'user';
 
   constructor(
     private readonly usersService: UsersService,
@@ -27,8 +27,7 @@ export class AuthStore {
     private readonly messagesService: MessagesService,
     private readonly errorsService: ErrorsService
   ) {
-    logConsole( LogginLevel.DEBUG, 'AuthStore',this.errorsService.getLocalStorageLoad( 'user' ) );
-    const user = this.storageService.loadLocalStorageBase64( AUTH_DATA );
+    const user = this.storageService.loadLocalStorageBase64( AUTH_DATA, this.dto );
     if ( user ) {
       this.userSubject.next( user );
     }
@@ -49,11 +48,9 @@ export class AuthStore {
   private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
     if( data ) {
       if( isSaveInLS ) {
-        logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageSave( 'user' ) );
-        this.storageService.saveLocalStorageBase64( name, data );
+        this.storageService.saveLocalStorageBase64( name, data, this.dto );
       } else {
-        logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageRemove( 'user' ) );
-        this.storageService.removeLocalStorageBase64( name );
+        this.storageService.removeLocalStorageBase64( name, this.dto );
       }
     } else {
       this.messagesService.showErrors( this.errorsService.getFormCredentials() );
@@ -63,7 +60,6 @@ export class AuthStore {
 
   logout() {
     this.userSubject.next( undefined );
-    logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageRemove( 'user' ) );
-    this.storageService.removeLocalStorageBase64( AUTH_DATA );
+    this.storageService.removeLocalStorageBase64( AUTH_DATA, this.dto );
   }
 }

@@ -25,7 +25,7 @@ export class UsersService {
     } else {
       return this.httpClient.get<User[]>( `${this.baseUrl}/${this.endpointUrl}` )
         .pipe(
-          debug( LogginLevel.DEBUG, "GET Users" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "GET Users" ),
           catchError( err => of( [] ) ),
           shareReplay()
         );
@@ -38,7 +38,7 @@ export class UsersService {
     } else {
       return this.httpClient.get<User>( `${this.baseUrl}/${this.endpointUrl}/${id}` )
         .pipe(
-          debug( LogginLevel.DEBUG, "GET User by Id" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "GET User by Id" ),
           catchError( err => of( undefined ) ),
           shareReplay()
         );
@@ -52,7 +52,7 @@ export class UsersService {
       const params = new HttpParams().set( 'email', email );
       return this.httpClient.get<User>( `${this.baseUrl}/${this.endpointUrl}`, {params} )
         .pipe(
-          debug( LogginLevel.DEBUG, "GET User by Email" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "GET User by Email" ),
           catchError( err => of( undefined ) ),
           shareReplay()
         );
@@ -66,7 +66,7 @@ export class UsersService {
       const params = new HttpParams().set( 'email', email ).set( 'password', password );
       return this.httpClient.get<User>( `${this.baseUrl}/${this.endpointUrl}`, {params} )
         .pipe(
-          debug( LogginLevel.DEBUG, "GET User by Email/Pass" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "GET User by Email/Pass" ),
           catchError( err => of( undefined ) ),
           shareReplay()
         );
@@ -81,7 +81,7 @@ export class UsersService {
     } else {
       return this.httpClient.post<User>( `${this.baseUrl}/${this.endpointUrl}`, item )
         .pipe(
-          debug( LogginLevel.DEBUG, "POST User" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "POST User" ),
           catchError( err => of( undefined ) ),
           shareReplay()
         );
@@ -101,7 +101,7 @@ export class UsersService {
     } else {
       return this.httpClient.put<User>( `${this.baseUrl}/${this.endpointUrl}/${item.id}`, item )
         .pipe(
-          debug( LogginLevel.DEBUG, "PUT User" ),
+          debug( LogginLevel.DEBUG, 'UsersService', "PUT User" ),
           catchError( err => of( undefined ) ),
           shareReplay()
         );
@@ -115,7 +115,7 @@ export class UsersService {
     } else {
       return this.httpClient.delete<User>( `${this.baseUrl}/${this.endpointUrl}/${id}` )
       .pipe(
-        debug( LogginLevel.DEBUG, "DELETE User" ),
+        debug( LogginLevel.DEBUG, 'UsersService', "DELETE User" ),
         catchError( err => of( false ) ),
         map( resp => true ),
         shareReplay()

@@ -10,6 +10,11 @@ export class ErrorsService {
 
   constructor() { }
 
+  /* Storage - Generic */
+  getStorageNotItemFound( item: string ): string {
+    return ERRORS_STORAGE.SELF.NOT_FOUND.replace( ERRORS_STORAGE.HELPER.ITEM, item );
+  }
+
   /* Storage - LocalStorage */
   getLocalStorageLoad( dto: string ): string {
     return this.getErrorStorageMsg( ERRORS_STORAGE.LOCAL.LOAD, dto );
@@ -19,6 +24,9 @@ export class ErrorsService {
   }
   getLocalStorageRemove( dto: string ): string {
     return this.getErrorStorageMsg( ERRORS_STORAGE.LOCAL.REMOVE, dto );
+  }
+  getLocalStorageRemoveAll(): string {
+    return ERRORS_STORAGE.LOCAL.REMOVE_ALL;
   }
 
   /* Storage - SessionStorage */
@@ -30,6 +38,9 @@ export class ErrorsService {
   }
   getSessionStorageRemove( dto: string ): string {
     return this.getErrorStorageMsg( ERRORS_STORAGE.SESSION.REMOVE, dto );
+  }
+  getSeesionStorageRemoveAll(): string {
+    return ERRORS_STORAGE.SESSION.REMOVE_ALL;
   }
 
   /* Storage - Cookies */
