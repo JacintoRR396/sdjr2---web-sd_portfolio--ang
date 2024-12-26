@@ -4,7 +4,7 @@ import { BehaviorSubject, concatMap, finalize, Observable, of, tap } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
-export class LoaderService {
+export class LoaderStore {
 
   private apiCount = 0;
   private loadingSubject = new BehaviorSubject<boolean>( false );

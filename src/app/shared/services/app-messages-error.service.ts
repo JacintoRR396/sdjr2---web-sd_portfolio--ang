@@ -1,57 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { ERRORS_STORAGE } from '../models/errors/app-storage.error';
 import { ERRORS_FORM } from '../models/errors/app-form.error';
+import { ERRORS_STORAGE } from '../models/errors/app-storage.error';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorsService {
+export class MessagesErrorService {
 
   constructor() { }
 
   /* Storage - Generic */
   getStorageNotItemFound( item: string ): string {
     return ERRORS_STORAGE.SELF.NOT_FOUND.replace( ERRORS_STORAGE.HELPER.ITEM, item );
-  }
-
-  /* Storage - LocalStorage */
-  getLocalStorageLoad( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.LOCAL.LOAD, dto );
-  }
-  getLocalStorageSave( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.LOCAL.SAVE, dto );
-  }
-  getLocalStorageRemove( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.LOCAL.REMOVE, dto );
-  }
-  getLocalStorageRemoveAll(): string {
-    return ERRORS_STORAGE.LOCAL.REMOVE_ALL;
-  }
-
-  /* Storage - SessionStorage */
-  getSessionStorageLoad( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.SESSION.LOAD, dto );
-  }
-  getSessionStorageSave( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.SESSION.SAVE, dto );
-  }
-  getSessionStorageRemove( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.SESSION.REMOVE, dto );
-  }
-  getSeesionStorageRemoveAll(): string {
-    return ERRORS_STORAGE.SESSION.REMOVE_ALL;
-  }
-
-  /* Storage - Cookies */
-  getCookieLoad( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.COOKIES.LOAD, dto );
-  }
-  getCookieSave( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.COOKIES.SAVE, dto );
-  }
-  getCookieRemove( dto: string ): string {
-    return this.getErrorStorageMsg( ERRORS_STORAGE.COOKIES.REMOVE, dto );
   }
 
   /* Form - Self */

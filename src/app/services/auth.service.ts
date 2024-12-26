@@ -3,8 +3,8 @@ import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 import { UsersService } from './users.service';
 import { StorageService } from '../shared/services/app-storage.service';
-import { MessagesService } from '../shared/services/app-messages.service';
-import { ErrorsService } from '../shared/services/app-errors.service';
+import { MessagesStore } from '../shared/services/app-messages.service';
+import { MessagesErrorService } from '../shared/services/app-messages-error.service';
 
 import { User } from '../models/interfaces/users.interface';
 
@@ -24,8 +24,8 @@ export class AuthStore {
   constructor(
     private readonly usersService: UsersService,
     private readonly storageService: StorageService,
-    private readonly messagesService: MessagesService,
-    private readonly errorsService: ErrorsService
+    private readonly messagesStore: MessagesStore,
+    private readonly messagesErrorService: MessagesErrorService
   ) {
     const user = this.storageService.loadLocalStorageBase64( AUTH_DATA, this.dto );
     if ( user ) {
@@ -53,7 +53,7 @@ export class AuthStore {
         this.storageService.removeLocalStorageBase64( name, this.dto );
       }
     } else {
-      this.messagesService.showErrors( this.errorsService.getFormCredentials() );
+      this.messagesStore.showErrors( this.messagesErrorService.getFormCredentials() );
     }
     this.userSubject.next( data );
   }

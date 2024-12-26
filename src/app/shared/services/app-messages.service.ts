@@ -4,7 +4,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
+export class MessagesStore {
 
   private errorsSubject = new BehaviorSubject<string[]>( [] );
   errors$: Observable<string[]> = this.errorsSubject.asObservable();

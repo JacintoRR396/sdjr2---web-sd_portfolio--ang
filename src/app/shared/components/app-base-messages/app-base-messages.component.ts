@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MessagesService } from '../../services/app-messages.service';
+import { MessagesStore } from '../../services/app-messages.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,17 +10,17 @@ import { Observable } from 'rxjs';
 export class BaseMessagesComponent {
 
   constructor(
-    private readonly messagesService: MessagesService
+    private readonly messagesStore: MessagesStore
   ) {}
 
   get errors(): Observable<string[]> {
-    return this.messagesService.errors$;
+    return this.messagesStore.errors$;
   }
   get hasErrors(): Observable<boolean> {
-    return this.messagesService.hasErrors$;
+    return this.messagesStore.hasErrors$;
   }
 
   onClose(): void {
-    this.messagesService.resetErrors();
+    this.messagesStore.resetErrors();
   }
 }

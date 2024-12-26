@@ -4,9 +4,9 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } fro
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 import { AuthStore } from '../../../../../services/auth.service';
+import { MessagesStore } from '../../../../../shared/services/app-messages.service';
+import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
 import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
-import { MessagesService } from '../../../../../shared/services/app-messages.service';
-import { ErrorsService } from '../../../../../shared/services/app-errors.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 import { ErrorsFormLogin } from '../../../shared/models/interfaces/auth-form-errors.interace';
@@ -32,9 +32,9 @@ export class AuthLoginPageComponent {
     private readonly fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly authStore: AuthStore,
+    private readonly messagesStore: MessagesStore,
+    private readonly messagesErrorService: MessagesErrorService,
     private readonly validatorsService: ValidatorsService,
-    private readonly messagesService: MessagesService,
-    private readonly errorsService: ErrorsService
   ) {
     this.fgLogin = this.fb.group({
       email: [ '', [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ] ],
@@ -69,15 +69,15 @@ export class AuthLoginPageComponent {
   }
   checkEmailErrors(): string {
     if( this.email.errors?.['required'] ) {
-      return this.errorsService.getFormControlRequired( 'email' );
+      return this.messagesErrorService.getFormControlRequired( 'email' );
     } else if( this.email.errors?.['minlength'] ) {
-      return this.errorsService.getFormControlMinLength(
+      return this.messagesErrorService.getFormControlMinLength(
         'email', this.email.errors?.['minlength'].requiredLength, this.email.errors?.['minlength'].actualLength );
     } else if( this.email.errors?.['maxlength'] ) {
-      return this.errorsService.getFormControlMaxLength(
+      return this.messagesErrorService.getFormControlMaxLength(
         'email', this.email.errors?.['maxlength'].requiredLength, this.email.errors?.['maxlength'].actualLength );
     } else if( this.email.errors?.['email'] ) {
-      return this.errorsService.getFormControlEmail();
+      return this.messagesErrorService.getFormControlEmail();
     } else
       return '';
   }
@@ -90,15 +90,15 @@ export class AuthLoginPageComponent {
   }
   checkPasswordErrors(): string {
     if( this.password.errors?.['required'] ) {
-      return this.errorsService.getFormControlRequired( 'password' );
+      return this.messagesErrorService.getFormControlRequired( 'password' );
     } else if( this.password.errors?.['minlength'] ) {
-      return this.errorsService.getFormControlMinLength(
+      return this.messagesErrorService.getFormControlMinLength(
         'password', this.password.errors?.['minlength'].requiredLength, this.password.errors?.['minlength'].actualLength );
     } else if( this.password.errors?.['maxlength'] ) {
-      return this.errorsService.getFormControlMaxLength(
+      return this.messagesErrorService.getFormControlMaxLength(
         'password', this.password.errors?.['maxlength'].requiredLength, this.password.errors?.['maxlength'].actualLength );
     } else if( this.password.errors?.['passwordStrength'] ) {
-      return this.errorsService.getFormControlPassword();
+      return this.messagesErrorService.getFormControlPassword();
     } else
       return '';
   }
@@ -127,7 +127,7 @@ export class AuthLoginPageComponent {
           }
         );
     } else {
-      this.messagesService.showErrors( this.errorsService.getFormNotValid() );
+      this.messagesStore.showErrors( this.messagesErrorService.getFormNotValid() );
     }
   }
 }

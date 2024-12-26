@@ -7,17 +7,17 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { LoaderService } from '../services/app-loader.service';
+import { LoaderStore } from '../services/app-loader.service';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
 
-  constructor( private readonly loaderService: LoaderService ) {}
+  constructor( private readonly loaderStore: LoaderStore ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return this.loaderService.showLoader<HttpEvent<any>>( next.handle( request ) );
+    return this.loaderStore.showLoader<HttpEvent<any>>( next.handle( request ) );
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MessagesService } from '../../../../../shared/services/app-messages.service';
+import { MessagesStore } from '../../../../../shared/services/app-messages.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
@@ -12,7 +12,7 @@ import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model
 export class AuthRegisterPageComponent {
   navRoutes = NAVIGATION_ROUTES;
 
-  constructor( private readonly messagesService: MessagesService ) {}
+  constructor( private readonly messagesStore: MessagesStore ) {}
 
   get linkLogin(): string {
     return `../${this.navRoutes.auth.login}`;
