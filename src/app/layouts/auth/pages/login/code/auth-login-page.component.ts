@@ -5,9 +5,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 import { AuthStore } from '../../../../../services/auth.service';
 import { MessagesService } from '../../../../../shared/services/app-messages.service';
+import { ErrorsService } from '../../../../../shared/services/app-errors.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
-import { ERRORS_FORM } from '../../../../../shared/models/errors/app-form.error';
 import { ErrorsFormLogin } from '../../../shared/models/interfaces/auth-form-errors.interace';
 import { createPasswordStrengthValidator } from '../../../../../shared/models/validations/app-form.validator';
 
@@ -32,7 +32,8 @@ export class AuthLoginPageComponent {
     private readonly fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly authStore: AuthStore,
-    private readonly messagesService: MessagesService
+    private readonly messagesService: MessagesService,
+    private readonly errorsService: ErrorsService
   ) {
     this.fgLogin = this.fb.group({
       email: [ '', [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ] ],
@@ -66,17 +67,15 @@ export class AuthLoginPageComponent {
   }
   checkEmailErrors(): string {
     if( this.email.errors?.['required'] ) {
-      return ERRORS_FORM.BASE_REQUIRED.replace( '#nameControl', 'email' );
+      return this.errorsService.getFormControlRequired( 'email' );
     } else if( this.email.errors?.['minlength'] ) {
-      return ERRORS_FORM.BASE_MIN_LENGTH.replace( '#nameControl', 'email' )
-        .replace( '#reqLength', this.email.errors?.['minlength'].requiredLength )
-        .replace( '#actLength', this.email.errors?.['minlength'].actualLength );
+      return this.errorsService.getFormControlMinLength(
+        'email', this.email.errors?.['minlength'].requiredLength, this.email.errors?.['minlength'].actualLength );
     } else if( this.email.errors?.['maxlength'] ) {
-      return ERRORS_FORM.BASE_MAX_LENGTH.replace( '#nameControl', 'email' )
-        .replace( '#reqLength', this.email.errors?.['maxlength'].requiredLength )
-        .replace( '#actLength', this.email.errors?.['maxlength'].actualLength );
+      return this.errorsService.getFormControlMaxLength(
+        'email', this.email.errors?.['maxlength'].requiredLength, this.email.errors?.['maxlength'].actualLength );
     } else if( this.email.errors?.['email'] ) {
-      return ERRORS_FORM.BASE_FORMAT.replace( '#nameControl', 'email' );
+      return this.errorsService.getFormControlEmail();
     } else
       return '';
   }
@@ -89,17 +88,15 @@ export class AuthLoginPageComponent {
   }
   checkPasswordErrors(): string {
     if( this.password.errors?.['required'] ) {
-      return ERRORS_FORM.BASE_REQUIRED.replace( '#nameControl', 'password' );
+      return this.errorsService.getFormControlRequired( 'password' );
     } else if( this.password.errors?.['minlength'] ) {
-      return ERRORS_FORM.BASE_MIN_LENGTH.replace( '#nameControl', 'password' )
-        .replace( '#reqLength', this.password.errors?.['minlength'].requiredLength )
-        .replace( '#actLength', this.password.errors?.['minlength'].actualLength );
+      return this.errorsService.getFormControlMinLength(
+        'password', this.password.errors?.['minlength'].requiredLength, this.password.errors?.['minlength'].actualLength );
     } else if( this.password.errors?.['maxlength'] ) {
-      return ERRORS_FORM.BASE_MAX_LENGTH.replace( '#nameControl', 'password' )
-        .replace( '#reqLength', this.password.errors?.['maxlength'].requiredLength )
-        .replace( '#actLength', this.password.errors?.['maxlength'].actualLength );
+      return this.errorsService.getFormControlMaxLength(
+        'password', this.password.errors?.['maxlength'].requiredLength, this.password.errors?.['maxlength'].actualLength );
     } else if( this.password.errors?.['passwordStrength'] ) {
-      return ERRORS_FORM.PASSWORD;
+      return this.errorsService.getFormControlPassword();
     } else
       return '';
   }
@@ -128,7 +125,7 @@ export class AuthLoginPageComponent {
           }
         );
     } else {
-      this.messagesService.showErrors( "The Form is not valid" );
+      this.messagesService.showErrors( this.errorsService.getFormNotValid() );
     }
   }
 }

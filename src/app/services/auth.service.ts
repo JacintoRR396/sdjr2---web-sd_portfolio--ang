@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { UsersService } from './users.service';
 import { StorageService } from '../shared/services/app-storage.service';
 import { MessagesService } from '../shared/services/app-messages.service';
+import { ErrorsService } from '../shared/services/app-errors.service';
 
 import { User } from '../models/interfaces/users.interface';
 import { logConsole, LogginLevel } from '../shared/models/app-debug-operator.model';
@@ -23,8 +24,10 @@ export class AuthStore {
   constructor(
     private readonly usersService: UsersService,
     private readonly storageService: StorageService,
-    private readonly messagesService: MessagesService
+    private readonly messagesService: MessagesService,
+    private readonly errorsService: ErrorsService
   ) {
+    logConsole( LogginLevel.DEBUG, 'AuthStore',this.errorsService.getLocalStorageLoad( 'user' ) );
     const user = this.storageService.loadLocalStorageBase64( AUTH_DATA );
     if ( user ) {
       this.userSubject.next( user );
@@ -46,21 +49,21 @@ export class AuthStore {
   private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
     if( data ) {
       if( isSaveInLS ) {
-        logConsole( LogginLevel.DEBUG, 'AuthStore', 'Save user in LocalStorage' );
+        logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageSave( 'user' ) );
         this.storageService.saveLocalStorageBase64( name, data );
       } else {
-        logConsole( LogginLevel.DEBUG, 'AuthStore', 'Remove user in LocalStorage' );
+        logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageRemove( 'user' ) );
         this.storageService.removeLocalStorageBase64( name );
       }
     } else {
-      this.messagesService.showErrors( "The Credentials are not valid" );
+      this.messagesService.showErrors( this.errorsService.getFormCredentials() );
     }
     this.userSubject.next( data );
   }
 
   logout() {
     this.userSubject.next( undefined );
-    logConsole( LogginLevel.DEBUG, 'AuthStore', 'Remove user in LocalStorage' );
+    logConsole( LogginLevel.DEBUG, 'AuthStore', this.errorsService.getLocalStorageRemove( 'user' ) );
     this.storageService.removeLocalStorageBase64( AUTH_DATA );
   }
 }
