@@ -4,12 +4,12 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } fro
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 import { AuthStore } from '../../../../../services/auth.service';
+import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
 import { MessagesService } from '../../../../../shared/services/app-messages.service';
 import { ErrorsService } from '../../../../../shared/services/app-errors.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 import { ErrorsFormLogin } from '../../../shared/models/interfaces/auth-form-errors.interace';
-import { createPasswordStrengthValidator } from '../../../../../shared/models/validations/app-form.validator';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -32,12 +32,14 @@ export class AuthLoginPageComponent {
     private readonly fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly authStore: AuthStore,
+    private readonly validatorsService: ValidatorsService,
     private readonly messagesService: MessagesService,
     private readonly errorsService: ErrorsService
   ) {
     this.fgLogin = this.fb.group({
       email: [ '', [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ] ],
-      password: [ '', [ Validators.required, Validators.minLength(8), Validators.maxLength(40), createPasswordStrengthValidator() ] ],
+      password: [ '', [ Validators.required, Validators.minLength(8), Validators.maxLength(40),
+        this.validatorsService.createPasswordStrengthValidator() ] ],
       rememberMe: [ false ],
     });
     this.email.valueChanges
