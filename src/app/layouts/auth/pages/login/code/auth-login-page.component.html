@@ -7,39 +7,10 @@
   <hr class="border-bottom border-2 border-dark">
   <form class="sctn-login__form" [formGroup]="fgLogin">
     <div class="sctn-login__email mb-2">
-      <label for="email" class="sctn-login__email-lbl form-label">
-        <span class="text-danger">*</span>Email address
-      </label>
-      <div class="input-group">
-        <span class="input-group-text">
-          <i class="bi bi-envelope-at"></i>
-        </span>
-        <input id="email" type="email" class="sctn-login__email-val form-control" placeholder="Enter your email"
-          aria-describedby="emailHelp" formControlName="email"
-          [ngClass]="{ 'is-invalid': showEmailErrors(), 'is-valid': isEmailValid()}" />
-        <div id="emailHelp" class="form-text invalid-feedback" *ngIf="showEmailErrors()">
-          {{ errors.email }}
-        </div>
-      </div>
+      <sdjr2--app-base-form-input [fg]="fgLogin" [fcConfig]="fcEmailConfig" />
     </div>
     <div class="sctn-login__pass mb-3">
-      <label for="password" class="sctn-login__pass-lbl form-label">
-        <span class="text-danger">*</span>Password
-      </label>
-      <div class="input-group">
-        <span class="input-group-text">
-          <i class="bi bi-door-closed"></i>
-        </span>
-        <input id="password" type="password" class="sctn-login__pass-val form-control" placeholder="Enter your password"
-          aria-describedby="passwordlHelp" formControlName="password"
-          [ngClass]="{ 'is-invalid': showPasswordErrors(), 'is-valid': isPasswordValid()}" #inputPassword />
-        <span class="input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
-          <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
-        </span>
-        <div id="passwordlHelp" class="form-text invalid-feedback" *ngIf="showPasswordErrors()">
-          {{ errors.password }}
-        </div>
-      </div>
+      <sdjr2--app-base-form-input [fg]="fgLogin" [fcConfig]="fcPasswordConfig" />
     </div>
     <div class="d-flex justify-content-between mb-3">
       <div class="sctn-login__remember form-check">

@@ -1,0 +1,26 @@
+<form class="sctn-login__form" [formGroup]="fg">
+  <label for="{{ nameControl }}" class="control__lbl form-label">
+    <span class="text-danger">*</span>{{ nameControl | titlecase }}
+  </label>
+  <div class="input-group">
+    <ng-container *ngIf="fcConfig.iconBS">
+      <span class="input-group-text">
+        <i class="bi {{ fcConfig.iconBS }}"></i>
+      </span>
+    </ng-container>
+    <input
+      id="{{ nameControl }}" type="{{ typeControl }}"
+      class="control__val form-control" placeholder="{{ fcConfig.placeHolder || '' }}"
+      formControlName="{{ nameControl }}"
+      [ngClass]="{ 'is-invalid': showErrors(), 'is-valid': isValid()}"
+      #inputControl />
+    <ng-container *ngIf="isTypePassword">
+      <span class="input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
+        <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+      </span>
+    </ng-container>
+    <div id="{{ nameControlHelp }}" class="form-text invalid-feedback" *ngIf="showErrors()">
+      {{ error }}
+    </div>
+  </div>
+</form>

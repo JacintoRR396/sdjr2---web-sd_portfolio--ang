@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { BaseFormInputComponent } from './components/app-base-form-input/app-base-form-input.component';
 import { BaseMessagesComponent } from './components/app-base-messages/app-base-messages.component';
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
 import { LazyImageComponent } from './components/app-lazy-image/code/app-lazy-image.component';
@@ -20,6 +22,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
 
 @NgModule({
   declarations: [
+    BaseFormInputComponent,
     BaseMessagesComponent,
     BaseSpinnerComponent,
     LazyImageComponent,
@@ -32,8 +35,12 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     SafeUrlPipe,
     OnlyOneErrorValidatorPipe,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
   exports: [
+    BaseFormInputComponent,
     BaseMessagesComponent,
     BaseSpinnerComponent,
     LazyImageComponent,
