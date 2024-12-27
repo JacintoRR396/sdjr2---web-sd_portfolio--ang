@@ -14,12 +14,12 @@
       formControlName="{{ nameControl }}"
       [ngClass]="{ 'is-invalid': showErrors(), 'is-valid': isValid()}"
       #inputControl />
-    <ng-container *ngIf="isTypePassword">
+    <ng-container *ngIf="isTypePassword()">
       <span class="input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
         <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
       </span>
     </ng-container>
-    <div id="{{ nameControlHelp }}" class="form-text invalid-feedback" *ngIf="showErrors()">
+    <div id="{{ nameControlHelp }}" class="form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
       {{ error }}
     </div>
   </div>

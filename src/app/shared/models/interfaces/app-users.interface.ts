@@ -10,6 +10,7 @@ export interface User {
   isActive: boolean;
   atCreate: Date;
   atUpdate: Date;
+  atLastAccess: Date;
 }
 
 export interface Role {

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Testimonial } from '../../../../../models/interfaces/testimonials.interface';
 
-import { LoaderStore } from '../../../../../shared/services/app-loader.service';
+import { LoaderStore } from '../../../../../shared/store/app-loader.service';
 import { WebTestimonialsService } from '../../../../../services/testimonials.service';
 
 @Component({

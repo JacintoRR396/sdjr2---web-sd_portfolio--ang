@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LoaderStore } from '../../services/app-loader.service';
+import { LoaderStore } from '../../store/app-loader.service';
 
 @Component({
   selector: 'sdjr2--app-base-spinner',

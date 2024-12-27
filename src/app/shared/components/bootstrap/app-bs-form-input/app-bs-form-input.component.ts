@@ -1,17 +1,17 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, UntypedFormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
-import { MessagesErrorService } from '../../services/app-messages-error.service';
+import { MessagesErrorService } from '../../../services/app-messages-error.service';
 
-import { FormControlInputConfig, FormControlInputTypeHelper } from '../../models/interfaces/app-form.interface';
+import { FormControlInputConfig, FormControlInputTypeHelper } from '../../../models/interfaces/app-form.interface';
 
 @Component({
-  selector: 'sdjr2--app-base-form-input',
-  templateUrl: './app-base-form-input.component.html',
-  styleUrl: './app-base-form-input.component.scss'
+  selector: 'sdjr2--app-bs-form-input',
+  templateUrl: './app-bs-form-input.component.html',
+  styleUrl: './app-bs-form-input.component.scss'
 })
-export class BaseFormInputComponent implements OnInit {
+export class BSFormInputComponent implements OnInit {
 
   @Input({required: true}) fg!: UntypedFormGroup;
   @Input({required: true}) fcConfig!: FormControlInputConfig;
@@ -22,7 +22,6 @@ export class BaseFormInputComponent implements OnInit {
   canShowPassword: boolean = false;
 
   constructor(
-    private readonly fb: UntypedFormBuilder,
     private readonly messagesErrorService: MessagesErrorService ){  }
 
   ngOnInit(): void {
@@ -43,9 +42,6 @@ export class BaseFormInputComponent implements OnInit {
   }
   get nameControlHelp(): string {
     return this.fcConfig.name + 'Help';
-  }
-  get isTypePassword(): boolean {
-    return FormControlInputTypeHelper.isPassword( this.fcConfig.type );
   }
 
   checkErrors(): string {
@@ -73,6 +69,10 @@ export class BaseFormInputComponent implements OnInit {
     return this.fc.touched && this.fc.dirty && this.fc.errors === null;
   }
 
+  isTypePassword(): boolean {
+    return FormControlInputTypeHelper.isPassword( this.fcConfig.type );
+  }
+
   onShowPassword(): void {
     this.canShowPassword = !this.canShowPassword;
     if ( this.canShowPassword ) {
@@ -81,5 +81,4 @@ export class BaseFormInputComponent implements OnInit {
       this.inputControl.nativeElement.type = 'password';
     }
   }
-
 }

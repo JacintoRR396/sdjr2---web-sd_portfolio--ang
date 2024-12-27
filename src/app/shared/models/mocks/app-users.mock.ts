@@ -1,4 +1,4 @@
-import { Role, RoleType, User } from "../interfaces/users.interface";
+import { Role, RoleType, User } from "../interfaces/app-users.interface";
 
 export const ROLES: Role[] = [
   {
@@ -36,6 +36,7 @@ export const USERS: User[] = [
     isRemeber: true,
     isActive: true,
     atCreate: new Date('2024-11-24T15:29:00'),
-    atUpdate: new Date('2024-11-28T16:21:00')
+    atUpdate: new Date('2024-11-28T16:21:00'),
+    atLastAccess: new Date('2024-11-28T16:21:00'),
   }
 ];

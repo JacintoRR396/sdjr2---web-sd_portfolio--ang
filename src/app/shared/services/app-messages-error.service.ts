@@ -19,8 +19,11 @@ export class MessagesErrorService {
   getFormNotValid(): string {
     return ERRORS_FORM.SELF.NOT_VALID;
   }
-  getFormCredentials(): string {
+  getFormCredentialsNotValid(): string {
     return ERRORS_FORM.SELF.CREDENTIALS;
+  }
+  getFormAccountIsInactive(): string {
+    return ERRORS_FORM.SELF.ACC_INACTIVE;
   }
 
   /* Form - Controls */

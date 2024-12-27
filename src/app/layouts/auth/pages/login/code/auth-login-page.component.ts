@@ -2,8 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
-import { AuthStore } from '../../../../../services/auth.service';
-import { MessagesStore } from '../../../../../shared/services/app-messages.service';
+import { AuthStore } from '../../../../../shared/store/app-auth.service';
+import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
 import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
 
@@ -78,8 +78,10 @@ export class AuthLoginPageComponent {
       this.authStore.login( val.email, val.password, val.rememberMe )
         .subscribe(
           ( resp ) => {
-            if( resp ) {
+            if( resp?.isActive ) {
               this.router.navigateByUrl( `/${this.navRoutes.web.self}` )
+            } else {
+              this.messagesStore.showErrors( this.messagesErrorService.getFormAccountIsInactive() );
             }
           }
         );

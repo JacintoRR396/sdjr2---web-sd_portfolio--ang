@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { MessagesStore } from '../../services/app-messages.service';
+import { MessagesStore } from '../../store/app-messages.service';
 
 @Component({
   selector: 'sdjr2--app-base-messages',

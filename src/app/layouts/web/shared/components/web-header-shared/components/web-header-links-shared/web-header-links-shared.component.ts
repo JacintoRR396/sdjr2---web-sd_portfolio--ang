@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthStore } from '../../../../../../../services/auth.service';
+import { AuthStore } from '../../../../../../../shared/store/app-auth.service';
 
 import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interace';
 import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';

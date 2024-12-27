@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MessagesStore } from '../../../../../shared/services/app-messages.service';
+import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
-import { UsersService } from './users.service';
-import { StorageService } from '../shared/services/app-storage.service';
-import { MessagesStore } from '../shared/services/app-messages.service';
-import { MessagesErrorService } from '../shared/services/app-messages-error.service';
+import { UsersService } from '../services/app-users.service';
+import { StorageService } from '../services/app-storage.service';
+import { MessagesStore } from './app-messages.service';
+import { MessagesErrorService } from '../services/app-messages-error.service';
 
-import { User } from '../models/interfaces/users.interface';
+import { User } from '../models/interfaces/app-users.interface';
 
 const AUTH_DATA = "auth_data";
 
@@ -53,7 +53,7 @@ export class AuthStore {
         this.storageService.removeLocalStorageBase64( name, this.dto );
       }
     } else {
-      this.messagesStore.showErrors( this.messagesErrorService.getFormCredentials() );
+      this.messagesStore.showErrors( this.messagesErrorService.getFormCredentialsNotValid() );
     }
     this.userSubject.next( data );
   }
