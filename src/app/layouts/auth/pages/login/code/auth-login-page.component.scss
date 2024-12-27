@@ -12,10 +12,7 @@
     width: 9rem;
   }
   &__remember {
-    cursor: pointer;
-    &-lbl, &-val {
-      cursor: pointer;
-    }
+    min-width: 15rem;
   }
   &__forgot-link {
     text-decoration: none;

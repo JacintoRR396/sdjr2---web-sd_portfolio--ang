@@ -25,8 +25,10 @@ export class FormControlInputTypeHelper {
 export interface FormControlInputConfig {
   type: FormControlInputType;
   name: string;
+  lbl: string;
   iconBS?: string;
   placeHolder?: string;
-  valueDefault: string;
-  validators: ValidatorFn[];
+  valueDefault: string | boolean;
+  validators?: ValidatorFn[];
+  isMandatory: boolean;
 }

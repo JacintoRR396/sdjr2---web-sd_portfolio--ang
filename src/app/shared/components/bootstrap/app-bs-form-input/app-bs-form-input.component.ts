@@ -25,7 +25,8 @@ export class BSFormInputComponent implements OnInit {
     private readonly messagesErrorService: MessagesErrorService ){  }
 
   ngOnInit(): void {
-    this.fg.addControl( this.nameControl, new FormControl<string | null>( this.fcConfig.valueDefault, this.fcConfig.validators ));
+    this.fg.addControl(
+      this.nameControl, new FormControl( this.fcConfig.valueDefault, this.fcConfig.validators ));
     this.fc.valueChanges
           .pipe( debounceTime(300), distinctUntilChanged() )
           .subscribe( () => this.error = this.checkErrors() );
@@ -37,13 +38,20 @@ export class BSFormInputComponent implements OnInit {
   get nameControl(): string {
     return this.fcConfig.name;
   }
+  get labelControl(): string {
+    return this.fcConfig.lbl;
+  }
   get typeControl(): string {
     return FormControlInputTypeHelper.toString( this.fcConfig.type );
   }
   get nameControlHelp(): string {
     return this.fcConfig.name + 'Help';
   }
+  get isMandatory(): boolean {
+    return this.fcConfig.isMandatory;
+  }
 
+  // Text, Email, Password
   checkErrors(): string {
     if( this.fc.errors?.['required'] ) {
       return this.messagesErrorService.getFormControlRequired( this.nameControl );
@@ -80,5 +88,10 @@ export class BSFormInputComponent implements OnInit {
     } else {
       this.inputControl.nativeElement.type = 'password';
     }
+  }
+
+  // Checkbox, Radio
+  isTypeCheckboxOrRadio(): boolean {
+    return FormControlInputTypeHelper.isCheckboxOrRadio( this.fcConfig.type );
   }
 }

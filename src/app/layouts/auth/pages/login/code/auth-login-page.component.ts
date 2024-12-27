@@ -23,6 +23,7 @@ export class AuthLoginPageComponent {
   fgLogin!: UntypedFormGroup;
   fcEmailConfig!: FormControlInputConfig;
   fcPasswordConfig!: FormControlInputConfig;
+  fcRememberConfig!: FormControlInputConfig;
 
   constructor(
     private readonly fb: UntypedFormBuilder,
@@ -48,34 +49,44 @@ export class AuthLoginPageComponent {
   }
 
   private createFormGroup(): void {
-    this.fgLogin = this.fb.group({
-      rememberMe: [ false ],
-    });
+    this.fgLogin = this.fb.group({});
   }
   private createFormConstrols(): void {
     this.fcEmailConfig = {
       type: FormControlInputType.EMAIL,
       name: 'email',
+      lbl: 'Email address',
       iconBS: 'bi-envelope-at',
       placeHolder: 'Enter your email',
       valueDefault: '',
-      validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ]
+      validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ],
+      isMandatory: true,
     };
     this.fcPasswordConfig = {
       type: FormControlInputType.PASSWORD,
-      name: 'password',
+      name: 'pwd',
+      lbl: 'Password',
       iconBS: 'bi-door-closed',
       placeHolder: 'Enter your password',
       valueDefault: '',
       validators: [ Validators.required, Validators.minLength(8), Validators.maxLength(40),
-        this.validatorsService.createPasswordStrengthValidator() ]
+        this.validatorsService.createPasswordStrengthValidator() ],
+      isMandatory: true,
+    };
+    this.fcRememberConfig = {
+      type: FormControlInputType.CHECKBOX,
+      name: 'remember',
+      lbl: 'Remember me',
+      valueDefault: false,
+      isMandatory: false,
     };
   }
 
   onLogin() {
     if( this.fgLogin.valid ) {
       const val = this.fgLogin.value;
-      this.authStore.login( val.email, val.password, val.rememberMe )
+      console.log( val );
+      this.authStore.login( val.email, val.pwd, val.remember )
         .subscribe(
           ( resp ) => {
             if( resp?.isActive ) {

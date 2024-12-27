@@ -1,26 +1,44 @@
-<form class="sctn-login__form" [formGroup]="fg">
-  <label for="{{ nameControl }}" class="control__lbl form-label">
-    <span class="text-danger">*</span>{{ nameControl | titlecase }}
-  </label>
-  <div class="input-group">
-    <ng-container *ngIf="fcConfig.iconBS">
-      <span class="input-group-text">
-        <i class="bi {{ fcConfig.iconBS }}"></i>
-      </span>
-    </ng-container>
-    <input
-      id="{{ nameControl }}" type="{{ typeControl }}"
-      class="control__val form-control" placeholder="{{ fcConfig.placeHolder || '' }}"
-      formControlName="{{ nameControl }}"
-      [ngClass]="{ 'is-invalid': showErrors(), 'is-valid': isValid()}"
-      #inputControl />
-    <ng-container *ngIf="isTypePassword()">
-      <span class="input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
-        <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
-      </span>
-    </ng-container>
-    <div id="{{ nameControlHelp }}" class="form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
-      {{ error }}
+<!-- Checkbox & Radio -->
+<ng-container *ngIf="isTypeCheckboxOrRadio(); else inputText">
+  <form class="control-opt__form my-2" [formGroup]="fg">
+    <div class="control-opt__container form-check">
+      <input
+        id="{{ nameControl }}" type="{{ typeControl }}"
+        class="control-opt__val form-check-input"
+        formControlName="{{ nameControl }}" />
+      <label class="control-opt__lbl form-label" for="{{ nameControl }}">
+        {{ labelControl }}
+      </label>
     </div>
-  </div>
-</form>
+  </form>
+</ng-container>
+<!-- Text, Email, Password -->
+<ng-template #inputText>
+  <form class="control__form mb-2" [formGroup]="fg">
+    <label class="control__lbl form-label" for="{{ nameControl }}">
+      <span class="control__lbl-txt text-danger" *ngIf="isMandatory">*</span>
+      {{ labelControl }}
+    </label>
+    <div class="input-group">
+      <ng-container *ngIf="fcConfig.iconBS">
+        <span class="control__icon input-group-text">
+          <i class="bi {{ fcConfig.iconBS }}"></i>
+        </span>
+      </ng-container>
+      <input
+        id="{{ nameControl }}" type="{{ typeControl }}"
+        class="control__val form-control" placeholder="{{ fcConfig.placeHolder || '' }}"
+        formControlName="{{ nameControl }}"
+        [ngClass]="{ 'is-invalid': showErrors(), 'is-valid': isValid()}"
+        #inputControl />
+      <ng-container *ngIf="isTypePassword()">
+        <span class="control__icon-pwd input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
+          <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </span>
+      </ng-container>
+      <div id="{{ nameControlHelp }}" class="control__error form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
+        {{ error }}
+      </div>
+    </div>
+  </form>
+</ng-template>
