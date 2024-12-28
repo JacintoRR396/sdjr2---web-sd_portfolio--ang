@@ -11,7 +11,6 @@ import { PathImageLazyLoaderPipe } from './components/bootstrap/app-bs-img-lazy/
 
 import { BaseMessagesComponent } from './components/app-base-messages/app-base-messages.component';
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
-import { LazyImageComponent } from './components/app-lazy-image/code/app-lazy-image.component';
 import { SearchBoxComponent } from './components/app-search-box/app-search-box.component';
 import { Error404PageComponent } from './pages/app-error-404-page/app-error-404-page.component';
 
@@ -19,7 +18,6 @@ import { HighlightedContainerDirective } from './directives/app-highlighted-cont
 
 import { LoaderInterceptor } from './interceptors/app-loader.interceptor';
 
-import { PathLoaderLazyImagePipe } from './components/app-lazy-image/pipes/app-path-loader-lazy-image.pipe';
 import { EllipsisPipe } from './pipes/app-ellipsis.pipe';
 import { SafeHtmlPipe } from './pipes/app-safe-html.pipe';
 import { SafeUrlPipe } from './pipes/app-safe-url.pipe';
@@ -33,8 +31,6 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     PathImageLazyLoaderPipe,
     BaseMessagesComponent,
     BaseSpinnerComponent,
-    LazyImageComponent,
-    PathLoaderLazyImagePipe,
     SearchBoxComponent,
     Error404PageComponent,
     HighlightedContainerDirective,
@@ -53,10 +49,8 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     BSBtnComponent,
     BSFormInputComponent,
     BSImgLazyComponent,
-    PathImageLazyLoaderPipe,
     BaseMessagesComponent,
     BaseSpinnerComponent,
-    LazyImageComponent,
     SearchBoxComponent,
     Error404PageComponent,
     HighlightedContainerDirective,

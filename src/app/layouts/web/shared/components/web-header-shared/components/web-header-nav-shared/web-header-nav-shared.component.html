@@ -3,7 +3,12 @@
     <!-- Brand Icon -->
     <a class="navbar__brand navbar-brand" [routerLink]="linkWeb">
       <img src="assets/images/web/common/programming.svg" alt="Icon about programming" width="30" height="24"/>
-      <span class="p-1">SDJR2</span>
+      <ng-container *ngIf="(user | async) as user; else elseUsername">
+        <span class="p-1">{{ user.username }}</span>
+      </ng-container>
+      <ng-template #elseUsername>
+        <span class="p-1">Username</span>
+      </ng-template>
     </a>
     <!-- Toogler Button -->
     <button type="button"

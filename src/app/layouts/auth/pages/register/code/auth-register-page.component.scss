@@ -1,27 +1,30 @@
 :host {
   display: flex;
   justify-content: space-around;
-  gap: 2rem;
+  gap: 1rem;
 }
 
+.sctn-image {
+  width: 100%;
+}
 .sctn-register {
+  padding: 0.5rem;
   &__title {
     text-align: center;
   }
-  &__btns-main {
-    width: 10rem;
+  &__terms {
+    min-width: 20rem;
+  }
+  &__btns {
+    gap: 1rem;
   }
   &__login {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
     font-size: 0.9rem;
     &-txt {
       vertical-align: text-top;
-    }
-    &-btn {
-      font-size: 0.9rem;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }

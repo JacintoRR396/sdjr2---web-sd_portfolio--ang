@@ -10,7 +10,7 @@ export interface FormControlInputConfig {
   lbl: string;
   iconBS?: string;
   placeHolder?: string;
-  valueDefault: string | boolean;
+  valueDefault: string;
   validators?: ValidatorFn[];
   isMandatory: boolean;
 }

@@ -1,17 +1,19 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { delay } from 'rxjs';
 
+import { FormsService } from '../../../../../shared/services/app-forms.service';
 import { AuthStore } from '../../../../../shared/store/app-auth.service';
 import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
-import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
 
-import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
+import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
-import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
+
+import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
+import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -19,10 +21,8 @@ import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-
   styleUrl: './auth-login-page.component.scss'
 })
 export class AuthLoginPageComponent {
+  private readonly navRoutes = NAVIGATION_ROUTES;
 
-  @ViewChild('inputPassword') inputPass! : ElementRef<HTMLInputElement>;
-
-  navRoutes = NAVIGATION_ROUTES;
   imgLazyBackgorundConfig!: ImageLazyConfig;
   fgLogin!: UntypedFormGroup;
   fcEmailConfig!: FormControlInputConfig;
@@ -39,19 +39,15 @@ export class AuthLoginPageComponent {
   constructor(
     private readonly fb: UntypedFormBuilder,
     private readonly router: Router,
+    private readonly formsService: FormsService,
     private readonly authStore: AuthStore,
     private readonly messagesStore: MessagesStore,
     private readonly messagesErrorService: MessagesErrorService,
-    private readonly validatorsService: ValidatorsService,
   ) {
     this.createImgBg();
     this.createFormGroup();
     this.createFormConstrols();
     this.createBtns();
-  }
-
-  get password(): AbstractControl {
-    return this.fgLogin.controls[ 'password' ];
   }
 
   get linkRecovery(): string {
@@ -71,32 +67,13 @@ export class AuthLoginPageComponent {
     this.fgLogin = this.fb.group({});
   }
   private createFormConstrols(): void {
-    this.fcEmailConfig = {
-      type: FormControlInputType.EMAIL,
-      name: 'email',
-      lbl: 'Email address',
-      iconBS: 'bi-envelope-at',
-      placeHolder: 'Enter your email',
-      valueDefault: '',
-      validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ],
-      isMandatory: true,
-    };
-    this.fcPasswordConfig = {
-      type: FormControlInputType.PASSWORD,
-      name: 'pwd',
-      lbl: 'Password',
-      iconBS: 'bi-door-closed',
-      placeHolder: 'Enter your password',
-      valueDefault: '',
-      validators: [ Validators.required, Validators.minLength(8), Validators.maxLength(40),
-        this.validatorsService.createPasswordStrengthValidator() ],
-      isMandatory: true,
-    };
+    this.fcEmailConfig = this.formsService.createFormControlInputEmail();
+    this.fcPasswordConfig = this.formsService.createFormControlInputPassword();
     this.fcRememberConfig = {
       type: FormControlInputType.CHECKBOX,
       name: 'remember',
       lbl: 'Remember me',
-      valueDefault: false,
+      valueDefault: 'false',
       isMandatory: false,
     };
   }
@@ -129,10 +106,10 @@ export class AuthLoginPageComponent {
     }
   }
 
-  onLogin() {
+  onLogin(): void {
     if( this.fgLogin.valid ) {
       this.isSpinnerActiveBtnLogin = true;
-      const val = this.fgLogin.value;
+      const val: FormLogin = this.fgLogin.value;
       this.authStore.login( val.email, val.pwd, val.remember )
         .pipe(
           delay( 500 )

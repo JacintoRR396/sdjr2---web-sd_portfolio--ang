@@ -4,9 +4,8 @@ export interface User {
   username: string;
   email: string;
   password: string;
-  role: Role;
+  role: RoleType;
   isTermsOfService: boolean;
-  isRemeber: boolean;
   isActive: boolean;
   atCreate: Date;
   atUpdate: Date;

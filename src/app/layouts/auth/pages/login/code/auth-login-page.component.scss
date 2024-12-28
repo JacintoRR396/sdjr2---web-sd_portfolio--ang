@@ -16,6 +16,9 @@
     min-width: 15rem;
   }
   &__register {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
     font-size: 0.9rem;
     &-txt {
       vertical-align: text-top;

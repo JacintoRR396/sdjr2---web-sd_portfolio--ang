@@ -5,7 +5,7 @@ export const ERRORS_FORM_HELPER = {
 }
 
 export const ERRORS_FORM_SELF = {
-  NOT_VALID: 'The Form is not valid.',
+  NOT_VALID: 'The Form is not valid, please fill in all required fields.',
   CREDENTIALS: 'The Credentials are not valid.',
   ACC_INACTIVE: 'The account is not active, please contact the administrator.',
 }

@@ -22,7 +22,8 @@ export class BSFormInputComponent implements OnInit {
   canShowPassword: boolean = false;
 
   constructor(
-    private readonly messagesErrorService: MessagesErrorService ){  }
+    private readonly messagesErrorService: MessagesErrorService
+  ){  }
 
   ngOnInit(): void {
     this.fg.addControl(
@@ -93,5 +94,10 @@ export class BSFormInputComponent implements OnInit {
   // Checkbox, Radio
   isTypeCheckboxOrRadio(): boolean {
     return FormControlInputHelper.typeIsCheckboxOrRadio( this.fcConfig.type );
+  }
+
+  onChecked(): void {
+    this.inputControl.nativeElement.value =
+      ( this.inputControl.nativeElement.value === 'false' ) ? 'true' : 'false';
   }
 }

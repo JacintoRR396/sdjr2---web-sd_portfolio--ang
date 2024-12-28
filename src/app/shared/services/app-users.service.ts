@@ -89,7 +89,6 @@ export class UsersService {
   }
 
   updateUser( item: User ): Observable<User> {
-    if( !item.id ) throw Error( 'User id is required' );
     if ( environments.isMockEnabled ) {
       this._data = this._data.map( it => {
         if ( it.id === item.id ) {

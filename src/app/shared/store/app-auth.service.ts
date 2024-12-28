@@ -31,19 +31,25 @@ export class AuthStore {
 		this.isLoggedOut$ = this.isLoggedIn$.pipe( map( loggedIn => !loggedIn ) );
   }
 
-  login( email: string, password: string, isSaveInLS: boolean ): Observable<User | undefined> {
+  login( email: string, password: string, isSaveInLS: string ): Observable<User | undefined> {
     return this.usersService.getUserByEmailAndPassword( email, password )
       .pipe(
         tap( user => {
+          this.updateLastAcceess( user );
           this.checkUserInDB( AUTH_DATA, user, isSaveInLS );
         }),
         catchError( err => of( undefined ) ),
       );
   }
-
-  private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
+  private updateLastAcceess( data: User | undefined ): void {
     if( data?.isActive ) {
-      if( isSaveInLS ) {
+      data.atLastAccess = new Date();
+      this.usersService.updateUser( data );
+    }
+  }
+  private checkUserInDB( name: string, data: User | undefined, isSaveInLS: string ): void {
+    if( data?.isActive ) {
+      if( isSaveInLS === 'true' ) {
         this.storageService.saveLocalStorageBase64( name, data, this.dto );
       } else {
         this.storageService.removeLocalStorageBase64( name, this.dto );

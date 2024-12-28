@@ -5,7 +5,9 @@
       <input
         id="{{ nameControl }}" type="{{ typeControl }}"
         class="control-opt__val form-check-input"
-        formControlName="{{ nameControl }}" />
+        formControlName="{{ nameControl }}"
+        (click)="onChecked()"
+        #inputControl />
       <label class="control-opt__lbl form-label" for="{{ nameControl }}">
         {{ labelControl }}
       </label>
