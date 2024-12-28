@@ -1,6 +1,6 @@
-import { Attribute, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ButtonConfig, ButtonConfigStyle, ButtonHelper } from '../../../models/interfaces/app-comp-btn.interface';
+import { ButtonConfig, ButtonConfigStyle, ButtonHelper } from '../interfaces/app-comp-btn.interface';
 
 @Component({
   selector: 'sdjr2--app-bs-btn',

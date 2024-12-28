@@ -1,10 +1,14 @@
 :host {
   display: flex;
   justify-content: space-around;
-  gap: 2rem;
+  gap: 1rem;
 }
 
+.sctn-image {
+  width: 100%;
+}
 .sctn-login {
+  padding: 0.5rem;
   &__title {
     text-align: center;
   }

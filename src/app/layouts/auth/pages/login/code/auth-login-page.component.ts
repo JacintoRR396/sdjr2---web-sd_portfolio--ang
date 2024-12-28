@@ -9,8 +9,9 @@ import { MessagesErrorService } from '../../../../../shared/services/app-message
 import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
-import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/models/interfaces/app-form.interface';
-import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/models/interfaces/app-comp-btn.interface';
+import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form.interface';
+import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
+import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -22,6 +23,7 @@ export class AuthLoginPageComponent {
   @ViewChild('inputPassword') inputPass! : ElementRef<HTMLInputElement>;
 
   navRoutes = NAVIGATION_ROUTES;
+  imgLazyBackgorundConfig!: ImageLazyConfig;
   fgLogin!: UntypedFormGroup;
   fcEmailConfig!: FormControlInputConfig;
   fcPasswordConfig!: FormControlInputConfig;
@@ -42,6 +44,7 @@ export class AuthLoginPageComponent {
     private readonly messagesErrorService: MessagesErrorService,
     private readonly validatorsService: ValidatorsService,
   ) {
+    this.createImgBg();
     this.createFormGroup();
     this.createFormConstrols();
     this.createBtns();
@@ -58,6 +61,12 @@ export class AuthLoginPageComponent {
     return `../${this.navRoutes.auth.register}`;
   }
 
+  private createImgBg(): void {
+    this.imgLazyBackgorundConfig = {
+      src: "../.././../../../../assets/images/web/auth/bg-auth_login.svg",
+      alt: "Image background about Auth Login"
+    }
+  }
   private createFormGroup(): void {
     this.fgLogin = this.fb.group({});
   }

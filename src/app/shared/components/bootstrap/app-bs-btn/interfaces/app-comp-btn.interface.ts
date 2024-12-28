@@ -2,18 +2,18 @@ import { throwError } from "rxjs";
 
 export enum ButtonType { BUTTON, LINK }
 
-export interface ButtonConfigStyle {
-  color: string;
-  size?: string;
-  width?: string;
-  space?: string;
-}
-
 export interface ButtonConfig {
   type: ButtonType;
   name: string;
   iconBS?: string;
   link?: string;
+}
+
+export interface ButtonConfigStyle {
+  color: string;
+  size?: string;
+  width?: string;
+  space?: string;
 }
 
 export class ButtonHelper {

@@ -2,9 +2,9 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, UntypedFormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
-import { MessagesErrorService } from '../../../services/app-messages-error.service';
+import { MessagesErrorService } from '../../../../services/app-messages-error.service';
 
-import { FormControlInputConfig, FormControlInputHelper } from '../../../models/interfaces/app-form.interface';
+import { FormControlInputConfig, FormControlInputHelper } from '../interfaces/app-comp-form.interface';
 
 @Component({
   selector: 'sdjr2--app-bs-form-input',
