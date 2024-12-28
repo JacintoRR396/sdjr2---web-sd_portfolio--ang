@@ -6,27 +6,24 @@
   <h2 class="sctn-login__title text-dark">Sign in</h2>
   <hr class="border-bottom border-2 border-dark">
   <form class="sctn-login__form" [formGroup]="fgLogin">
-    <sdjr2--app-bs-form-input
-      class="sctn-login__email"
+    <sdjr2--app-bs-form-input class="sctn-login__email"
       [fg]="fgLogin" [fcConfig]="fcEmailConfig" />
-    <sdjr2--app-bs-form-input
-      class="sctn-login__pass"
+    <sdjr2--app-bs-form-input class="sctn-login__pass"
       [fg]="fgLogin" [fcConfig]="fcPasswordConfig" />
     <div class="d-flex justify-content-between align-items-baseline mb-2">
-      <sdjr2--app-bs-form-input
-        class="sctn-login__remember"
+      <sdjr2--app-bs-form-input class="sctn-login__remember"
         [fg]="fgLogin" [fcConfig]="fcRememberConfig" />
-      <a class="sctn-login__forgot-link" [routerLink]="[ linkRecovery ]">
-        <span class="sctn-login__forgot-txt">Forgot password?</span>
-      </a>
+      <sdjr2--app-bs-btn class="sctn-login__forgot-pwd"
+        [btnConfig]="btnForgotPwdConfig" [btnConfigStyle]="btnForgotPwdConfigStyle" />
     </div>
-    <button class="sctn-login__btn-main btn btn-primary w-100"
-      (click)="onLogin()" [disabled]="!fgLogin.valid">Login</button>
+    <sdjr2--app-bs-btn class="sctn-login__login"
+      [btnConfig]="btnLoginConfig" [btnConfigStyle]="btnLoginConfigStyle"
+      [isSpinnerActive]="isSpinnerActiveBtnLogin" [isDisabled]="!fgLogin.valid"
+      (evtEmitterClick)="onLogin()" />
   </form>
   <div class="sctn-login__register mt-3">
     <span class="sctn-login__register-txt">Dont't have an account?</span>
-    <button class="sctn-login__register-btn btn btn-link text-danger ms-1" [routerLink]="[ linkRegister ]">
-      Register
-    </button>
+    <sdjr2--app-bs-btn class="sctn-login__register-btn"
+      [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle" />
   </div>
 </div>

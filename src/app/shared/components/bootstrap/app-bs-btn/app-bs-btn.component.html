@@ -1,0 +1,29 @@
+<!-- Button -->
+ <ng-container *ngIf="isTypeButton(); else btnLink">
+  <button
+    type="{{ type }}"
+    class="bs-btn btn"
+    [ngClass]="getClassesToApply()"
+    [disabled]="isDisabled"
+    (click)="onClick()">
+      <ng-container *ngIf="isSpinnerActive">
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span class="visually-hidden" role="status">Loading...</span>
+      </ng-container>
+      <ng-container *ngIf="iconBS && !isSpinnerActive">
+        <i class="bi {{ iconBS }}"></i>
+      </ng-container>
+      {{ name }}
+  </button>
+ </ng-container>
+
+<!-- Link -->
+<ng-template #btnLink>
+  <button
+    class="bs-btn-link btn btn-link link-opacity-75-hover"
+    [ngClass]="getClassesToApply()"
+    [disabled]="isDisabled"
+    [routerLink]="[ link ]">
+      {{ name }}
+  </button>
+</ng-template>

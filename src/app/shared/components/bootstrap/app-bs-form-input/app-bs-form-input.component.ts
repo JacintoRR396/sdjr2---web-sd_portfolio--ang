@@ -4,7 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 import { MessagesErrorService } from '../../../services/app-messages-error.service';
 
-import { FormControlInputConfig, FormControlInputTypeHelper } from '../../../models/interfaces/app-form.interface';
+import { FormControlInputConfig, FormControlInputHelper } from '../../../models/interfaces/app-form.interface';
 
 @Component({
   selector: 'sdjr2--app-bs-form-input',
@@ -42,7 +42,7 @@ export class BSFormInputComponent implements OnInit {
     return this.fcConfig.lbl;
   }
   get typeControl(): string {
-    return FormControlInputTypeHelper.toString( this.fcConfig.type );
+    return FormControlInputHelper.typeToString( this.fcConfig.type );
   }
   get nameControlHelp(): string {
     return this.fcConfig.name + 'Help';
@@ -78,7 +78,7 @@ export class BSFormInputComponent implements OnInit {
   }
 
   isTypePassword(): boolean {
-    return FormControlInputTypeHelper.isPassword( this.fcConfig.type );
+    return FormControlInputHelper.typeIsPassword( this.fcConfig.type );
   }
 
   onShowPassword(): void {
@@ -92,6 +92,6 @@ export class BSFormInputComponent implements OnInit {
 
   // Checkbox, Radio
   isTypeCheckboxOrRadio(): boolean {
-    return FormControlInputTypeHelper.isCheckboxOrRadio( this.fcConfig.type );
+    return FormControlInputHelper.typeIsCheckboxOrRadio( this.fcConfig.type );
   }
 }

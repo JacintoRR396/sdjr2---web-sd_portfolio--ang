@@ -1,0 +1,7 @@
+.bs-btn-link {
+  font-size: 0.9rem;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

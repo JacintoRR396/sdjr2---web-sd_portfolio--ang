@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { delay } from 'rxjs';
 
 import { AuthStore } from '../../../../../shared/store/app-auth.service';
 import { MessagesStore } from '../../../../../shared/store/app-messages.service';
@@ -9,6 +10,7 @@ import { ValidatorsService } from '../../../../../shared/services/app-validators
 
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/models/interfaces/app-form.interface';
+import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/models/interfaces/app-comp-btn.interface';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -24,6 +26,13 @@ export class AuthLoginPageComponent {
   fcEmailConfig!: FormControlInputConfig;
   fcPasswordConfig!: FormControlInputConfig;
   fcRememberConfig!: FormControlInputConfig;
+  btnForgotPwdConfig!: ButtonConfig;
+  btnForgotPwdConfigStyle!: ButtonConfigStyle;
+  btnLoginConfig!: ButtonConfig;
+  btnLoginConfigStyle!: ButtonConfigStyle;
+  btnRegisterConfig!: ButtonConfig;
+  btnRegisterConfigStyle!: ButtonConfigStyle;
+  isSpinnerActiveBtnLogin: boolean = false;
 
   constructor(
     private readonly fb: UntypedFormBuilder,
@@ -35,6 +44,7 @@ export class AuthLoginPageComponent {
   ) {
     this.createFormGroup();
     this.createFormConstrols();
+    this.createBtns();
   }
 
   get password(): AbstractControl {
@@ -81,19 +91,53 @@ export class AuthLoginPageComponent {
       isMandatory: false,
     };
   }
+  private createBtns(): void {
+    this.btnForgotPwdConfig = {
+      type: ButtonType.LINK,
+      name: 'Forgot password?',
+      link: this.linkRecovery,
+    }
+    this.btnForgotPwdConfigStyle = {
+      color: 'text-primary',
+    }
+    this.btnLoginConfig = {
+      type: ButtonType.BUTTON,
+      name: 'Login',
+      iconBS: 'bi-box-arrow-in-right',
+    }
+    this.btnLoginConfigStyle = {
+      color: 'btn-primary',
+      width: 'w-100',
+    }
+    this.btnRegisterConfig = {
+      type: ButtonType.LINK,
+      name: 'Register',
+      link: this.linkRegister,
+    }
+    this.btnRegisterConfigStyle = {
+      color: 'text-danger',
+      space: 'ms-1',
+    }
+  }
 
   onLogin() {
     if( this.fgLogin.valid ) {
+      this.isSpinnerActiveBtnLogin = true;
       const val = this.fgLogin.value;
-      console.log( val );
       this.authStore.login( val.email, val.pwd, val.remember )
+        .pipe(
+          delay( 500 )
+        )
         .subscribe(
           ( resp ) => {
             if( resp?.isActive ) {
               this.router.navigateByUrl( `/${this.navRoutes.web.self}` )
-            } else {
+            } else if ( !!resp && !resp.isActive ) {
               this.messagesStore.showErrors( this.messagesErrorService.getFormAccountIsInactive() );
+            } else {
+              this.messagesStore.showErrors( this.messagesErrorService.getFormCredentialsNotValid() );
             }
+            this.isSpinnerActiveBtnLogin = false;
           }
         );
     } else {

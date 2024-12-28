@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { BSBtnComponent } from './components/bootstrap/app-bs-btn/app-bs-btn.component';
 import { BSFormInputComponent } from './components/bootstrap/app-bs-form-input/app-bs-form-input.component';
 import { BaseMessagesComponent } from './components/app-base-messages/app-base-messages.component';
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
@@ -22,6 +24,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
 
 @NgModule({
   declarations: [
+    BSBtnComponent,
     BSFormInputComponent,
     BaseMessagesComponent,
     BaseSpinnerComponent,
@@ -37,9 +40,11 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
+    BSBtnComponent,
     BSFormInputComponent,
     BaseMessagesComponent,
     BaseSpinnerComponent,

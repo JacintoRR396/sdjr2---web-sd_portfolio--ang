@@ -8,29 +8,13 @@
   &__title {
     text-align: center;
   }
-  &__btn-main {
-    width: 9rem;
-  }
   &__remember {
     min-width: 15rem;
-  }
-  &__forgot-link {
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
   &__register {
     font-size: 0.9rem;
     &-txt {
       vertical-align: text-top;
-    }
-    &-btn {
-      font-size: 0.9rem;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }
