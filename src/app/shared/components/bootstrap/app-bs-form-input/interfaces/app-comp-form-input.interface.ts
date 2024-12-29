@@ -1,4 +1,4 @@
-import { ValidatorFn } from "@angular/forms";
+import { AsyncValidatorFn, ValidatorFn } from "@angular/forms";
 import { throwError } from "rxjs";
 
 // FormControl
@@ -12,6 +12,7 @@ export interface FormControlInputConfig {
   placeHolder?: string;
   valueDefault: string;
   validators?: ValidatorFn[];
+  asyncValidators?: AsyncValidatorFn[];
   isMandatory: boolean;
 }
 

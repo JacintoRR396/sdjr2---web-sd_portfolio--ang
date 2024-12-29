@@ -9,16 +9,27 @@
 
   <form class="sctn-register__form" [formGroup]="fgRegister">
     <sdjr2--app-bs-form-input class="sctn-register__username"
-      [fg]="fgRegister" [fcConfig]="fcUsernameConfig" />
+      [fc]="fcUsername" [fcConfig]="fcUsernameConfig" />
     <sdjr2--app-bs-form-input class="sctn-register__email"
-      [fg]="fgRegister" [fcConfig]="fcEmailConfig" />
+      [fc]="fcEmail" [fcConfig]="fcEmailConfig" />
     <sdjr2--app-bs-form-input class="sctn-register__pwd"
-      [fg]="fgRegister" [fcConfig]="fcPasswordConfig" />
+      [fc]="fcPwd" [fcConfig]="fcPwdConfig" />
     <sdjr2--app-bs-form-input class="sctn-register__pwd-verify mb-3"
-      [fg]="fgRegister" [fcConfig]="fcPasswordVerifyConfig" />
+      [fc]="fcPwdVerify" [fcConfig]="fcPwdVerifyConfig" [fgErrors]="fgRegister.errors!" />
     <div class="my-3">
+<!--
       <sdjr2--app-bs-form-input class="sctn-register__terms"
-        [fg]="fgRegister" [fcConfig]="fcTermsOfServiceConfig" />
+        [fc]="fcTermsOfService" [fcConfig]="fcTermsOfServiceConfig" />
+-->
+      <div class="sctn-register__terms form-check">
+        <input
+          id="{{ fcTermsOfServiceConfig.name }}" class="sctn-register__terms-val form-check-input" type="checkbox" value=""
+          [ngClass]="{ 'is-invalid': showErrorCheckboxTerms(), 'is-valid': isValidCheckboxTerms()}"
+          [formControl]="fcTermsOfService" />
+        <label class="sctn-register__terms-lbl form-check-label" for="{{ fcTermsOfServiceConfig.name }}">
+          {{ fcTermsOfServiceConfig.lbl }}
+        </label>
+      </div>
     </div>
 
     <div class="sctn-register__btns d-flex">

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { MessagesStore } from '../../../../../shared/store/app-messages.service'
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
 
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
-import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form.interface';
+import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 
 import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
@@ -24,16 +24,22 @@ export class AuthLoginPageComponent {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
   imgLazyBackgorundConfig!: ImageLazyConfig;
+
   fgLogin!: UntypedFormGroup;
+  fcEmail!: FormControl;
   fcEmailConfig!: FormControlInputConfig;
-  fcPasswordConfig!: FormControlInputConfig;
+  fcPwd!: FormControl;
+  fcPwdConfig!: FormControlInputConfig;
+  fcRemember!: FormControl;
   fcRememberConfig!: FormControlInputConfig;
+
   btnForgotPwdConfig!: ButtonConfig;
   btnForgotPwdConfigStyle!: ButtonConfigStyle;
   btnLoginConfig!: ButtonConfig;
   btnLoginConfigStyle!: ButtonConfigStyle;
   btnRegisterConfig!: ButtonConfig;
   btnRegisterConfigStyle!: ButtonConfigStyle;
+
   isSpinnerActiveBtnLogin: boolean = false;
 
   constructor(
@@ -45,8 +51,8 @@ export class AuthLoginPageComponent {
     private readonly messagesErrorService: MessagesErrorService,
   ) {
     this.createImgBg();
-    this.createFormGroup();
     this.createFormConstrols();
+    this.createFormGroup();
     this.createBtns();
   }
 
@@ -63,19 +69,26 @@ export class AuthLoginPageComponent {
       alt: "Image background about Auth Login"
     }
   }
-  private createFormGroup(): void {
-    this.fgLogin = this.fb.group({});
-  }
   private createFormConstrols(): void {
     this.fcEmailConfig = this.formsService.createFormControlInputEmail();
-    this.fcPasswordConfig = this.formsService.createFormControlInputPassword();
+    this.fcEmail = this.fb.control( this.fcEmailConfig.valueDefault, this.fcEmailConfig.validators );
+    this.fcPwdConfig = this.formsService.createFormControlInputPwd();
+    this.fcPwd = this.fb.control( this.fcPwdConfig.valueDefault, this.fcPwdConfig.validators );
     this.fcRememberConfig = {
       type: FormControlInputType.CHECKBOX,
       name: 'remember',
       lbl: 'Remember me',
-      valueDefault: 'false',
+      valueDefault: '',
       isMandatory: false,
     };
+    this.fcRemember = this.fb.control( this.fcRememberConfig.valueDefault );
+  }
+  private createFormGroup(): void {
+    this.fgLogin = this.fb.group({
+      email: this.fcEmail,
+      pwd: this.fcPwd,
+      remember: this.fcRemember,
+    });
   }
   private createBtns(): void {
     this.btnForgotPwdConfig = {
@@ -109,8 +122,8 @@ export class AuthLoginPageComponent {
   onLogin(): void {
     if( this.fgLogin.valid ) {
       this.isSpinnerActiveBtnLogin = true;
-      const val: FormLogin = this.fgLogin.value;
-      this.authStore.login( val.email, val.pwd, val.remember )
+      const fgValues: FormLogin = this.fgLogin.value;
+      this.authStore.login( fgValues.email, fgValues.pwd, fgValues.remember )
         .pipe(
           delay( 500 )
         )

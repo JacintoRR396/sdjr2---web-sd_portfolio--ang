@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { AsyncValidatorFn, Validators } from '@angular/forms';
 
 import { ValidatorsService } from './app-validators.service';
 
-import { FormControlInputConfig, FormControlInputType } from '../components/bootstrap/app-bs-form-input/interfaces/app-comp-form.interface';
+import { FormControlInputConfig, FormControlInputType } from '../components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class FormsService {
     private readonly validatorsService: ValidatorsService,
   ) { }
 
-  createFormControlInputEmail(): FormControlInputConfig {
+  createFormControlInputEmail( asyncValidators: AsyncValidatorFn[] = [] ): FormControlInputConfig {
     return {
       type: FormControlInputType.EMAIL,
       name: 'email',
@@ -23,11 +23,12 @@ export class FormsService {
       placeHolder: 'Enter your email',
       valueDefault: '',
       validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ],
+      asyncValidators,
       isMandatory: true,
     };
   }
 
-  createFormControlInputPassword(): FormControlInputConfig {
+  createFormControlInputPwd(): FormControlInputConfig {
     return {
       type: FormControlInputType.PASSWORD,
       name: 'pwd',
@@ -36,12 +37,12 @@ export class FormsService {
       placeHolder: 'Enter your password',
       valueDefault: '',
       validators: [ Validators.required, Validators.minLength(8), Validators.maxLength(40),
-        this.validatorsService.createPasswordStrengthValidator() ],
+        this.validatorsService.createFcPwdStrengthValidator() ],
       isMandatory: true,
     };
   }
 
-  createFormControlInputPasswordVerify(): FormControlInputConfig {
+  createFormControlInputPwdVerify(): FormControlInputConfig {
     return {
       type: FormControlInputType.PASSWORD,
       name: 'pwd_verify',
@@ -50,7 +51,7 @@ export class FormsService {
       placeHolder: 'Enter your password verify',
       valueDefault: '',
       validators: [ Validators.required, Validators.minLength(8), Validators.maxLength(40),
-        this.validatorsService.createPasswordStrengthValidator() ],
+        this.validatorsService.createFcPwdStrengthValidator() ],
       isMandatory: true,
     };
   }

@@ -8,8 +8,8 @@ import { BSBtnComponent } from './components/bootstrap/app-bs-btn/code/app-bs-bt
 import { BSFormInputComponent } from './components/bootstrap/app-bs-form-input/code/app-bs-form-input.component';
 import { BSImgLazyComponent } from './components/bootstrap/app-bs-img-lazy/code/app-bs-img-lazy.component';
 import { PathImageLazyLoaderPipe } from './components/bootstrap/app-bs-img-lazy/pipes/app-path-image-lazy-loader.pipe';
+import { BSModalMessagesComponent } from './components/bootstrap/app-bs-modal-messages/app-bs-modal-messages.component';
 
-import { BaseMessagesComponent } from './components/app-base-messages/app-base-messages.component';
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
 import { SearchBoxComponent } from './components/app-search-box/app-search-box.component';
 import { Error404PageComponent } from './pages/app-error-404-page/app-error-404-page.component';
@@ -29,7 +29,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     BSFormInputComponent,
     BSImgLazyComponent,
     PathImageLazyLoaderPipe,
-    BaseMessagesComponent,
+    BSModalMessagesComponent,
     BaseSpinnerComponent,
     SearchBoxComponent,
     Error404PageComponent,
@@ -49,7 +49,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     BSBtnComponent,
     BSFormInputComponent,
     BSImgLazyComponent,
-    BaseMessagesComponent,
+    BSModalMessagesComponent,
     BaseSpinnerComponent,
     SearchBoxComponent,
     Error404PageComponent,

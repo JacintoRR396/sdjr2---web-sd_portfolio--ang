@@ -15,8 +15,11 @@ export const ERRORS_FORM_CONTROLS = {
   BASE_MIN_LENGTH: 'Your #nameControl must have minimum #reqLength chars, but it only has #actLength.',
   BASE_MAX_LENGTH: 'Your #nameControl must have maximum #reqLength chars, but it has #actLength.',
   BASE_FORMAT: 'Your #nameControl does not have a valid format.',
-  EMAIL: 'Your email does not have a valid format, like "something@company.doamin".',
-  PASSWORD: 'Your password must have at least one uppercase letter, one lowercase letter, one number and one special character like "@$!%*?&".',
+  EMAIL_FORMAT: 'Your email does not have a valid format, like "something@company.doamin".',
+  EMAIL_EXISTS: 'Your email already exists, you must provide another one.',
+  EMAIL_NOT_EXISTS: 'Your email does not exist, please check it and provide another one.',
+  PWD_FORMAT: 'Your password must have at least one uppercase letter, one lowercase letter, one number and one special character like "@$!%*?&".',
+  PWD_VERIFY: 'Your password does not match, please check it.',
 }
 
 export const ERRORS_FORM = {

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { map } from 'rxjs';
+
+import { UsersService } from './app-users.service';
 
 import { CONST } from '../utils/app-constants.util';
 
@@ -8,9 +11,12 @@ import { CONST } from '../utils/app-constants.util';
 })
 export class ValidatorsService {
 
-  constructor() { }
+  constructor(
+    private readonly usersService: UsersService
+  ){}
 
-  createEmailValidator(): ValidatorFn {
+  // User
+  createFcEmailFormatValidator(): ValidatorFn {
     return ( control: AbstractControl ) : ValidationErrors | null => {
       const value = control.value;
       if ( !value ) { return null; }
@@ -18,13 +24,39 @@ export class ValidatorsService {
       return !emailValid ? { emailFormat: true } : null;
     }
   }
+  createFcEmailExistsAsyncValidator(): AsyncValidatorFn {
+    return ( control: AbstractControl ) => {
+      return this.usersService.getUserByEmail( control.value )
+        .pipe(
+          map( user => user ? { emailExists: true } : null )
+        );
+    }
+  }
+  createFcEmailNotExistsAsyncValidator(): AsyncValidatorFn {
+    return ( control: AbstractControl ) => {
+      return this.usersService.getUserByEmail( control.value )
+        .pipe(
+          map( user => user ? null : { emailNotExists: true } )
+        );
+    }
+  }
 
-  createPasswordStrengthValidator(): ValidatorFn {
+  createFcPwdStrengthValidator(): ValidatorFn {
     return ( control: AbstractControl ) : ValidationErrors | null => {
       const value = control.value;
       if ( !value ) { return null; }
       const passwordValid = CONST.REG_EXP.PASSWORD.test( value );
-      return !passwordValid ? { passwordStrength: true } : null;
+      return !passwordValid ? { pwdStrength: true } : null;
+    }
+  }
+  createFgPwdVerifyValidator(): Validators {
+    return ( fg: FormGroup ): Validators | null => {
+     const fcPwdValue = fg.get( 'pwd' )!.value;
+     const fcPwdVerifyValue = fg.get( 'pwd_verify' )!.value;
+     if( fcPwdValue && fcPwdVerifyValue ) {
+      return ( fcPwdValue === fcPwdVerifyValue ) ? null : { pwdVerify: true };
+     }
+     return null;
     }
   }
 }

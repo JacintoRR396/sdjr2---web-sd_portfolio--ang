@@ -13,7 +13,13 @@
     text-align: center;
   }
   &__terms {
-    min-width: 20rem;
+    margin: 0 0 0 0.5rem;
+    &-val, &-lbl {
+      cursor: pointer;
+    }
+    &-lbl {
+      padding-left: 0.25rem;
+    }
   }
   &__btns {
     gap: 1rem;

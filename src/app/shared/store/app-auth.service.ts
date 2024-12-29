@@ -31,7 +31,7 @@ export class AuthStore {
 		this.isLoggedOut$ = this.isLoggedIn$.pipe( map( loggedIn => !loggedIn ) );
   }
 
-  login( email: string, password: string, isSaveInLS: string ): Observable<User | undefined> {
+  login( email: string, password: string, isSaveInLS: boolean ): Observable<User | undefined> {
     return this.usersService.getUserByEmailAndPassword( email, password )
       .pipe(
         tap( user => {
@@ -47,9 +47,9 @@ export class AuthStore {
       this.usersService.updateUser( data );
     }
   }
-  private checkUserInDB( name: string, data: User | undefined, isSaveInLS: string ): void {
+  private checkUserInDB( name: string, data: User | undefined, isSaveInLS: boolean ): void {
     if( data?.isActive ) {
-      if( isSaveInLS === 'true' ) {
+      if( isSaveInLS ) {
         this.storageService.saveLocalStorageBase64( name, data, this.dto );
       } else {
         this.storageService.removeLocalStorageBase64( name, this.dto );

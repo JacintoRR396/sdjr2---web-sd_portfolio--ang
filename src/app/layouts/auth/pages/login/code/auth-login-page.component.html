@@ -9,18 +9,30 @@
 
   <form class="sctn-login__form" [formGroup]="fgLogin">
     <sdjr2--app-bs-form-input class="sctn-login__email"
-      [fg]="fgLogin" [fcConfig]="fcEmailConfig" />
+      [fc]="fcEmail" [fcConfig]="fcEmailConfig" />
     <sdjr2--app-bs-form-input class="sctn-login__pwd"
-      [fg]="fgLogin" [fcConfig]="fcPasswordConfig" />
+      [fc]="fcPwd" [fcConfig]="fcPwdConfig" />
     <div class="d-flex justify-content-between align-items-baseline mb-2">
+<!--
       <sdjr2--app-bs-form-input class="sctn-login__remember"
-        [fg]="fgLogin" [fcConfig]="fcRememberConfig" />
+        [fc]="fcRemember" [fcConfig]="fcRememberConfig" />
+-->
+      <div class="sctn-login__remember form-check">
+        <input
+          id="{{ fcRememberConfig.name }}" class="sctn-login__remember-val form-check-input" type="checkbox" value=""
+          [formControl]="fcRemember" />
+        <label class="sctn-login__remember-lbl form-check-label" for="{{ fcRememberConfig.name }}">
+          {{ fcRememberConfig.lbl }}
+        </label>
+      </div>
       <sdjr2--app-bs-btn class="sctn-login__forgot-pwd"
         [btnConfig]="btnForgotPwdConfig" [btnConfigStyle]="btnForgotPwdConfigStyle" />
     </div>
+
     <sdjr2--app-bs-btn class="sctn-login__login"
       [btnConfig]="btnLoginConfig" [btnConfigStyle]="btnLoginConfigStyle"
-      [isSpinnerActive]="isSpinnerActiveBtnLogin" [isDisabled]="!fgLogin.valid"
+      [isDisabled]="!fgLogin.valid"
+      [isSpinnerActive]="isSpinnerActiveBtnLogin"
       (evtEmitterClick)="onLogin()" />
   </form>
 

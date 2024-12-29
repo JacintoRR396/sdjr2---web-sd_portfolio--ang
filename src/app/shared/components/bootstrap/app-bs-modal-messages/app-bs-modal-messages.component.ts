@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { MessagesStore } from '../../store/app-messages.service';
+import { MessagesStore } from '../../../store/app-messages.service';
 
 @Component({
-  selector: 'sdjr2--app-base-messages',
-  templateUrl: './app-base-messages.component.html',
-  styleUrl: './app-base-messages.component.scss'
+  selector: 'sdjr2--app-bs-modal-messages',
+  templateUrl: './app-bs-modal-messages.component.html',
+  styleUrl: './app-bs-modal-messages.component.scss'
 })
-export class BaseMessagesComponent {
+export class BSModalMessagesComponent {
 
   constructor(
     private readonly messagesStore: MessagesStore

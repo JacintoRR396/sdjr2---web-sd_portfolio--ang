@@ -1,41 +1,55 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, UntypedFormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl, ValidationErrors } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 import { MessagesErrorService } from '../../../../services/app-messages-error.service';
 
-import { FormControlInputConfig, FormControlInputHelper } from '../interfaces/app-comp-form.interface';
+import { FormControlInputConfig, FormControlInputHelper } from '../interfaces/app-comp-form-input.interface';
 
 @Component({
   selector: 'sdjr2--app-bs-form-input',
   templateUrl: './app-bs-form-input.component.html',
   styleUrl: './app-bs-form-input.component.scss'
 })
-export class BSFormInputComponent implements OnInit {
+export class BSFormInputComponent implements OnInit, AfterViewInit {
 
-  @Input({required: true}) fg!: UntypedFormGroup;
+  @Input({required: true}) fc!: FormControl;
   @Input({required: true}) fcConfig!: FormControlInputConfig;
-
+  @Input() fgErrors!: ValidationErrors;
   @ViewChild('inputControl') inputControl! : ElementRef<HTMLInputElement>;
 
   error = '';
   canShowPassword: boolean = false;
+  isChecked: boolean = false;
 
   constructor(
     private readonly messagesErrorService: MessagesErrorService
-  ){  }
+  ){}
 
   ngOnInit(): void {
-    this.fg.addControl(
-      this.nameControl, new FormControl( this.fcConfig.valueDefault, this.fcConfig.validators ));
-    this.fc.valueChanges
-          .pipe( debounceTime(300), distinctUntilChanged() )
-          .subscribe( () => this.error = this.checkErrors() );
+    if( !this.isTypeCheckboxOrRadio() ) {
+      this.fc.valueChanges
+        .pipe( debounceTime( 300 ), distinctUntilChanged() )
+        .subscribe( () => this.error = this.checkErrors() );
+    }
+
+  }
+  ngAfterViewInit(): void {
+    if( this.isTypeCheckboxOrRadio() ) {
+      this.fc.valueChanges
+        .pipe(
+          tap( resp => {
+            if( resp === 'false' || resp === '' ) {
+              this.inputControl.nativeElement.value = 'true';
+            } else {
+              this.inputControl.nativeElement.value = 'false';
+            }
+          })
+        )
+        .subscribe();
+    }
   }
 
-  get fc(): AbstractControl {
-      return this.fg.controls[ this.nameControl ];
-    }
   get nameControl(): string {
     return this.fcConfig.name;
   }
@@ -55,7 +69,7 @@ export class BSFormInputComponent implements OnInit {
   // Text, Email, Password
   checkErrors(): string {
     if( this.fc.errors?.['required'] ) {
-      return this.messagesErrorService.getFormControlRequired( this.nameControl );
+      return this.messagesErrorService.getFormControlRequired( this.labelControl.toLocaleLowerCase() );
     } else if( this.fc.errors?.['minlength'] ) {
       return this.messagesErrorService.getFormControlMinLength(
         this.nameControl, this.fc.errors?.['minlength'].requiredLength, this.fc.errors?.['minlength'].actualLength );
@@ -63,19 +77,29 @@ export class BSFormInputComponent implements OnInit {
       return this.messagesErrorService.getFormControlMaxLength(
         this.nameControl, this.fc.errors?.['maxlength'].requiredLength, this.fc.errors?.['maxlength'].actualLength );
     } else if( this.fc.errors?.['email'] ) {
-      return this.messagesErrorService.getFormControlEmail();
-    } else if( this.fc.errors?.['passwordStrength'] ) {
-      return this.messagesErrorService.getFormControlPassword();
-    } else
+      return this.messagesErrorService.getFormControlEmailFormat();
+    } else if( this.fc.errors?.['emailExists'] ) {
+      return this.messagesErrorService.getFormControlEmailExists();
+    } else if( this.fc.errors?.['emailNotExists'] ) {
+      return this.messagesErrorService.getFormControlEmailNotExists();
+    } else if( this.fc.errors?.['pwdStrength'] ) {
+      return this.messagesErrorService.getFormControlPwdFormat();
+    } else if ( this.fgErrors?.['pwdVerify'] ) {
+      return this.messagesErrorService.getFormControlPwdVerify();
+    }
+     else {
       return '';
+    }
   }
 
   showErrors(): boolean {
-    return this.fc.touched && this.fc.dirty && !!this.fc.errors;
+    return this.fc.touched && this.fc.dirty &&
+      ( !!this.fc.errors || !!this.fgErrors );
   }
 
   isValid(): boolean {
-    return this.fc.touched && this.fc.dirty && this.fc.errors === null;
+    return this.fc.touched && this.fc.dirty &&
+      ( this.fc.errors === null && this.fgErrors === undefined || this.fgErrors === null );
   }
 
   isTypePassword(): boolean {
@@ -94,10 +118,5 @@ export class BSFormInputComponent implements OnInit {
   // Checkbox, Radio
   isTypeCheckboxOrRadio(): boolean {
     return FormControlInputHelper.typeIsCheckboxOrRadio( this.fcConfig.type );
-  }
-
-  onChecked(): void {
-    this.inputControl.nativeElement.value =
-      ( this.inputControl.nativeElement.value === 'false' ) ? 'true' : 'false';
   }
 }

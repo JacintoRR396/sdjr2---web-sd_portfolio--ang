@@ -43,11 +43,20 @@ export class MessagesErrorService {
   getFormControlFormat( nameControl: string ): string {
     return ERRORS_FORM.CONTROL.BASE_FORMAT.replace( ERRORS_FORM.HELPER.NAME_CONTROL, nameControl );
   }
-  getFormControlEmail(): string {
-    return ERRORS_FORM.CONTROL.EMAIL;
+  getFormControlEmailFormat(): string {
+    return ERRORS_FORM.CONTROL.EMAIL_FORMAT;
   }
-  getFormControlPassword(): string {
-    return ERRORS_FORM.CONTROL.PASSWORD;
+  getFormControlEmailExists(): string {
+    return ERRORS_FORM.CONTROL.EMAIL_EXISTS;
+  }
+  getFormControlEmailNotExists(): string {
+    return ERRORS_FORM.CONTROL.EMAIL_NOT_EXISTS;
+  }
+  getFormControlPwdFormat(): string {
+    return ERRORS_FORM.CONTROL.PWD_FORMAT;
+  }
+  getFormControlPwdVerify(): string {
+    return ERRORS_FORM.CONTROL.PWD_VERIFY;
   }
 
   /* Helper Methods */

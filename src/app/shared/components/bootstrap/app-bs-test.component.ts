@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
-import { FormControlInputConfig, FormControlInputType } from "./app-bs-form-input/interfaces/app-comp-form.interface";
+import { FormControlInputConfig, FormControlInputType } from "./app-bs-form-input/interfaces/app-comp-form-input.interface";
 import { AppSharedModule } from "../../app-shared.module";
 
 @Component({
