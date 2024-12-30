@@ -9,6 +9,7 @@ import { BSFormInputComponent } from './components/bootstrap/app-bs-form-input/c
 import { BSImgLazyComponent } from './components/bootstrap/app-bs-img-lazy/code/app-bs-img-lazy.component';
 import { PathImageLazyLoaderPipe } from './components/bootstrap/app-bs-img-lazy/pipes/app-path-image-lazy-loader.pipe';
 import { BSModalMessagesComponent } from './components/bootstrap/app-bs-modal-messages/app-bs-modal-messages.component';
+import { BSAuthFormTemplateComponent } from './templates/bootstrap/app-bs-auth-form-template/app-bs-auth-form-template.component';
 
 import { BaseSpinnerComponent } from './components/app-base-spinner/app-base-spinner.component';
 import { SearchBoxComponent } from './components/app-search-box/app-search-box.component';
@@ -30,6 +31,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     BSImgLazyComponent,
     PathImageLazyLoaderPipe,
     BSModalMessagesComponent,
+    BSAuthFormTemplateComponent,
     BaseSpinnerComponent,
     SearchBoxComponent,
     Error404PageComponent,
@@ -38,7 +40,6 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     SafeHtmlPipe,
     SafeUrlPipe,
     OnlyOneErrorValidatorPipe,
-    BSImgLazyComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +51,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
     BSFormInputComponent,
     BSImgLazyComponent,
     BSModalMessagesComponent,
+    BSAuthFormTemplateComponent,
     BaseSpinnerComponent,
     SearchBoxComponent,
     Error404PageComponent,

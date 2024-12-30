@@ -1,17 +1,4 @@
-:host {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-}
-
-.sctn-image {
-  width: 100%;
-}
 .sctn-recovery {
-  padding: 0.5rem;
-  &__title {
-    text-align: center;
-  }
   &__desc {
     text-align: justify;
     margin: 1.5rem 1rem;

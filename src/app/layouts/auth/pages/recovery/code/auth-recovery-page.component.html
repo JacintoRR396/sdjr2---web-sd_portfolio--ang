@@ -1,11 +1,5 @@
-<div class="sctn-image col d-flex">
-  <sdjr2--app-bs-img-lazy class="sctn-image__lazy-img"
-    [imgLazyConfig]="imgLazyBackgorundConfig" />
-</div>
-
-<div class="sctn-recovery col">
-  <h2 class="sctn-recovery__title text-dark">Password Reset</h2>
-  <hr class="border-bottom border-2 border-dark">
+<sdjr2--app-bs-auth-form-template
+  [imgLazyBgConfig]="imgLazyBgConfig" [titleForm]="titleForm" >
 
   <div class="sctn-recovery__desc">
     Enter your email address and we'll send you an email with instructions to reset your password.
@@ -28,4 +22,5 @@
     <sdjr2--app-bs-btn class="sctn-recovery__register-btn"
       [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle" />
   </div>
-</div>
+
+</sdjr2--app-bs-auth-form-template>

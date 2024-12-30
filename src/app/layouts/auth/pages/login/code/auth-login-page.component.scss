@@ -1,17 +1,4 @@
-:host {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-}
-
-.sctn-image {
-  width: 100%;
-}
 .sctn-login {
-  padding: 0.5rem;
-  &__title {
-    text-align: center;
-  }
   &__remember {
     width: 10rem;
     margin: 0 0 0 0.5rem;
@@ -26,7 +13,7 @@
   &__register {
     display: flex;
     justify-content: flex-end;
-    align-items: baseline;
+    align-items: center;
     font-size: 0.9rem;
     &-txt {
       vertical-align: text-top;

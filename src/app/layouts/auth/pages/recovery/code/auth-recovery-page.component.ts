@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -18,10 +18,11 @@ import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model
   templateUrl: './auth-recovery-page.component.html',
   styleUrl: './auth-recovery-page.component.scss'
 })
-export class AuthRecoveryPageComponent {
+export class AuthRecoveryPageComponent implements OnInit {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
-  imgLazyBackgorundConfig!: ImageLazyConfig;
+  imgLazyBgConfig!: ImageLazyConfig;
+  titleForm: string = 'Password Reset';
 
   fgRecovery!: FormGroup;
   fcEmail!: FormControl;
@@ -43,7 +44,9 @@ export class AuthRecoveryPageComponent {
     private readonly validatorsService: ValidatorsService,
     private readonly messagesStore: MessagesStore,
     private readonly messagesErrorService: MessagesErrorService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.createImgBg();
     this.createFormConstrols();
     this.createFormGroup();
@@ -58,7 +61,7 @@ export class AuthRecoveryPageComponent {
   }
 
   private createImgBg(): void {
-    this.imgLazyBackgorundConfig = {
+    this.imgLazyBgConfig = {
       src: "../.././../../../../assets/images/web/auth/bg-auth_recovery.svg",
       alt: "Image background about Auth Register"
     }

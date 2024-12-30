@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 
@@ -19,12 +19,13 @@ import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model
   templateUrl: './auth-login-page.component.html',
   styleUrl: './auth-login-page.component.scss'
 })
-export class AuthLoginPageComponent {
+export class AuthLoginPageComponent implements OnInit {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
-  imgLazyBackgorundConfig!: ImageLazyConfig;
+  imgLazyBgConfig!: ImageLazyConfig;
+  titleForm: string = 'Sign in';
 
-  fgLogin!: UntypedFormGroup;
+  fgLogin!: FormGroup;
   fcEmail!: FormControl;
   fcEmailConfig!: FormControlInputConfig;
   fcPwd!: FormControl;
@@ -42,13 +43,15 @@ export class AuthLoginPageComponent {
   isSpinnerActiveBtnLogin: boolean = false;
 
   constructor(
-    private readonly fb: UntypedFormBuilder,
+    private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly formsService: FormsService,
     private readonly authStore: AuthStore,
     private readonly messagesStore: MessagesStore,
     private readonly messagesErrorService: MessagesErrorService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.createImgBg();
     this.createFormConstrols();
     this.createFormGroup();
@@ -63,7 +66,7 @@ export class AuthLoginPageComponent {
   }
 
   private createImgBg(): void {
-    this.imgLazyBackgorundConfig = {
+    this.imgLazyBgConfig = {
       src: "../.././../../../../assets/images/web/auth/bg-auth_login.svg",
       alt: "Image background about Auth Login"
     }

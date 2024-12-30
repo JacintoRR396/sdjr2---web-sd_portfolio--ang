@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
@@ -21,10 +21,11 @@ import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model
   templateUrl: './auth-register-page.component.html',
   styleUrl: './auth-register-page.component.scss'
 })
-export class AuthRegisterPageComponent {
+export class AuthRegisterPageComponent implements OnInit {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
-  imgLazyBackgorundConfig!: ImageLazyConfig;
+  imgLazyBgConfig!: ImageLazyConfig;
+  titleForm: string = 'Sign up';
 
   fgRegister!: FormGroup;
   fcUsername!: FormControl;
@@ -55,7 +56,9 @@ export class AuthRegisterPageComponent {
     private readonly usersService: UsersService,
     private readonly messagesStore: MessagesStore,
     private readonly messagesErrorService: MessagesErrorService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.createImgBg();
     this.createFormConstrols();
     this.createFormGroup();
@@ -67,7 +70,7 @@ export class AuthRegisterPageComponent {
   }
 
   private createImgBg(): void {
-    this.imgLazyBackgorundConfig = {
+    this.imgLazyBgConfig = {
       src: "../.././../../../../assets/images/web/auth/bg-auth_register.svg",
       alt: "Image background about Auth Register"
     }
