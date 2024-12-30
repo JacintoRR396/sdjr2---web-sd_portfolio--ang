@@ -11,7 +11,6 @@ import { MessagesErrorService } from '../../../../../shared/services/app-message
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
-
 import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
@@ -130,7 +129,7 @@ export class AuthLoginPageComponent {
         .subscribe(
           ( resp ) => {
             if( resp?.isActive ) {
-              this.router.navigateByUrl( `/${this.navRoutes.web.self}` )
+              this.router.navigateByUrl( `/${this.navRoutes.web.self}` );
             } else if ( !!resp && !resp.isActive ) {
               this.messagesStore.showErrors( this.messagesErrorService.getFormAccountIsInactive() );
             } else {

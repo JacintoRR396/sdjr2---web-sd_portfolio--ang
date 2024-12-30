@@ -12,7 +12,6 @@ import { MessagesErrorService } from '../../../../../shared/services/app-message
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
-
 import { FormHelper, FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { RoleType, User } from '../../../../../shared/models/interfaces/app-users.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
@@ -154,7 +153,6 @@ export class AuthRegisterPageComponent {
   }
 
   onRegister(): void {
-    this.router.navigate( [`/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}`, this.fgRegister.value.email ] );
     if( this.fgRegister.valid ) {
       this.isSpinnerActiveBtnRegister = true;
       const user = this.createUser( this.fgRegister.value );
@@ -165,7 +163,7 @@ export class AuthRegisterPageComponent {
         .subscribe(
           ( resp ) => {
             if ( resp ) {
-              this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` )
+              this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` );
             }
             this.isSpinnerActiveBtnRegister = false;
           }

@@ -35,6 +35,7 @@
     <div class="sctn-register__btns d-flex">
       <sdjr2--app-bs-btn class="sctn-register__btns-main"
         [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle"
+        [isDisabled]="!fgRegister.valid"
         [isSpinnerActive]="isSpinnerActiveBtnRegister"
         (evtEmitterClick)="onRegister()" />
       <sdjr2--app-bs-btn class="sctn-register__btns-reset"

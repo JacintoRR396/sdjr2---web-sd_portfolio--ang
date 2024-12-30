@@ -33,3 +33,7 @@ export interface FormRegister {
   pwd_verify: string;
   terms: boolean;
 }
+
+export interface FormRecovery {
+  email: string;
+}
