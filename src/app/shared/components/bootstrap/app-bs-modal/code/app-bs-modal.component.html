@@ -16,7 +16,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <ng-content #modalBody></ng-content>
+        <span>{{ modalConfig.msg }}</span>
       </div>
       <div class="modal-footer bg-light">
         <button *ngIf="modalConfig.btnLeft"

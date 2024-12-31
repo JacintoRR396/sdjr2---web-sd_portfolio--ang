@@ -114,6 +114,7 @@ export class AuthRecoveryPageComponent implements OnInit {
     this.modalConfig = {
       title: 'Send email',
       btnRight: 'OK',
+      msg: 'You will shortly receive an email with the steps to follow to reset your password.',
     }
   }
 

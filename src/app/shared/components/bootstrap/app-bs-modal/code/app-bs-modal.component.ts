@@ -19,7 +19,7 @@ export class BSModalComponent implements OnChanges {
   @ViewChild('bsModalBtn') bsModalBtnDOM!: ElementRef<HTMLButtonElement>;
 
   ngOnChanges( changes: SimpleChanges ): void {
-    if ( changes['show'].currentValue ) {
+    if ( changes['show']?.currentValue ) {
       this.bsModalBtnDOM.nativeElement.click();
     }
   }

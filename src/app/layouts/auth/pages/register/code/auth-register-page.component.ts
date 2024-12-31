@@ -155,6 +155,7 @@ export class AuthRegisterPageComponent implements OnInit {
     this.modalConfig = {
       title: 'Register user',
       btnRight: 'OK',
+      msg: "You have successfully registered, press 'OK' to navigate to the login screen.",
     }
   }
 
