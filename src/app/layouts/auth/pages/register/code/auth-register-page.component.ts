@@ -14,6 +14,7 @@ import { FormControlInputConfig, FormControlInputType } from '../../../../../sha
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormHelper, FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { RoleType, User } from '../../../../../shared/models/interfaces/app-users.interface';
+import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
 @Component({
@@ -45,8 +46,10 @@ export class AuthRegisterPageComponent implements OnInit {
   btnResetConfigStyle!: ButtonConfigStyle;
   btnLoginConfig!: ButtonConfig;
   btnLoginConfigStyle!: ButtonConfigStyle;
-
   isSpinnerActiveBtnRegister: boolean = false;
+
+  modalConfig!: ModalConfig;
+  modalShow: boolean = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -63,6 +66,7 @@ export class AuthRegisterPageComponent implements OnInit {
     this.createFormConstrols();
     this.createFormGroup();
     this.createBtns();
+    this.createModal();
   }
 
   get linkLogin(): string {
@@ -147,6 +151,12 @@ export class AuthRegisterPageComponent implements OnInit {
       space: 'ms-1',
     }
   }
+  private createModal(): void {
+    this.modalConfig = {
+      title: 'Register user',
+      btnRight: 'OK',
+    }
+  }
 
   showErrorCheckboxTerms(): boolean {
     return this.fcTermsOfService.touched && this.fcTermsOfService.dirty && !this.fgRegister.value.terms;
@@ -155,18 +165,19 @@ export class AuthRegisterPageComponent implements OnInit {
     return this.fcTermsOfService.touched && this.fcTermsOfService.dirty && this.fgRegister.value.terms;
   }
 
+  // Btns Form
   onRegister(): void {
     if( this.fgRegister.valid ) {
       this.isSpinnerActiveBtnRegister = true;
       const user = this.createUser( this.fgRegister.value );
       this.usersService.addUser( user )
         .pipe(
-          delay( 1500 )
+          delay( 1000 )
         )
         .subscribe(
           ( resp ) => {
             if ( resp ) {
-              this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` );
+              this.modalShow = true;
             }
             this.isSpinnerActiveBtnRegister = false;
           }
@@ -194,5 +205,14 @@ export class AuthRegisterPageComponent implements OnInit {
     this.fgRegister.reset();
     this.fgRegister.markAllAsTouched();
     FormHelper.markAllControlsAsDirty( [ this.fgRegister ] );
+  }
+
+  // Btns Modal
+  onClickModalClose(): void {
+    this.modalShow = false;
+    this.fgRegister.reset();
+  }
+  onClickModal(): void {
+    this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` );
   }
 }

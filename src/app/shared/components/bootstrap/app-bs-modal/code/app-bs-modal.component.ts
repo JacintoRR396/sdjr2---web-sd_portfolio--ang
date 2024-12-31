@@ -9,8 +9,8 @@ import { ModalConfig } from '../interfaces/app-bs-comp-modal.interface';
 })
 export class BSModalComponent implements OnChanges {
 
-  @Input({required: true}) modalConfig!: ModalConfig;
   @Input({required: true}) show!: boolean;
+  @Input({required: true}) modalConfig!: ModalConfig;
 
   @Output() evtEmitterBtnClose: EventEmitter<boolean> = new EventEmitter();
   @Output() evtEmitterBtnLeft: EventEmitter<boolean> = new EventEmitter();

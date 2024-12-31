@@ -45,3 +45,10 @@
   </div>
 
 </sdjr2--app-bs-auth-form-template>
+
+<sdjr2--app-bs-modal
+  [show]="modalShow" [modalConfig]="modalConfig"
+  (evtEmitterBtnClose)="onClickModalClose()"
+  (evtEmitterBtnRigth)="onClickModal()">
+    <span>You have successfully registered, press OK to navigate to the login screen.</span>
+</sdjr2--app-bs-modal>

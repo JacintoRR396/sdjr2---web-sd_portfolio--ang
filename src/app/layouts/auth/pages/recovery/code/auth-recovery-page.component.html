@@ -24,3 +24,10 @@
   </div>
 
 </sdjr2--app-bs-auth-form-template>
+
+<sdjr2--app-bs-modal
+  [show]="modalShow" [modalConfig]="modalConfig"
+  (evtEmitterBtnClose)="onClickModalClose()"
+  (evtEmitterBtnRigth)="onClickModal()">
+    <span>You will shortly receive an email with the steps to follow to reset your password.</span>
+</sdjr2--app-bs-modal>

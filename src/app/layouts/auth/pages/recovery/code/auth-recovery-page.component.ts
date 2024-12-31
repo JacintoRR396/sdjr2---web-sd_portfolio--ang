@@ -11,6 +11,7 @@ import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-
 import { FormControlInputConfig } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
+import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
 @Component({
@@ -34,8 +35,10 @@ export class AuthRecoveryPageComponent implements OnInit {
   btnLoginConfigStyle!: ButtonConfigStyle;
   btnRegisterConfig!: ButtonConfig;
   btnRegisterConfigStyle!: ButtonConfigStyle;
-
   isSpinnerActiveBtnRecovery: boolean = false;
+
+  modalConfig!: ModalConfig;
+  modalShow: boolean = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -51,6 +54,7 @@ export class AuthRecoveryPageComponent implements OnInit {
     this.createFormConstrols();
     this.createFormGroup();
     this.createBtns();
+    this.createModal();
   }
 
   get linkLogin(): string {
@@ -106,20 +110,32 @@ export class AuthRecoveryPageComponent implements OnInit {
       space: 'ms-1',
     }
   }
+  private createModal(): void {
+    this.modalConfig = {
+      title: 'Send email',
+      btnRight: 'OK',
+    }
+  }
 
+  // Btns Form
   onRecovery(): void {
     if( this.fgRecovery.valid ) {
       this.isSpinnerActiveBtnRecovery = true;
       const fgValues: FormRegister = this.fgRecovery.value;
       // TODO : send message to email
-      setTimeout(
-        () => console.log( 'J&R' ),
-        2000
-      );
-      this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` )
+      this.modalShow = true;
       this.isSpinnerActiveBtnRecovery = false;
     } else {
       this.messagesStore.showErrors( this.messagesErrorService.getFormNotValid() );
     }
+  }
+
+  // Btns Modal
+  onClickModalClose(): void {
+    this.modalShow = false;
+    this.fgRecovery.reset();
+  }
+  onClickModal(): void {
+    this.router.navigateByUrl( `/${this.navRoutes.auth.self}/${this.navRoutes.auth.login}` );
   }
 }

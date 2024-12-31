@@ -12,8 +12,8 @@ import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
-import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
+import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -24,8 +24,8 @@ export class AuthLoginPageComponent implements OnInit {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
   imgLazyBgConfig!: ImageLazyConfig;
-
   titleForm: string = 'Sign in';
+
   fgLogin!: FormGroup;
   fcEmail!: FormControl;
   fcEmailConfig!: FormControlInputConfig;
@@ -131,6 +131,7 @@ export class AuthLoginPageComponent implements OnInit {
     }
   }
 
+  // Btns Form
   onLogin(): void {
     if( this.fgLogin.valid ) {
       this.isSpinnerActiveBtnLogin = true;
@@ -156,6 +157,7 @@ export class AuthLoginPageComponent implements OnInit {
     }
   }
 
+  // Btns Modal
   onClickModalClose(): void {
     this.modalShow = false;
     this.authStore.logout();
