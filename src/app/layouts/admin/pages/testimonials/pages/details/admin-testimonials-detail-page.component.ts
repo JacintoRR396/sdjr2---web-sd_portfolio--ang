@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 
-import { Testimonial } from '../../../../../../models/interfaces/web-testimonials.interface';
+import { Testimonial } from '../../../../../../models/interfaces/testimonials.interface';
 
-import { WebTestimonialsService } from '../../../../../../services/web-testimonials.service';
+import { WebTestimonialsService } from '../../../../../../services/testimonials.service';
 
 @Component({
   selector: 'sdjr2--admin-testimonials-details-page',

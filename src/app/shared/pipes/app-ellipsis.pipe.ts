@@ -11,5 +11,4 @@ export class EllipsisPipe implements PipeTransform {
     }
     return value.substring(0, limit) + ellipsis;
   }
-
 }

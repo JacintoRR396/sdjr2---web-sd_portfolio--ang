@@ -1,1 +1,53 @@
-<p>auth-register-page works!</p>
+<sdjr2--app-bs-auth-form-template
+  [imgLazyBgConfig]="imgLazyBgConfig" [titleForm]="titleForm" >
+
+  <form class="sctn-register__form" [formGroup]="fgRegister">
+    <sdjr2--app-bs-form-input class="sctn-register__username"
+      [fc]="fcUsername" [fcConfig]="fcUsernameConfig" />
+    <sdjr2--app-bs-form-input class="sctn-register__email"
+      [fc]="fcEmail" [fcConfig]="fcEmailConfig" />
+    <sdjr2--app-bs-form-input class="sctn-register__pwd"
+      [fc]="fcPwd" [fcConfig]="fcPwdConfig" />
+    <sdjr2--app-bs-form-input class="sctn-register__pwd-verify mb-3"
+      [fc]="fcPwdVerify" [fcConfig]="fcPwdVerifyConfig" [fgErrors]="fgRegister.errors!" />
+    <div class="my-3">
+<!--
+      <sdjr2--app-bs-form-input class="sctn-register__terms"
+        [fc]="fcTermsOfService" [fcConfig]="fcTermsOfServiceConfig" />
+-->
+      <div class="sctn-register__terms form-check">
+        <input
+          id="{{ fcTermsOfServiceConfig.name }}" class="sctn-register__terms-val form-check-input" type="checkbox" value=""
+          [ngClass]="{ 'is-invalid': showErrorCheckboxTerms(), 'is-valid': isValidCheckboxTerms()}"
+          [formControl]="fcTermsOfService" />
+        <label class="sctn-register__terms-lbl form-check-label" for="{{ fcTermsOfServiceConfig.name }}">
+          {{ fcTermsOfServiceConfig.lbl }}
+        </label>
+      </div>
+    </div>
+
+    <div class="sctn-register__btns d-flex">
+      <sdjr2--app-bs-btn class="sctn-register__btns-main"
+        [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle"
+        [isDisabled]="!fgRegister.valid"
+        [isSpinnerActive]="isSpinnerActiveBtnRegister"
+        (evtEmitterClick)="onRegister()" />
+      <sdjr2--app-bs-btn class="sctn-register__btns-reset"
+        [btnConfig]="btnResetConfig" [btnConfigStyle]="btnResetConfigStyle"
+        (evtEmitterClick)="onReset()" />
+    </div>
+  </form>
+
+  <div class="sctn-register__login mt-3">
+    <span class="sctn-register__login-txt">Have already an account?</span>
+    <sdjr2--app-bs-btn class="sctn-register__login-btn"
+      [btnConfig]="btnLoginConfig" [btnConfigStyle]="btnLoginConfigStyle" />
+  </div>
+
+</sdjr2--app-bs-auth-form-template>
+
+<sdjr2--app-bs-modal
+  [show]="modalShow" [modalConfig]="modalConfig"
+  (evtEmitterBtnClose)="onClickModalClose()"
+  (evtEmitterBtnRigth)="onClickModal()">
+</sdjr2--app-bs-modal>

@@ -15,6 +15,8 @@ import { WebTestimonialsPageComponent } from './pages/testimonials/code/web-test
 import { WebTestimonialComponent } from './pages/testimonials/components/web-testimonial/web-testimonial.component';
 import { WebContactPageComponent } from './pages/contact/code/web-contact-page.component';
 
+import { WebTestimonialsPathImgPipe } from '../../pipes/testimonials-path-img.pipe';
+
 @NgModule({
   declarations: [
     WebLayoutComponent,
@@ -26,6 +28,7 @@ import { WebContactPageComponent } from './pages/contact/code/web-contact-page.c
     WebTestimonialsPageComponent,
     WebTestimonialComponent,
     WebContactPageComponent,
+    WebTestimonialsPathImgPipe
   ],
   imports: [
     CommonModule,

@@ -10,16 +10,20 @@ import { WebPortfolioPageComponent } from './pages/portfolio/code/web-portfolio-
 import { WebTestimonialsPageComponent } from './pages/testimonials/code/web-testimonials-page.component';
 import { WebContactPageComponent } from './pages/contact/code/web-contact-page.component';
 
+import { NAVIGATION_ROUTES } from '../../models/navigation-routes.model';
+
+const navRoutes = NAVIGATION_ROUTES;
 const routes: Routes = [
   { path: '', component: WebLayoutComponent, children: [
-      { path: 'home', component: WebHomePageComponent },
-      { path: 'about-me', component: WebAboutPageComponent },
-      { path: 'qualification', component: WebQualificationPageComponent },
-      { path: 'services', component: WebServicesPageComponent },
-      { path: 'portfolio', component: WebPortfolioPageComponent },
-      { path: 'testimonials', component: WebTestimonialsPageComponent },
-      { path: 'contact', component: WebContactPageComponent },
-      { path: '**', redirectTo: 'home' },
+      { path: navRoutes.web.home, component: WebHomePageComponent },
+      { path: navRoutes.web.aboutMe, component: WebAboutPageComponent },
+      { path: navRoutes.web.qualification, component: WebQualificationPageComponent },
+      { path: navRoutes.web.services, component: WebServicesPageComponent },
+      { path: navRoutes.web.portfolio, component: WebPortfolioPageComponent },
+      { path: navRoutes.web.testimonials, component: WebTestimonialsPageComponent },
+      { path: navRoutes.web.contact, component: WebContactPageComponent },
+      { path: '', redirectTo: navRoutes.web.home, pathMatch: 'full' },
+      { path: '**', redirectTo: navRoutes.web.home },
     ]
   }
 ];

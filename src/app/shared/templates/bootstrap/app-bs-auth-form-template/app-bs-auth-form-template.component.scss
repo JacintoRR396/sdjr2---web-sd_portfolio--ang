@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.sctn-image {
+  width: 100%;
+}
+.sctn-form {
+  padding: 0.5rem;
+  &__title {
+    text-align: center;
+  }
+}

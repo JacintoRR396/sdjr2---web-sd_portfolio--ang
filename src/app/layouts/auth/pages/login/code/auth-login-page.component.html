@@ -1,1 +1,45 @@
-<p>auth-login-page works!</p>
+<sdjr2--app-bs-auth-form-template
+  [imgLazyBgConfig]="imgLazyBgConfig" [titleForm]="titleForm" >
+
+  <form class="sctn-login__form" [formGroup]="fgLogin">
+    <sdjr2--app-bs-form-input class="sctn-login__email"
+      [fc]="fcEmail" [fcConfig]="fcEmailConfig" />
+    <sdjr2--app-bs-form-input class="sctn-login__pwd"
+      [fc]="fcPwd" [fcConfig]="fcPwdConfig" />
+    <div class="d-flex justify-content-between align-items-baseline mb-2">
+<!--
+      <sdjr2--app-bs-form-input class="sctn-login__remember"
+        [fc]="fcRemember" [fcConfig]="fcRememberConfig" />
+-->
+      <div class="sctn-login__remember form-check">
+        <input
+          id="{{ fcRememberConfig.name }}" class="sctn-login__remember-val form-check-input" type="checkbox" value=""
+          [formControl]="fcRemember" />
+        <label class="sctn-login__remember-lbl form-check-label" for="{{ fcRememberConfig.name }}">
+          {{ fcRememberConfig.lbl }}
+        </label>
+      </div>
+      <sdjr2--app-bs-btn class="sctn-login__forgot-pwd"
+        [btnConfig]="btnForgotPwdConfig" [btnConfigStyle]="btnForgotPwdConfigStyle" />
+    </div>
+
+    <sdjr2--app-bs-btn class="sctn-login__login"
+      [btnConfig]="btnLoginConfig" [btnConfigStyle]="btnLoginConfigStyle"
+      [isDisabled]="!fgLogin.valid"
+      [isSpinnerActive]="isSpinnerActiveBtnLogin"
+      (evtEmitterClick)="onLogin()" />
+  </form>
+
+  <div class="sctn-login__register mt-3">
+    <span class="sctn-login__register-txt">Dont't have an account?</span>
+    <sdjr2--app-bs-btn class="sctn-login__register-btn"
+      [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle" />
+  </div>
+
+</sdjr2--app-bs-auth-form-template>
+
+<sdjr2--app-bs-modal
+  [show]="modalShow" [modalConfig]="modalConfig"
+  (evtEmitterBtnClose)="onClickModalClose()"
+  (evtEmitterBtnRigth)="onClickModal()">
+</sdjr2--app-bs-modal>

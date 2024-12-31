@@ -1,0 +1,22 @@
+.sctn-login {
+  &__remember {
+    width: 10rem;
+    margin: 0 0 0 0.5rem;
+    cursor: pointer;
+    &-val, &-lbl {
+      cursor: pointer;
+    }
+    &-lbl {
+      padding-left: 0.25rem;
+    }
+  }
+  &__register {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 0.9rem;
+    &-txt {
+      vertical-align: text-top;
+    }
+  }
+}
