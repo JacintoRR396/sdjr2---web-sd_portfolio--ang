@@ -1,8 +1,33 @@
 <ul class="header-links__navbar navbar-nav">
-  <ng-container *ngFor="let item of items; index as i">
+  <ng-container *ngIf="isLoggedOut | async">
     <li class="header-links__navitem nav-item">
-      <a class="header-links__navlink nav-link" href="{{ item.urlLink }}">
-        <i class="header-links__icon {{ item.icon }}"></i>
+      <a class="header-links__navlink nav-link"
+        [routerLink]="linkItems[1].routerLink">
+        <i class="header-links__icon {{ linkItems[1].icon }}"></i>
+      </a>
+    </li>
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn | async">
+    <li class="header-links__navitem nav-item">
+      <a class="header-links__navlink nav-link"
+        [routerLink]="linkItems[4].routerLink"
+        (click)="onLogout()"
+        >
+        <i class="header-links__icon {{ linkItems[4].icon }}"></i>
+      </a>
+    </li>
+  </ng-container>
+  <li class="header-links__navitem nav-item">
+    <a class="header-links__navlink nav-link"
+      [routerLink]="linkItems[2].routerLink">
+      <i class="header-links__icon {{ linkItems[2].icon }}"></i>
+    </a>
+  </li>
+  <ng-container *ngIf="isLoggedIn | async">
+    <li class="header-links__navitem nav-item">
+      <a class="header-links__navlink nav-link"
+        [routerLink]="linkItems[3].routerLink">
+        <i class="header-links__icon {{ linkItems[3].icon }}"></i>
       </a>
     </li>
   </ng-container>

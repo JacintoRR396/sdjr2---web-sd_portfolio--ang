@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LoaderService } from '../../services/app-loader.service';
+import { LoaderStore } from '../../store/app-loader.service';
 
 @Component({
   selector: 'sdjr2--app-base-spinner',
@@ -11,10 +11,9 @@ import { LoaderService } from '../../services/app-loader.service';
 })
 export class BaseSpinnerComponent {
 
-  constructor(private readonly loaderService: LoaderService){}
+  constructor( private readonly loaderStore: LoaderStore ){}
 
   get isLoading(): Observable<boolean> {
-    return this.loaderService.isLoading;
+    return this.loaderStore.loading$;
   }
-
 }

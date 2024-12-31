@@ -1,0 +1,11 @@
+.sctn-recovery {
+  &__desc {
+    text-align: justify;
+    margin: 1.5rem 1rem;
+  }
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+}

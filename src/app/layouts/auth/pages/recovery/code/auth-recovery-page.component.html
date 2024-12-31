@@ -1,0 +1,32 @@
+<sdjr2--app-bs-auth-form-template
+  [imgLazyBgConfig]="imgLazyBgConfig" [titleForm]="titleForm" >
+
+  <div class="sctn-recovery__desc">
+    Enter your email address and we'll send you an email with instructions to reset your password.
+  </div>
+
+  <form class="sctn-recovery__form" [formGroup]="fgRecovery">
+    <sdjr2--app-bs-form-input class="sctn-recovery__email mb-3"
+      [fc]="fcEmail" [fcConfig]="fcEmailConfig" />
+
+    <sdjr2--app-bs-btn class="sctn-recovery__register"
+      [btnConfig]="btnRecoveryConfig" [btnConfigStyle]="btnRecoveryConfigStyle"
+      [isDisabled]="!fgRecovery.valid"
+      [isSpinnerActive]="isSpinnerActiveBtnRecovery"
+      (evtEmitterClick)="onRecovery()" />
+  </form>
+
+  <div class="sctn-recovery__links">
+    <sdjr2--app-bs-btn class="sctn-recovery__login-btn"
+      [btnConfig]="btnLoginConfig" [btnConfigStyle]="btnLoginConfigStyle" />
+    <sdjr2--app-bs-btn class="sctn-recovery__register-btn"
+      [btnConfig]="btnRegisterConfig" [btnConfigStyle]="btnRegisterConfigStyle" />
+  </div>
+
+</sdjr2--app-bs-auth-form-template>
+
+<sdjr2--app-bs-modal
+  [show]="modalShow" [modalConfig]="modalConfig"
+  (evtEmitterBtnClose)="onClickModalClose()"
+  (evtEmitterBtnRigth)="onClickModal()">
+</sdjr2--app-bs-modal>

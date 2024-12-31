@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+  <img
+    class="card-img-top img-fluid animate__animated animate__fadeIn"
+    src="{{ imgSrc }}" alt="{{ imgAlt }}"
+    [ngStyle]="{ display: hasLoaded ? '' : 'none' }"
+    [ngClass]="getClassesToApply()"
+    (load)="onLoad()"
+  />
+  <ng-container *ngIf="!hasLoaded">
+    <img
+      class="rounded bg-dark"
+      height="{{ loaderSize }}" width="{{ loaderSize }}"
+      src="{{ loaderType | pathImageLazyLoader }}" alt="Loader not available"
+    />
+  </ng-container>
+</div>

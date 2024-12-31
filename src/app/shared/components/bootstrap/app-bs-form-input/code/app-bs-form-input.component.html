@@ -1,0 +1,40 @@
+<!-- Checkbox & Radio -->
+<ng-container *ngIf="isTypeCheckboxOrRadio(); else inputText">
+  <div class="control-opt__container form-check">
+    <input
+      id="{{ nameControl }}" class="control-opt__val form-check-input"
+      type="{{ typeControl }}"
+      [formControl]="fc" #inputControl />
+    <label class="control-opt__lbl form-label" for="{{ nameControl }}">
+      {{ labelControl }}
+    </label>
+  </div>
+</ng-container>
+<!-- Text, Email, Password -->
+<ng-template #inputText>
+  <label class="control__lbl form-label" for="{{ nameControl }}">
+    <span class="control__lbl-txt text-danger" *ngIf="isMandatory">*</span>
+    {{ labelControl }}
+  </label>
+  <div class="input-group">
+    <ng-container *ngIf="fcConfig.iconBS">
+      <span class="control__icon input-group-text">
+        <i class="bi {{ fcConfig.iconBS }}"></i>
+      </span>
+    </ng-container>
+    <input
+      id="{{ nameControl }}" type="{{ typeControl }}"
+      class="control__val form-control" placeholder="{{ fcConfig.placeHolder || '' }}"
+      [formControl]="fc"
+      [ngClass]="{ 'is-invalid': showErrors(), 'is-valid': isValid()}"
+      #inputControl />
+    <ng-container *ngIf="isTypePassword()">
+      <span class="control__icon-pwd input-group-text" role="button" tabindex="0" (click)="onShowPassword()">
+        <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+      </span>
+    </ng-container>
+    <div id="{{ nameControlHelp }}" class="control__error form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
+      {{ error }}
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,11 @@
+<div class="sctn-image col d-flex">
+  <sdjr2--app-bs-img-lazy class="sctn-image__lazy-img"
+    [imgLazyConfig]="imgLazyBgConfig" />
+</div>
+
+<div class="sctn-form col">
+  <h2 class="sctn-form__title text-dark">{{ titleForm }}</h2>
+  <hr class="border-bottom border-2 border-dark">
+
+  <ng-content #form></ng-content>
+</div>

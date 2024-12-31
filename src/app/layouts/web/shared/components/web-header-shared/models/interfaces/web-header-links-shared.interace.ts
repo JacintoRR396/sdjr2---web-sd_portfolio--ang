@@ -6,5 +6,5 @@ export interface WebHeaderLink {
   id: number;
   icon: string;
   name: string;
-  urlLink: string;
+  routerLink: string;
 }

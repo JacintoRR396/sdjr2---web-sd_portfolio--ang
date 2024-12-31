@@ -1,0 +1,37 @@
+<button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#bsModal" #bsModalBtn>
+  Launch bsModal
+</button>
+
+<div id="bsModal" class="modal fade" tabindex="-1"
+    data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="bsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 *ngIf="modalConfig.title" class="modal-title text-white">{{ modalConfig.title }}</h5>
+        <button
+          type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClickBtnClose()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>{{ modalConfig.msg }}</span>
+      </div>
+      <div class="modal-footer bg-light">
+        <button *ngIf="modalConfig.btnLeft"
+          type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClickBtnLeft()">
+          {{ modalConfig.btnLeft }}
+        </button>
+        <button *ngIf="modalConfig.btnRight"
+          type="button" class="btn btn-primary"
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClickBtnRight()">
+          {{ modalConfig.btnRight }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

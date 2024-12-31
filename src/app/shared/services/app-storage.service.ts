@@ -1,58 +1,95 @@
 import { Injectable } from '@angular/core';
 
+import { MessagesInfoService } from './app-messages-info.service';
+import { MessagesErrorService } from './app-messages-error.service';
+
+import { logConsole, LogginLevel } from '../models/app-debug-operator.model';
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
 
+  constructor(
+    private readonly messagesInfoService: MessagesInfoService,
+    private readonly messagesErrorService: MessagesErrorService,
+  ){}
+
   /* LocalStorage */
-  public loadLocalStoreBase64(name: string): any {
-    if (!localStorage.getItem(name)) return;
-
-    const json: string = localStorage.getItem(name)!;
-    return this.decode(json);
+  public existsLocalStorage( item: string, showLog: boolean = false ): boolean {
+    if ( !localStorage.getItem( item ) ) {
+      if( showLog ) {
+        logConsole( LogginLevel.INFO, 'StorageService', this.messagesErrorService.getStorageNotItemFound( item ) );
+      }
+      return false;
+    }
+    return true;
   }
 
-  public saveLocalStoreBase64(name: string, data: any): void {
-    const jsonStr: string = this.encode(data);
-    localStorage.setItem(name, jsonStr);
+  public loadLocalStorageBase64( item: string, dto: string ): any {
+    if ( !this.existsLocalStorage( item, true ) ) return;
+
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getLocalStorageLoad( dto ) );
+    const json: string = localStorage.getItem( item )!;
+    return this.decode( json );
   }
 
-  public deleteLocalStoreBase64(name: string): void {
-    if (!localStorage.getItem(name)) return;
-
-    localStorage.removeItem(name);
+  public saveLocalStorageBase64( item: string, data: any, dto: string ): void {
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getLocalStorageSave( dto ) );
+    const jsonStr: string = this.encode( data );
+    localStorage.setItem( item, jsonStr );
   }
 
-  public deleteAllLocalStoreBase64(name: string): void {
+  public removeLocalStorageBase64( item: string, dto: string ): void {
+    if ( !this.existsLocalStorage( item, true ) ) return;
+
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getLocalStorageRemove( dto ) );
+    localStorage.removeItem( item );
+  }
+
+  public removeAllLocalStorageBase64(): void {
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getLocalStorageRemoveAll() );
     localStorage.clear();
   }
 
   /* SessionStorage */
-  public loadSessionStoreBase64(name: string): any {
-    if (!sessionStorage.getItem(name)) return;
-
-    const json: string = sessionStorage.getItem(name)!;
-    return this.decode(json);
+  public existsSessionStorage( item: string, showLog: boolean = false ): boolean {
+    if ( !sessionStorage.getItem( item ) ) {
+      if( showLog ) {
+        logConsole( LogginLevel.INFO, 'StorageService', this.messagesErrorService.getStorageNotItemFound( item ) );
+      }
+      return false;
+    }
+    return true;
   }
 
-  public saveSessionStoreBase64(name: string, data: any): void {
-    const jsonStr: string = this.encode(data);
-    sessionStorage.setItem(name, jsonStr);
+  public loadSessionStorageBase64( item: string, dto: string ): any {
+    if ( !this.existsSessionStorage( item, true ) ) return;
+
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getSessionStorageLoad( dto ) );
+    const json: string = sessionStorage.getItem( item )!;
+    return this.decode( json );
   }
 
-  public deleteSessionStoreBase64(name: string): void {
-    if (!sessionStorage.getItem(name)) return;
-
-    sessionStorage.removeItem(name);
+  public saveSessionStorageBase64( item: string, data: any, dto: string ): void {
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getSessionStorageSave( dto ) );
+    const jsonStr: string = this.encode( data );
+    sessionStorage.setItem( item, jsonStr );
   }
 
-  public deleteAllSessionStoreBase64(name: string): void {
+  public removeSessionStorageBase64( item: string, dto: string ): void {
+    if ( !this.existsSessionStorage( item, true ) ) return;
+
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getSessionStorageRemove( dto ) );
+    sessionStorage.removeItem( item );
+  }
+
+  public removeAllSessionStorageBase64(): void {
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getSeesionStorageRemoveAll() );
     sessionStorage.clear();
   }
 
   /* Cookies */
-  public loadCookie(name: string): string {
+  public loadCookie( name: string ): string {
     const cookies: Array<string> = decodeURIComponent(document.cookie).split(';');
     const numCookies: number = cookies.length;
     const cookieName = `${name}=`;
@@ -60,24 +97,28 @@ export class StorageService {
 
     for (let i  = 0; i < numCookies; i += 1) {
       cookie = cookies[i].replace(/^\s+/g, '');
-        if (cookie.startsWith(cookieName)) {
-            return cookie.substring(cookieName.length, cookie.length);
+        if ( cookie.startsWith( cookieName ) ) {
+          logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getCookieLoad( name ) );
+          return cookie.substring( cookieName.length, cookie.length );
         }
     }
 
+    logConsole( LogginLevel.INFO, 'StorageService', this.messagesErrorService.getStorageNotItemFound( name ) );
     return '';
   }
 
-  public saveCookie(name: string, value: string, expireDays: number, path: string = ''): void {
+  public saveCookie( name: string, value: string, expireDays: number, path: string = '' ): void {
     const date: Date = new Date();
     date.setTime(date.getTime() + expireDays * 24 * 60 * 60 * 1000);
     const expires = `expires=${date.toUTCString()}`;
     const pathChain = path ? `; path=${path}` : '';
 
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getCookieSave( name ) );
     document.cookie = `${name}=${value}; ${expires}${pathChain}; SameSite=Lax`;
   }
 
-  public deleteCookie(name: string): void {
+  public removeCookie( name: string ): void {
+    logConsole( LogginLevel.DEBUG, 'StorageService', this.messagesInfoService.getCookieRemove( name ) );
     this.saveCookie(name, '', -1);
   }
 

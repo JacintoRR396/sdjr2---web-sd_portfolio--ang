@@ -1,9 +1,14 @@
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
   <div class="container-fluid">
     <!-- Brand Icon -->
-    <a class="navbar__brand navbar-brand" href="#">
+    <a class="navbar__brand navbar-brand" [routerLink]="linkWeb">
       <img src="assets/images/web/common/programming.svg" alt="Icon about programming" width="30" height="24"/>
-      <span class="p-1">SDJR2</span>
+      <ng-container *ngIf="(user | async) as user; else elseUsername">
+        <span class="p-1">{{ user.username }}</span>
+      </ng-container>
+      <ng-template #elseUsername>
+        <span class="p-1">Username</span>
+      </ng-template>
     </a>
     <!-- Toogler Button -->
     <button type="button"
@@ -17,7 +22,7 @@
     <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
       <!-- Nav Pages -->
       <ul class="navbar-nav">
-        <ng-container *ngFor="let item of items; index as i">
+        <ng-container *ngFor="let item of menuItems; index as i">
           <li class="nav-item">
             <ng-container *ngIf="item.isBasePage; else normalLink">
               <a class="nav-link active" aria-current="page"
