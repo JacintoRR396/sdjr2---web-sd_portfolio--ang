@@ -13,6 +13,7 @@ import { FormControlInputConfig, FormControlInputType } from '../../../../../sha
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
+import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
 
 @Component({
   selector: 'sdjr2--auth-login-page',
@@ -23,8 +24,8 @@ export class AuthLoginPageComponent implements OnInit {
   private readonly navRoutes = NAVIGATION_ROUTES;
 
   imgLazyBgConfig!: ImageLazyConfig;
-  titleForm: string = 'Sign in';
 
+  titleForm: string = 'Sign in';
   fgLogin!: FormGroup;
   fcEmail!: FormControl;
   fcEmailConfig!: FormControlInputConfig;
@@ -39,8 +40,10 @@ export class AuthLoginPageComponent implements OnInit {
   btnLoginConfigStyle!: ButtonConfigStyle;
   btnRegisterConfig!: ButtonConfig;
   btnRegisterConfigStyle!: ButtonConfigStyle;
-
   isSpinnerActiveBtnLogin: boolean = false;
+
+  modalConfig!: ModalConfig;
+  modalShow: boolean = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -56,6 +59,7 @@ export class AuthLoginPageComponent implements OnInit {
     this.createFormConstrols();
     this.createFormGroup();
     this.createBtns();
+    this.createModal();
   }
 
   get linkRecovery(): string {
@@ -120,6 +124,12 @@ export class AuthLoginPageComponent implements OnInit {
       space: 'ms-1',
     }
   }
+  private createModal(): void {
+    this.modalConfig = {
+      title: 'Login success',
+      btnRight: 'OK',
+    }
+  }
 
   onLogin(): void {
     if( this.fgLogin.valid ) {
@@ -127,12 +137,12 @@ export class AuthLoginPageComponent implements OnInit {
       const fgValues: FormLogin = this.fgLogin.value;
       this.authStore.login( fgValues.email, fgValues.pwd, fgValues.remember )
         .pipe(
-          delay( 500 )
+          delay( 1000 )
         )
         .subscribe(
           ( resp ) => {
             if( resp?.isActive ) {
-              this.router.navigateByUrl( `/${this.navRoutes.web.self}` );
+              this.modalShow = true;
             } else if ( !!resp && !resp.isActive ) {
               this.messagesStore.showErrors( this.messagesErrorService.getFormAccountIsInactive() );
             } else {
@@ -144,5 +154,13 @@ export class AuthLoginPageComponent implements OnInit {
     } else {
       this.messagesStore.showErrors( this.messagesErrorService.getFormNotValid() );
     }
+  }
+
+  onClickModalClose(): void {
+    this.modalShow = false;
+    this.authStore.logout();
+  }
+  onClickModal(): void {
+    this.router.navigateByUrl( `/${this.navRoutes.web.self}` );
   }
 }
