@@ -11,6 +11,7 @@ import { MessagesErrorService } from '../../../../../shared/services/app-message
 
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
+import { FormControlInputOptConfig, FormControlInputOptType } from '../../../../../shared/components/bootstrap/app-bs-form-input-opt/interfaces/app-comp-form-input-opt.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormHelper, FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { RoleType, User } from '../../../../../shared/models/interfaces/app-users.interface';
@@ -38,7 +39,7 @@ export class AuthRegisterPageComponent implements OnInit {
   fcPwdVerify!: FormControl;
   fcPwdVerifyConfig!: FormControlInputConfig;
   fcTermsOfService!: FormControl;
-  fcTermsOfServiceConfig!: FormControlInputConfig;
+  fcTermsOfServiceConfig!: FormControlInputOptConfig;
 
   btnRegisterConfig!: ButtonConfig;
   btnRegisterConfigStyle!: ButtonConfigStyle;
@@ -101,11 +102,10 @@ export class AuthRegisterPageComponent implements OnInit {
     this.fcPwdVerifyConfig = this.formsService.createFormControlInputPwdVerify();
     this.fcPwdVerify = this.fb.control( this.fcPwdVerifyConfig.valueDefault, this.fcPwdVerifyConfig.validators );
     this.fcTermsOfServiceConfig = {
-      type: FormControlInputType.CHECKBOX,
+      type: FormControlInputOptType.CHECKBOX,
       name: 'terms',
       lbl: 'I agree all statements in Terms of service',
       valueDefault: '',
-      isMandatory: true,
     };
     this.fcTermsOfService = this.fb.control( this.fcTermsOfServiceConfig.valueDefault, Validators.requiredTrue );
   }

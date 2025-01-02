@@ -3,13 +3,14 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 
-import { FormsService } from '../../../../../shared/services/app-forms.service';
 import { AuthStore } from '../../../../../shared/store/app-auth.service';
+import { FormsService } from '../../../../../shared/services/app-forms.service';
 import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
 
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
-import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
+import { FormControlInputConfig } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
+import { FormControlInputOptConfig, FormControlInputOptType } from '../../../../../shared/components/bootstrap/app-bs-form-input-opt/interfaces/app-comp-form-input-opt.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormLogin } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
@@ -32,7 +33,7 @@ export class AuthLoginPageComponent implements OnInit {
   fcPwd!: FormControl;
   fcPwdConfig!: FormControlInputConfig;
   fcRemember!: FormControl;
-  fcRememberConfig!: FormControlInputConfig;
+  fcRememberConfig!: FormControlInputOptConfig;
 
   btnForgotPwdConfig!: ButtonConfig;
   btnForgotPwdConfigStyle!: ButtonConfigStyle;
@@ -48,8 +49,8 @@ export class AuthLoginPageComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
-    private readonly formsService: FormsService,
     private readonly authStore: AuthStore,
+    private readonly formsService: FormsService,
     private readonly messagesStore: MessagesStore,
     private readonly messagesErrorService: MessagesErrorService,
   ) {}
@@ -81,11 +82,10 @@ export class AuthLoginPageComponent implements OnInit {
     this.fcPwdConfig = this.formsService.createFormControlInputPwd();
     this.fcPwd = this.fb.control( this.fcPwdConfig.valueDefault, this.fcPwdConfig.validators );
     this.fcRememberConfig = {
-      type: FormControlInputType.CHECKBOX,
+      type: FormControlInputOptType.CHECKBOX,
       name: 'remember',
       lbl: 'Remember me',
       valueDefault: '',
-      isMandatory: false,
     };
     this.fcRemember = this.fb.control( this.fcRememberConfig.valueDefault );
   }
