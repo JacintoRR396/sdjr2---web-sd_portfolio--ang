@@ -113,6 +113,7 @@ export class AuthRecoveryPageComponent implements OnInit {
   private createModal(): void {
     this.modalConfig = {
       title: 'Send email',
+      btnClose: true,
       btnRight: 'OK',
       msg: 'You will shortly receive an email with the steps to follow to reset your password.',
     }

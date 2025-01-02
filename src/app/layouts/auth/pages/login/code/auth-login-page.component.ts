@@ -127,6 +127,7 @@ export class AuthLoginPageComponent implements OnInit {
   private createModal(): void {
     this.modalConfig = {
       title: 'Login success',
+      btnClose: false,
       btnRight: 'OK',
       msg: "You have logged in successfully, press 'OK' to access the Web.",
     }

@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header bg-primary">
         <h5 *ngIf="modalConfig.title" class="modal-title text-white">{{ modalConfig.title }}</h5>
-        <button
+        <button *ngIf="modalConfig.btnClose"
           type="button" class="btn-close"
           data-bs-dismiss="modal" aria-label="Close"
           (click)="onClickBtnClose()">
