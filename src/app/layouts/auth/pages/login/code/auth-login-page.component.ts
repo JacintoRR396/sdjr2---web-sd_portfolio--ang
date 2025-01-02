@@ -42,8 +42,8 @@ export class AuthLoginPageComponent implements OnInit {
   btnRegisterConfigStyle!: ButtonConfigStyle;
   isSpinnerActiveBtnLogin: boolean = false;
 
-  modalConfig!: ModalConfig;
   modalShow: boolean = false;
+  modalConfig!: ModalConfig;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -56,7 +56,7 @@ export class AuthLoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.createImgBg();
-    this.createFormConstrols();
+    this.createFormControls();
     this.createFormGroup();
     this.createBtns();
     this.createModal();
@@ -75,7 +75,7 @@ export class AuthLoginPageComponent implements OnInit {
       alt: "Image background about Auth Login"
     }
   }
-  private createFormConstrols(): void {
+  private createFormControls(): void {
     this.fcEmailConfig = this.formsService.createFormControlInputEmail();
     this.fcEmail = this.fb.control( this.fcEmailConfig.valueDefault, this.fcEmailConfig.validators );
     this.fcPwdConfig = this.formsService.createFormControlInputPwd();

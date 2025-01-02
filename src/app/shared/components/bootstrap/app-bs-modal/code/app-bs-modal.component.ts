@@ -14,7 +14,7 @@ export class BSModalComponent implements OnChanges {
 
   @Output() evtEmitterBtnClose: EventEmitter<boolean> = new EventEmitter();
   @Output() evtEmitterBtnLeft: EventEmitter<boolean> = new EventEmitter();
-  @Output() evtEmitterBtnRigth: EventEmitter<boolean> = new EventEmitter();
+  @Output() evtEmitterBtnRight: EventEmitter<boolean> = new EventEmitter();
 
   @ViewChild('bsModalBtn') bsModalBtnDOM!: ElementRef<HTMLButtonElement>;
 
@@ -31,6 +31,6 @@ export class BSModalComponent implements OnChanges {
     this.evtEmitterBtnLeft.emit( true );
   }
   onClickBtnRight(): void {
-    this.evtEmitterBtnRigth.emit( true );
+    this.evtEmitterBtnRight.emit( true );
   }
 }

@@ -48,8 +48,8 @@ export class AuthRegisterPageComponent implements OnInit {
   btnLoginConfigStyle!: ButtonConfigStyle;
   isSpinnerActiveBtnRegister: boolean = false;
 
-  modalConfig!: ModalConfig;
   modalShow: boolean = false;
+  modalConfig!: ModalConfig;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -63,7 +63,7 @@ export class AuthRegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.createImgBg();
-    this.createFormConstrols();
+    this.createFormControls();
     this.createFormGroup();
     this.createBtns();
     this.createModal();
@@ -79,7 +79,7 @@ export class AuthRegisterPageComponent implements OnInit {
       alt: "Image background about Auth Register"
     }
   }
-  private createFormConstrols(): void {
+  private createFormControls(): void {
     this.fcUsernameConfig = {
       type: FormControlInputType.TEXT,
       name: 'username',
