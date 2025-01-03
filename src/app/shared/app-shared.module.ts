@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BSBtnComponent } from './components/bootstrap/app-bs-btn/code/app-bs-btn.component';
 import { BSFormInputComponent } from './components/bootstrap/app-bs-form-input/code/app-bs-form-input.component';
+import { BSFormInputOptComponent } from './components/bootstrap/app-bs-form-input-opt/code/app-bs-form-input-opt.component';
 import { BSImgLazyComponent } from './components/bootstrap/app-bs-img-lazy/code/app-bs-img-lazy.component';
 import { PathImageLazyLoaderPipe } from './components/bootstrap/app-bs-img-lazy/pipes/app-path-image-lazy-loader.pipe';
 import { BSModalMessagesComponent } from './components/bootstrap/app-bs-modal-messages/app-bs-modal-messages.component';
@@ -29,6 +30,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
   declarations: [
     BSBtnComponent,
     BSFormInputComponent,
+    BSFormInputOptComponent,
     BSImgLazyComponent,
     PathImageLazyLoaderPipe,
     BSModalComponent,
@@ -51,6 +53,7 @@ import { OnlyOneErrorValidatorPipe } from './pipes/app-only-one-error-validator.
   exports: [
     BSBtnComponent,
     BSFormInputComponent,
+    BSFormInputOptComponent,
     BSImgLazyComponent,
     BSModalComponent,
     BSModalMessagesComponent,

@@ -11,6 +11,7 @@ import { MessagesErrorService } from '../../../../../shared/services/app-message
 
 import { ImageLazyConfig } from '../../../../../shared/components/bootstrap/app-bs-img-lazy/interfaces/app-comp-img-lazy.interface';
 import { FormControlInputConfig, FormControlInputType } from '../../../../../shared/components/bootstrap/app-bs-form-input/interfaces/app-comp-form-input.interface';
+import { FormControlInputOptConfig, FormControlInputOptType } from '../../../../../shared/components/bootstrap/app-bs-form-input-opt/interfaces/app-comp-form-input-opt.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormHelper, FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
 import { RoleType, User } from '../../../../../shared/models/interfaces/app-users.interface';
@@ -38,7 +39,7 @@ export class AuthRegisterPageComponent implements OnInit {
   fcPwdVerify!: FormControl;
   fcPwdVerifyConfig!: FormControlInputConfig;
   fcTermsOfService!: FormControl;
-  fcTermsOfServiceConfig!: FormControlInputConfig;
+  fcTermsOfServiceConfig!: FormControlInputOptConfig;
 
   btnRegisterConfig!: ButtonConfig;
   btnRegisterConfigStyle!: ButtonConfigStyle;
@@ -48,8 +49,8 @@ export class AuthRegisterPageComponent implements OnInit {
   btnLoginConfigStyle!: ButtonConfigStyle;
   isSpinnerActiveBtnRegister: boolean = false;
 
-  modalConfig!: ModalConfig;
   modalShow: boolean = false;
+  modalConfig!: ModalConfig;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -63,7 +64,7 @@ export class AuthRegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.createImgBg();
-    this.createFormConstrols();
+    this.createFormControls();
     this.createFormGroup();
     this.createBtns();
     this.createModal();
@@ -79,7 +80,7 @@ export class AuthRegisterPageComponent implements OnInit {
       alt: "Image background about Auth Register"
     }
   }
-  private createFormConstrols(): void {
+  private createFormControls(): void {
     this.fcUsernameConfig = {
       type: FormControlInputType.TEXT,
       name: 'username',
@@ -101,11 +102,10 @@ export class AuthRegisterPageComponent implements OnInit {
     this.fcPwdVerifyConfig = this.formsService.createFormControlInputPwdVerify();
     this.fcPwdVerify = this.fb.control( this.fcPwdVerifyConfig.valueDefault, this.fcPwdVerifyConfig.validators );
     this.fcTermsOfServiceConfig = {
-      type: FormControlInputType.CHECKBOX,
+      type: FormControlInputOptType.CHECKBOX,
       name: 'terms',
       lbl: 'I agree all statements in Terms of service',
       valueDefault: '',
-      isMandatory: true,
     };
     this.fcTermsOfService = this.fb.control( this.fcTermsOfServiceConfig.valueDefault, Validators.requiredTrue );
   }
@@ -154,6 +154,7 @@ export class AuthRegisterPageComponent implements OnInit {
   private createModal(): void {
     this.modalConfig = {
       title: 'Register user',
+      btnClose: true,
       btnRight: 'OK',
       msg: "You have successfully registered, press 'OK' to navigate to the login screen.",
     }
