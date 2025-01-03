@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 
 import { MessagesErrorService } from '../../../../services/app-messages-error.service';
 
@@ -11,43 +11,29 @@ import { FormControlInputConfig, FormControlInputHelper } from '../interfaces/ap
   templateUrl: './app-bs-form-input.component.html',
   styleUrl: './app-bs-form-input.component.scss'
 })
-export class BSFormInputComponent implements OnInit, AfterViewInit {
+export class BSFormInputComponent implements OnInit, OnDestroy {
 
   @Input({required: true}) fc!: FormControl;
   @Input({required: true}) fcConfig!: FormControlInputConfig;
   @Input() fgErrors!: ValidationErrors;
   @ViewChild('inputControl') inputControl! : ElementRef<HTMLInputElement>;
 
+  subsValueChanges!: Subscription;
   error = '';
   canShowPassword: boolean = false;
-  isChecked: boolean = false;
 
   constructor(
     private readonly messagesErrorService: MessagesErrorService
   ){}
 
   ngOnInit(): void {
-    if( !this.isTypeCheckboxOrRadio() ) {
-      this.fc.valueChanges
-        .pipe( debounceTime( 300 ), distinctUntilChanged() )
-        .subscribe( () => this.error = this.checkErrors() );
-    }
-
+    this.subsValueChanges = this.fc.valueChanges
+      .pipe( debounceTime( 300 ), distinctUntilChanged() )
+      .subscribe( () => this.error = this.checkErrors() );
   }
-  ngAfterViewInit(): void {
-    if( this.isTypeCheckboxOrRadio() ) {
-      this.fc.valueChanges
-        .pipe(
-          tap( resp => {
-            if( resp === 'false' || resp === '' ) {
-              this.inputControl.nativeElement.value = 'true';
-            } else {
-              this.inputControl.nativeElement.value = 'false';
-            }
-          })
-        )
-        .subscribe();
-    }
+
+  ngOnDestroy(): void {
+    this.subsValueChanges?.unsubscribe();
   }
 
   get nameControl(): string {
@@ -86,8 +72,7 @@ export class BSFormInputComponent implements OnInit, AfterViewInit {
       return this.messagesErrorService.getFormControlPwdFormat();
     } else if ( this.fgErrors?.['pwdVerify'] ) {
       return this.messagesErrorService.getFormControlPwdVerify();
-    }
-     else {
+    } else {
       return '';
     }
   }
@@ -113,10 +98,5 @@ export class BSFormInputComponent implements OnInit, AfterViewInit {
     } else {
       this.inputControl.nativeElement.type = 'password';
     }
-  }
-
-  // Checkbox, Radio
-  isTypeCheckboxOrRadio(): boolean {
-    return FormControlInputHelper.typeIsCheckboxOrRadio( this.fcConfig.type );
   }
 }

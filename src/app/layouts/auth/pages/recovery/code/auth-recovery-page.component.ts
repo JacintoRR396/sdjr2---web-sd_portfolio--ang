@@ -37,8 +37,8 @@ export class AuthRecoveryPageComponent implements OnInit {
   btnRegisterConfigStyle!: ButtonConfigStyle;
   isSpinnerActiveBtnRecovery: boolean = false;
 
-  modalConfig!: ModalConfig;
   modalShow: boolean = false;
+  modalConfig!: ModalConfig;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -51,7 +51,7 @@ export class AuthRecoveryPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.createImgBg();
-    this.createFormConstrols();
+    this.createFormControls();
     this.createFormGroup();
     this.createBtns();
     this.createModal();
@@ -70,7 +70,7 @@ export class AuthRecoveryPageComponent implements OnInit {
       alt: "Image background about Auth Register"
     }
   }
-  private createFormConstrols(): void {
+  private createFormControls(): void {
     const emailNotExistsAsyncValidator = this.validatorsService.createFcEmailNotExistsAsyncValidator();
     this.fcEmailConfig = this.formsService.createFormControlInputEmail( [ emailNotExistsAsyncValidator ] );
     this.fcEmail = this.fb.control(
@@ -113,6 +113,7 @@ export class AuthRecoveryPageComponent implements OnInit {
   private createModal(): void {
     this.modalConfig = {
       title: 'Send email',
+      btnClose: true,
       btnRight: 'OK',
       msg: 'You will shortly receive an email with the steps to follow to reset your password.',
     }
