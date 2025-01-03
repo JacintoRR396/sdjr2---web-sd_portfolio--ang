@@ -123,13 +123,13 @@ export class StorageService {
   }
 
   /* Helper Methods */
-  private encode(data: any): string {
-    const encodeBase64: string = btoa(data);
-    return JSON.stringify(encodeBase64);
+  private encode( data: any ): string {
+    const key = JSON.stringify( data );
+    return btoa( key );
   }
 
-  private decode(json: string): any {
-    const obj: string = JSON.parse(json);
-    return atob(obj);
+  private decode( json: string ): any {
+    const key = atob( json );
+    return JSON.parse( key );
   }
 }

@@ -20,6 +20,11 @@ export const NAVIGATION_ROUTES = {
   },
   admin: {
     self: 'admin',
+    users: 'user',
+    qualification: 'qualification',
+    services: 'services',
+    portfolio: 'portfolio',
+    testimonials: 'testimonials'
   },
   helperRoot: '',
   helperFather: '../'

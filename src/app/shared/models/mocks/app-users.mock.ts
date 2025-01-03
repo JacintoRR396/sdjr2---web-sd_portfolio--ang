@@ -27,7 +27,7 @@ const roles: Role[] = ROLES;
 export const USERS: User[] = [
   {
     id: 1,
-    urlIcon: 'web/common/male_avatar.svg',
+    urlIcon: '/assets/images/web/common/male_avatar.svg',
     username: 'SDJR2',
     email: 'balbino_v12@hotmail.com',
     password: '12345Aa$',
@@ -40,7 +40,7 @@ export const USERS: User[] = [
   },
   {
     id: 2,
-    urlIcon: 'web/common/female_avatar.svg',
+    urlIcon: '/assets/images/web/common/female_avatar.svg',
     username: 'MAR',
     email: 'marviso@gmail.com',
     password: '12345Aa$',

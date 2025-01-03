@@ -1,44 +1,43 @@
-import { WebHeaderMenu } from "../interfaces/web-header-menu-shared.interface";
+import { NavLinks } from "../../../../../../../shared/models/interfaces/app-nav-links.interface";
 import { NAVIGATION_ROUTES } from "../../../../../../../models/navigation-routes.model";
 
 const navRoutes = NAVIGATION_ROUTES;
-export const WEB_MENU_HEADER: WebHeaderMenu = {
+export const ADMIN_SIDEBAR_MENU: NavLinks = {
   items: [
     {
       id: 1,
       isBasePage: true,
-      name: "Home",
-      routerLink: navRoutes.web.home
+      icon: 'bi-people',
+      name: "Users",
+      href: navRoutes.admin.users
     },
     {
       id: 2,
       isBasePage: true,
+      icon: 'bi-book',
       name: "Qualification",
-      routerLink: navRoutes.web.qualification
+      href: navRoutes.admin.qualification
     },
     {
       id: 3,
       isBasePage: true,
+      icon: 'bi-list-task',
       name: "Services",
-      routerLink: navRoutes.web.services
+      href: navRoutes.admin.services
     },
     {
       id: 4,
       isBasePage: true,
+      icon: 'bi-window-stack',
       name: "Portfolio",
-      routerLink: navRoutes.web.portfolio
+      href: navRoutes.admin.portfolio
     },
     {
       id: 5,
       isBasePage: true,
+      icon: 'bi-chat-dots',
       name: "Testimonials",
-      routerLink: navRoutes.web.testimonials
+      href: navRoutes.admin.testimonials
     },
-    {
-      id: 6,
-      isBasePage: true,
-      name: "Contact",
-      routerLink: navRoutes.web.contact
-    }
   ]
 };

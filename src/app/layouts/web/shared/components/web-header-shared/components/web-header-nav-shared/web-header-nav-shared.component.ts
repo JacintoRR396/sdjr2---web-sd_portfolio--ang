@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { AuthStore } from '../../../../../../../shared/store/app-auth.service';
 
 import { User } from '../../../../../../../shared/models/interfaces/app-users.interface';
-import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interace';
-import { WebHeaderMenuItem } from '../../models/interfaces/web-header-menu-shared.interace';
+import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interface';
+import { WebHeaderMenuItem } from '../../models/interfaces/web-header-menu-shared.interface';
 import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';
 import { WEB_MENU_HEADER } from '../../models/mocks/web-header-menu-shared.mock';
 

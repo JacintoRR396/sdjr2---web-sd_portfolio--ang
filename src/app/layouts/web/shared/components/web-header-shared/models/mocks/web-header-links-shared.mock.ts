@@ -1,4 +1,4 @@
-import { WebHeaderLinks } from "../interfaces/web-header-links-shared.interace";
+import { WebHeaderLinks } from "../interfaces/web-header-links-shared.interface";
 import { NAVIGATION_ROUTES } from "../../../../../../../models/navigation-routes.model";
 
 const navRoutes = NAVIGATION_ROUTES;
