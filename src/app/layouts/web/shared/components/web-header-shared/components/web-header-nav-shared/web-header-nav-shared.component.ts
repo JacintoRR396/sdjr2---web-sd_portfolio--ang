@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthStore } from '../../../../../../../shared/store/app-auth.service';
+import { AuthStore } from '../../../../../../auth/shared/store/auth-store.service';
 
-import { User } from '../../../../../../../shared/models/interfaces/app-users.interface';
+import { User } from '../../../../../../auth/shared/models/interfaces/auth-users.interface';
 import { WebHeaderLink } from '../../models/interfaces/web-header-links-shared.interface';
 import { WebHeaderMenuItem } from '../../models/interfaces/web-header-menu-shared.interface';
 import { WEB_LINKS_HEADER } from '../../models/mocks/web-header-links-shared.mock';

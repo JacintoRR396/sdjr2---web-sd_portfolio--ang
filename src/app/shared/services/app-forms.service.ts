@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AsyncValidatorFn, Validators } from '@angular/forms';
+import { AsyncValidatorFn, FormControl, ValidationErrors, Validators } from '@angular/forms';
 
 import { ValidatorsService } from './app-validators.service';
 
@@ -14,7 +14,8 @@ export class FormsService {
     private readonly validatorsService: ValidatorsService,
   ) { }
 
-  createFormControlInputEmail( asyncValidators: AsyncValidatorFn[] = [] ): FormControlInputConfig {
+  // User
+  createFcInputEmail( asyncValidators: AsyncValidatorFn[] = [] ): FormControlInputConfig {
     return {
       type: FormControlInputType.EMAIL,
       name: 'email',
@@ -28,7 +29,7 @@ export class FormsService {
     };
   }
 
-  createFormControlInputPwd(): FormControlInputConfig {
+  createFcInputPwd(): FormControlInputConfig {
     return {
       type: FormControlInputType.PASSWORD,
       name: 'pwd',
@@ -42,7 +43,7 @@ export class FormsService {
     };
   }
 
-  createFormControlInputPwdVerify(): FormControlInputConfig {
+  createFcInputPwdVerify(): FormControlInputConfig {
     return {
       type: FormControlInputType.PASSWORD,
       name: 'pwd_verify',
@@ -54,5 +55,22 @@ export class FormsService {
         this.validatorsService.createFcPwdStrengthValidator() ],
       isMandatory: true,
     };
+  }
+
+  // Helpers
+  isValidFc( fc: FormControl, fgErrors?: ValidationErrors ): boolean {
+    return fc.touched && fc.dirty &&
+      ( fc.errors === null && fgErrors === undefined || fgErrors === null );
+  }
+  showErrorsFc( fc: FormControl, fgErrors?: ValidationErrors ): boolean {
+    return fc.touched && fc.dirty && ( !!fc.errors || !!fgErrors );
+  }
+    // Text, Email, Password
+  checkErrorsFcInput( fc: FormControl, fcLabel: string, fgErrors?: ValidationErrors ): string {
+    if( fgErrors ) {
+      return this.validatorsService.checkErrorsFCInput( fc, fcLabel, fgErrors );
+    } else {
+      return this.validatorsService.checkErrorsFCInput( fc, fcLabel );
+    }
   }
 }

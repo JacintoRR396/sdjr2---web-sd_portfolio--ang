@@ -1,4 +1,5 @@
-import { Role, RoleType, User } from "../interfaces/app-users.interface";
+import { Role, RoleType, User } from "../interfaces/auth-users.interface";
+
 
 export const ROLES: Role[] = [
   {

@@ -20,7 +20,7 @@
       <i [ngClass]="canShowPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
     </span>
   </ng-container>
-  <div id="{{ nameControlHelp }}" class="control__error form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
+  <small id="{{ nameControlHelp }}" class="control__error form-text invalid-feedback ps-3 pe-2" *ngIf="showErrors()">
     {{ error }}
-  </div>
+  </small>
 </div>

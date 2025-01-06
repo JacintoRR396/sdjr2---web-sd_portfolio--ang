@@ -72,7 +72,7 @@ export class AuthRecoveryPageComponent implements OnInit {
   }
   private createFormControls(): void {
     const emailNotExistsAsyncValidator = this.validatorsService.createFcEmailNotExistsAsyncValidator();
-    this.fcEmailConfig = this.formsService.createFormControlInputEmail( [ emailNotExistsAsyncValidator ] );
+    this.fcEmailConfig = this.formsService.createFcInputEmail( [ emailNotExistsAsyncValidator ] );
     this.fcEmail = this.fb.control(
       this.fcEmailConfig.valueDefault, { validators: this.fcEmailConfig.validators, asyncValidators: this.fcEmailConfig.asyncValidators } );
   }

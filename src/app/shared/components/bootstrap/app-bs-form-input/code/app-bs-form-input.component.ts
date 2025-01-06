@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@ang
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 
-import { MessagesErrorService } from '../../../../services/app-messages-error.service';
+import { FormsService } from '../../../../services/app-forms.service';
 
 import { FormControlInputConfig, FormControlInputHelper } from '../interfaces/app-comp-form-input.interface';
 
@@ -23,7 +23,7 @@ export class BSFormInputComponent implements OnInit, OnDestroy {
   canShowPassword: boolean = false;
 
   constructor(
-    private readonly messagesErrorService: MessagesErrorService
+    private readonly formsService: FormsService,
   ){}
 
   ngOnInit(): void {
@@ -52,39 +52,14 @@ export class BSFormInputComponent implements OnInit, OnDestroy {
     return this.fcConfig.isMandatory;
   }
 
-  // Text, Email, Password
-  checkErrors(): string {
-    if( this.fc.errors?.['required'] ) {
-      return this.messagesErrorService.getFormControlRequired( this.labelControl.toLocaleLowerCase() );
-    } else if( this.fc.errors?.['minlength'] ) {
-      return this.messagesErrorService.getFormControlMinLength(
-        this.nameControl, this.fc.errors?.['minlength'].requiredLength, this.fc.errors?.['minlength'].actualLength );
-    } else if( this.fc.errors?.['maxlength'] ) {
-      return this.messagesErrorService.getFormControlMaxLength(
-        this.nameControl, this.fc.errors?.['maxlength'].requiredLength, this.fc.errors?.['maxlength'].actualLength );
-    } else if( this.fc.errors?.['email'] ) {
-      return this.messagesErrorService.getFormControlEmailFormat();
-    } else if( this.fc.errors?.['emailExists'] ) {
-      return this.messagesErrorService.getFormControlEmailExists();
-    } else if( this.fc.errors?.['emailNotExists'] ) {
-      return this.messagesErrorService.getFormControlEmailNotExists();
-    } else if( this.fc.errors?.['pwdStrength'] ) {
-      return this.messagesErrorService.getFormControlPwdFormat();
-    } else if ( this.fgErrors?.['pwdVerify'] ) {
-      return this.messagesErrorService.getFormControlPwdVerify();
-    } else {
-      return '';
-    }
-  }
-
-  showErrors(): boolean {
-    return this.fc.touched && this.fc.dirty &&
-      ( !!this.fc.errors || !!this.fgErrors );
-  }
-
   isValid(): boolean {
-    return this.fc.touched && this.fc.dirty &&
-      ( this.fc.errors === null && this.fgErrors === undefined || this.fgErrors === null );
+    return this.formsService.isValidFc( this.fc, this.fgErrors );
+  }
+  showErrors(): boolean {
+    return this.formsService.showErrorsFc( this.fc, this.fgErrors );
+  }
+  checkErrors(): string {
+    return this.formsService.checkErrorsFcInput( this.fc, this.labelControl, this.fgErrors );
   }
 
   isTypePassword(): boolean {

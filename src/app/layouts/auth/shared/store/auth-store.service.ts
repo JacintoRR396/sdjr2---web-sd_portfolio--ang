@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
-import { UsersService } from '../services/app-users.service';
-import { StorageService } from '../services/app-storage.service';
+import { UsersService } from '../services/auth-users.service';
+import { StorageService } from '../../../../shared/services/app-storage.service';
 
-import { User } from '../models/interfaces/app-users.interface';
+import { User } from '../models/interfaces/auth-users.interface';
 
 const AUTH_DATA = "auth_data";
 

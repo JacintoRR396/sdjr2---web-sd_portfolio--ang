@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthStore } from '../../../../../../shared/store/app-auth.service';
-import { User } from '../../../../../../shared/models/interfaces/app-users.interface';
+import { AuthStore } from '../../../../../auth/shared/store/auth-store.service';
+
+import { User } from '../../../../../auth/shared/models/interfaces/auth-users.interface';
 import { ADMIN_SIDEBAR_MENU } from '../models/mocks/admin-sidebar-menu-shared.mock';
 import { NavLinkItem } from '../../../../../../shared/models/interfaces/app-nav-links.interface';
 

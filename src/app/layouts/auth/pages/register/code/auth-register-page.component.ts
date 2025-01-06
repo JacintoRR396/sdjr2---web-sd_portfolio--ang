@@ -5,7 +5,7 @@ import { delay } from 'rxjs';
 
 import { FormsService } from '../../../../../shared/services/app-forms.service';
 import { ValidatorsService } from '../../../../../shared/services/app-validators.service';
-import { UsersService } from '../../../../../shared/services/app-users.service';
+import { UsersService } from '../../../shared/services/auth-users.service';
 import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
 
@@ -14,7 +14,7 @@ import { FormControlInputConfig, FormControlInputType } from '../../../../../sha
 import { FormControlInputOptConfig, FormControlInputOptType } from '../../../../../shared/components/bootstrap/app-bs-form-input-opt/interfaces/app-comp-form-input-opt.interface';
 import { ButtonConfig, ButtonConfigStyle, ButtonType } from '../../../../../shared/components/bootstrap/app-bs-btn/interfaces/app-comp-btn.interface';
 import { FormHelper, FormRegister } from '../../../../../shared/models/interfaces/app-forms.interface';
-import { RoleType, User } from '../../../../../shared/models/interfaces/app-users.interface';
+import { RoleType, User } from '../../../shared/models/interfaces/auth-users.interface';
 import { ModalConfig } from '../../../../../shared/components/bootstrap/app-bs-modal/interfaces/app-bs-comp-modal.interface';
 import { NAVIGATION_ROUTES } from '../../../../../models/navigation-routes.model';
 
@@ -93,13 +93,13 @@ export class AuthRegisterPageComponent implements OnInit {
     };
     this.fcUsername = this.fb.control( this.fcUsernameConfig.valueDefault, this.fcUsernameConfig.validators );
     const emailExistsAsyncValidator = this.validatorsService.createFcEmailExistsAsyncValidator();
-    this.fcEmailConfig = this.formsService.createFormControlInputEmail( [ emailExistsAsyncValidator ] );
+    this.fcEmailConfig = this.formsService.createFcInputEmail( [ emailExistsAsyncValidator ] );
     this.fcEmail = this.fb.control(
       this.fcEmailConfig.valueDefault, { validators: this.fcEmailConfig.validators, asyncValidators: this.fcEmailConfig.asyncValidators } );
 
-    this.fcPwdConfig = this.formsService.createFormControlInputPwd();
+    this.fcPwdConfig = this.formsService.createFcInputPwd();
     this.fcPwd = this.fb.control( this.fcPwdConfig.valueDefault, this.fcPwdConfig.validators );
-    this.fcPwdVerifyConfig = this.formsService.createFormControlInputPwdVerify();
+    this.fcPwdVerifyConfig = this.formsService.createFcInputPwdVerify();
     this.fcPwdVerify = this.fb.control( this.fcPwdVerifyConfig.valueDefault, this.fcPwdVerifyConfig.validators );
     this.fcTermsOfServiceConfig = {
       type: FormControlInputOptType.CHECKBOX,

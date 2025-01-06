@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 
-import { AuthStore } from '../../../../../shared/store/app-auth.service';
+import { AuthStore } from '../../../shared/store/auth-store.service';
 import { FormsService } from '../../../../../shared/services/app-forms.service';
 import { MessagesStore } from '../../../../../shared/store/app-messages.service';
 import { MessagesErrorService } from '../../../../../shared/services/app-messages-error.service';
@@ -77,9 +77,9 @@ export class AuthLoginPageComponent implements OnInit {
     }
   }
   private createFormControls(): void {
-    this.fcEmailConfig = this.formsService.createFormControlInputEmail();
+    this.fcEmailConfig = this.formsService.createFcInputEmail();
     this.fcEmail = this.fb.control( this.fcEmailConfig.valueDefault, this.fcEmailConfig.validators );
-    this.fcPwdConfig = this.formsService.createFormControlInputPwd();
+    this.fcPwdConfig = this.formsService.createFcInputPwd();
     this.fcPwd = this.fb.control( this.fcPwdConfig.valueDefault, this.fcPwdConfig.validators );
     this.fcRememberConfig = {
       type: FormControlInputOptType.CHECKBOX,

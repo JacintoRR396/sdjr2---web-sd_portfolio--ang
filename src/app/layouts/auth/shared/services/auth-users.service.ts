@@ -2,11 +2,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, shareReplay } from 'rxjs';
 
-import { environments } from '../../../environments/environment';
+import { environments } from '../../../../../environments/environment';
 
-import { User } from '../models/interfaces/app-users.interface';
-import { USERS } from '../models/mocks/app-users.mock';
-import { debug, LogLevel } from '../models/app-debug-operator.model';
+import { User } from '../models/interfaces/auth-users.interface';
+import { USERS } from '../models/mocks/auth-users.mock';
+import { debug, LogLevel } from '../../../../shared/models/app-debug-operator.model';
 
 @Injectable({
   providedIn: 'root'

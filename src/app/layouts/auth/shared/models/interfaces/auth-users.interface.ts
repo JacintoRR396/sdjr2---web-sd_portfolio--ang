@@ -2,6 +2,7 @@ export interface User {
   id: number;
   urlIcon?: string;
   username: string;
+  alias?: string;
   email: string;
   password: string;
   role: RoleType;

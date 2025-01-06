@@ -1,13 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthPrivateGuard } from './layouts/auth/shared/guards/auth-private.guard';
+import { AuthPublicGuard } from './layouts/auth/shared/guards/auth-public.guard';
+
 import { Error404PageComponent } from './shared/pages/app-error-404-page/app-error-404-page.component';
 
 const routes: Routes = [
-  { path: 'admin', loadChildren: () => import( './layouts/admin/admin.module' ).then( m => m.AdminModule ) },
-  { path: 'auth', loadChildren: () => import( './layouts/auth/auth.module' ).then( m => m.AuthModule ) },
+  {
+    path: 'admin',
+    loadChildren: () => import( './layouts/admin/admin.module' ).then( m => m.AdminModule ),
+    canLoad: [ AuthPrivateGuard ]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import( './layouts/auth/auth.module' ).then( m => m.AuthModule ),
+    canLoad: [ AuthPublicGuard ]
+  },
   //{ path: 'dashboard', loadChildren: () => import( './layouts/auth/auth.module' ).then( m => m.AuthModule ) },
-  { path: 'web', loadChildren: () => import( './layouts/web/web.module' ).then( m => m.WebModule ) },
+  {
+    path: 'web',
+    loadChildren: () => import( './layouts/web/web.module' ).then( m => m.WebModule ),
+    canLoad: [ AuthPrivateGuard ]
+  },
   { path: '', redirectTo: '/web', pathMatch: 'full' },
   { path: '**', component: Error404PageComponent },
 ];
