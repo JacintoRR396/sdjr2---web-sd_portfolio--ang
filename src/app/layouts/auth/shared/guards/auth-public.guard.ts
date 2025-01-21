@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 
 import { AuthStore } from '../store/auth-store.service';
 import { first, map, Observable, tap } from 'rxjs';
@@ -7,7 +7,7 @@ import { first, map, Observable, tap } from 'rxjs';
 import { NAVIGATION_ROUTES } from '../../../../models/navigation-routes.model';
 
 @Injectable({providedIn: 'root'})
-export class AuthPublicGuard {
+export class AuthPublicGuard implements CanActivate, CanActivateChild {
 
   navRoutes = NAVIGATION_ROUTES;
 

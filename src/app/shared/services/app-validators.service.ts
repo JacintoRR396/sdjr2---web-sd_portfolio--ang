@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { map } from 'rxjs';
+import { AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 
 import { UsersService } from '../../layouts/auth/shared/services/auth-users.service';
 import { MessagesErrorService } from './app-messages-error.service';
@@ -20,23 +20,23 @@ export class ValidatorsService {
   // User
   createFcEmailFormatValidator(): ValidatorFn {
     return ( control: AbstractControl ) : ValidationErrors | null => {
-      const value = control.value;
+      const value = control.value.trim();
       if ( !value ) { return null; }
       const emailValid = CONST.REG_EXP.EMAIL.test( value );
       return !emailValid ? { emailFormat: true } : null;
     }
   }
   createFcEmailExistsAsyncValidator(): AsyncValidatorFn {
-    return ( control: AbstractControl ) => {
-      return this.usersService.getUserByEmail( control.value )
+    return ( control: AbstractControl ): Observable<ValidationErrors | null> => {
+      return this.usersService.getUserByEmail( control.value.trim() )
         .pipe(
           map( user => user ? { emailExists: true } : null )
         );
     }
   }
   createFcEmailNotExistsAsyncValidator(): AsyncValidatorFn {
-    return ( control: AbstractControl ) => {
-      return this.usersService.getUserByEmail( control.value )
+    return ( control: AbstractControl ): Observable<ValidationErrors | null> => {
+      return this.usersService.getUserByEmail( control.value.trim() )
         .pipe(
           map( user => user ? null : { emailNotExists: true } )
         );
@@ -45,16 +45,16 @@ export class ValidatorsService {
 
   createFcPwdStrengthValidator(): ValidatorFn {
     return ( control: AbstractControl ) : ValidationErrors | null => {
-      const value = control.value;
+      const value = control.value.trim();
       if ( !value ) { return null; }
       const passwordValid = CONST.REG_EXP.PASSWORD.test( value );
       return !passwordValid ? { pwdStrength: true } : null;
     }
   }
-  createFgPwdVerifyValidator(): Validators {
-    return ( fg: FormGroup ): Validators | null => {
-      const fcPwdValue = fg.get( 'pwd' )!.value;
-      const fcPwdVerifyValue = fg.get( 'pwd_verify' )!.value;
+  createFgPwdVerifyValidator( fcPwdName: string, fcPwdVerifyName: string ): Validators {
+    return ( fg: AbstractControl ): Validators | null => {
+      const fcPwdValue = fg.get( fcPwdName )!.value.trim();
+      const fcPwdVerifyValue = fg.get( fcPwdVerifyName )!.value.trim();
       if( fcPwdValue && fcPwdVerifyValue ) {
         return ( fcPwdValue === fcPwdVerifyValue ) ? null : { pwdVerify: true };
       }
@@ -74,7 +74,7 @@ export class ValidatorsService {
     } else if( fc.errors?.['maxlength'] ) {
       return this.messagesErrorService.getFormControlMaxLength(
         label, fc.errors?.['maxlength'].requiredLength, fc.errors?.['maxlength'].actualLength );
-    } else if( fc.errors?.['email'] ) {
+    } else if( fc.errors?.['email'] || fc.errors?.['emailFormat'] ) {
       return this.messagesErrorService.getFormControlEmailFormat();
     } else if( fc.errors?.['emailExists'] ) {
       return this.messagesErrorService.getFormControlEmailExists();

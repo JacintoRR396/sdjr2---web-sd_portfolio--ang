@@ -21,5 +21,7 @@ export interface Role {
 }
 
 export enum RoleType {
-  ROLE_VIEWER, ROLE_USER, ROLE_ADMIN
+  ROLE_VIEWER = 'ROLE_VIEWER',
+  ROLE_USER = 'ROLE_USER',
+  ROLE_ADMIN = 'ROLE_ADMIN'
 }

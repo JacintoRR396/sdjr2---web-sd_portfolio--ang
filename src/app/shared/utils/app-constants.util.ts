@@ -5,8 +5,8 @@ export const FORMAT = {
 }
 
 export const REG_EXP = {
-  NAME_GNR: /^[A-Z][a-zñA-Záéíóú\\s/]/,
-  EMAIL: /^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@/,
+  NAME_GNR: /^[A-Z][A-Za-zñáéíóú\s/]/,
+  EMAIL: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
   PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{8,}$/,
   DESCRIPTION: /^[A-Z][a-zñA-Záéíóú\s._\-,;()¿?!¡=\d]{3,500}/,
   DESCRIPTION_LG: /^[A-Z][a-zñA-Záéíóú\s._\-,;()¿?!¡=\d]{3,2500}/,

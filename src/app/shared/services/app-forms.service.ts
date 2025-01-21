@@ -23,7 +23,8 @@ export class FormsService {
       iconBS: 'bi-envelope-at',
       placeHolder: 'Enter your email',
       valueDefault: '',
-      validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60), Validators.email ],
+      validators: [ Validators.required, Validators.minLength(15), Validators.maxLength(60),
+        this.validatorsService.createFcEmailFormatValidator() ],
       asyncValidators,
       isMandatory: true,
     };

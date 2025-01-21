@@ -119,8 +119,7 @@ export class AuthRegisterPageComponent implements OnInit {
         terms: this.fcTermsOfService,
       },
       {
-        validators: [ this.validatorsService.createFgPwdVerifyValidator() ],
-        updateOn: 'blur'
+        validators: [ this.validatorsService.createFgPwdVerifyValidator( this.fcPwdConfig.name, this.fcPwdVerifyConfig.name ) ]
       }
     );
   }
